@@ -21,3 +21,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.env
+.env.production
+
+
+/src/pages/Login copy.js
+/src/pages/Landing.js
+/src/components/Navbar test.js
+/src/components/FavouritesWidget copy.js
+/src/components/VisualyzerWidget copy.js
+
+
+/src/context/playerContext.js
+/src/context/playerReducer.js
+
+.vscode
