@@ -23,9 +23,7 @@ const Login = ({ theme }) => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='brand-wrapper'>
-				<h1 id='brand'>
-					Terror<span id='hyphen'>-</span>Fi
-				</h1>
+				<h1 id='brand'>TV Quiz</h1>
 			</div>
 
 			<div className='form-page-container'>
@@ -63,7 +61,7 @@ const Login = ({ theme }) => {
 
 			<div className='launch-wrapper'>
 				<h1 className='launch-btn' id='lets-rock'>
-					The Demo Tapes
+					It's the CD's or Me
 				</h1>
 			</div>
 		</StyledLogin>

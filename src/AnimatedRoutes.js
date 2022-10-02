@@ -12,6 +12,7 @@ import Signup from './pages/Signup';
 // import Library from './pages/Library';
 import Loader from './pages/Loader';
 import Home from './pages/Home';
+import Game from './pages/Game';
 // import Settings from './pages/Settings';
 // import { useState } from 'react';
 // import { log } from './helper';
@@ -83,6 +84,38 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						)
 					}
 				/>
+				<Route
+					path='/game'
+					element={
+						user ? (
+							<Game
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				{/* <Route
+					path='/songs'
+					element={
+						user ? (
+							<Home
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/> */}
 				{/* <Route
 					path='/playlists'
 					element={

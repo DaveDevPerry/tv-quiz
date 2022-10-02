@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { log } from '../helper';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useSongsContext } from '../hooks/useSongsContext';
+import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -14,10 +18,11 @@ import { useNavigate } from 'react-router-dom';
 // import { useFavouritesContext } from '../hooks/useFavouritesContext';
 // import { motion } from 'framer-motion';
 
-const Loader = ({ theme }) => {
-	// const { user } = useAuthContext();
+const Loader = () => {
+	const { user } = useAuthContext();
 	// const { active_user } = useUsersContext();
-	// const { songs, dispatch } = useSongsContext();
+	const { dispatch } = useSongsContext();
+	const { dispatch: levelDispatch } = useLevelsContext();
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
 	// const { dispatch: playlistDispatch } = usePlaylistsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
@@ -30,71 +35,71 @@ const Loader = ({ theme }) => {
 	// } = useStateContext();
 
 	const navigate = useNavigate();
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		// setDataLoaded(true);
+	// 		navigate('/home');
+	// 	}, 2000);
+	// });
+
 	useEffect(() => {
+		const fetchSongs = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
+				{
+					headers: {
+						// Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json');
+			if (response.ok) {
+				dispatch({
+					type: 'SET_SONGS',
+					payload: json,
+				});
+			}
+		};
+		if (user) {
+			fetchSongs();
+		}
 		setTimeout(() => {
 			// setDataLoaded(true);
-			navigate('/home');
+			setTimeout(() => {
+				// log(songs, 'songs');
+				// log(albums, 'albums');
+				navigate('/home');
+			}, 1000);
 		}, 2000);
-	});
+	}, [dispatch, user]);
 
-	// useEffect(() => {
-	// 	const fetchSongs = async () => {
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/songs`,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${user.token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const json = await response.json();
-	// 		log(json, 'json');
-	// 		if (response.ok) {
-	// 			dispatch({
-	// 				type: 'SET_SONGS',
-	// 				payload: json,
-	// 			});
-	// 		}
-	// 	};
-	// 	if (user) {
-	// 		fetchSongs();
-	// 	}
-	// 	setTimeout(() => {
-	// 		setDataLoaded(true);
-	// 		setTimeout(() => {
-	// 			log(songs, 'songs');
-	// 			log(albums, 'albums');
-	// 			navigate('/library');
-	// 		}, 1000);
-	// 	}, 2000);
-	// }, [dispatch, user]);
-
-	// useEffect(() => {
-	// 	const fetchAlbums = async () => {
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/albums`,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${user.token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const json = await response.json();
-	// 		log(json, 'albums json');
-	// 		json.reverse();
-	// 		if (response.ok) {
-	// 			// setWorkouts(json);
-	// 			albumDispatch({
-	// 				type: 'SET_ALBUMS',
-	// 				payload: json,
-	// 			});
-	// 		}
-	// 	};
-	// 	// if we have a value for the user then fetch the workouts
-	// 	if (user) {
-	// 		fetchAlbums();
-	// 	}
-	// }, [albumDispatch, user]);
+	useEffect(() => {
+		const fetchLevels = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/levels`
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${user.token}`,
+				// 	},
+				// }
+			);
+			const json = await response.json();
+			log(json, 'albums json');
+			// json.reverse();
+			if (response.ok) {
+				// setWorkouts(json);
+				levelDispatch({
+					type: 'SET_LEVELS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchLevels();
+		}
+	}, [levelDispatch, user]);
 
 	// useEffect(() => {
 	// 	const fetchPlaylists = async () => {
@@ -198,7 +203,7 @@ const StyledLoader = styled(motion.section)`
 		text-transform: uppercase;
 		color: ${({ theme }) => theme.white};
 		letter-spacing: 0.5rem;
-		font-family: 'BadSignal';
+		/* font-family: 'BadSignal'; */
 		text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
 			-0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
 			0.025em 0.05em 0 rgba(0, 0, 255, 0.75);

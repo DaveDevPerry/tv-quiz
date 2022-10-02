@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
+import { SongsContextProvider } from './context/SongContext';
+import { LevelsContextProvider } from './context/LevelContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<App />
+			<LevelsContextProvider>
+				<SongsContextProvider>
+					<App />
+				</SongsContextProvider>
+			</LevelsContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>
 );

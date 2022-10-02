@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from './components/useDarkMode';
 import { GlobalStyles } from './components/globalStyles';
 import { lightTheme, darkTheme } from './components/Themes';
+import { GamesContextProvider } from './context/GameContext';
 
 function App() {
 	const { user } = useAuthContext();
@@ -16,15 +17,17 @@ function App() {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
-			<div className='App'>
-				<BrowserRouter>
-					<AnimatedRoutes
-						user={user}
-						themeToggler={themeToggler}
-						theme={theme}
-					/>
-				</BrowserRouter>
-			</div>
+			<GamesContextProvider>
+				<div className='App'>
+					<BrowserRouter>
+						<AnimatedRoutes
+							user={user}
+							themeToggler={themeToggler}
+							theme={theme}
+						/>
+					</BrowserRouter>
+				</div>
+			</GamesContextProvider>
 		</ThemeProvider>
 	);
 }
