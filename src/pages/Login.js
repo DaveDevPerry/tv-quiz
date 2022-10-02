@@ -99,10 +99,10 @@ const StyledLogin = styled(motion.div)`
 			text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
 				-0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
 				0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-			animation: glitch1 2500ms infinite;
+			/* animation: glitch1 2500ms infinite; */
 		}
 		span#hyphen {
-			font-family: 'Roboto';
+			/* font-family: 'Roboto'; */
 			color: ${({ theme }) => theme.white};
 		}
 	}

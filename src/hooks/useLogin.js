@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { log } from '../helper';
-import { useStateContext } from '../lib/context';
+// import { useStateContext } from '../lib/context';
 import { useAuthContext } from './useAuthContext';
-import { useUsersContext } from './useUserContext';
+// import { useUsersContext } from './useUserContext';
 
 export const useLogin = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(null);
 	const { dispatch } = useAuthContext();
-	const { dispatch: userDispatch } = useUsersContext();
+	// const { dispatch: userDispatch } = useUsersContext();
 
-	const {
-		setDefaultAnimation,
-		setDefaultViewMode,
-		setViewMode,
-		setMediaToDisplay,
-	} = useStateContext();
+	// const {
+	// 	setDefaultAnimation,
+	// 	setDefaultViewMode,
+	// 	setViewMode,
+	// 	setMediaToDisplay,
+	// } = useStateContext();
 
 	const login = async (email, password) => {
 		setIsLoading(true);
@@ -58,12 +58,12 @@ export const useLogin = () => {
 			// localStorage.setItem('user-terror-fi', JSON.stringify(json));
 			// update auth context with email
 			dispatch({ type: 'LOGIN', payload: json });
-			userDispatch({ type: 'SET_USER', payload: json });
+			// userDispatch({ type: 'SET_USER', payload: json });
 
-			setDefaultAnimation(json.defaultAnimation);
-			setMediaToDisplay(json.defaultAnimation);
-			setDefaultViewMode(json.defaultView);
-			setViewMode(json.defaultView);
+			// setDefaultAnimation(json.defaultAnimation);
+			// setMediaToDisplay(json.defaultAnimation);
+			// setDefaultViewMode(json.defaultView);
+			// setViewMode(json.defaultView);
 			// update loading state to false as finished
 			setIsLoading(false);
 		}

@@ -13,12 +13,14 @@ export const GlobalStyles = createGlobalStyle`
     --letter-count: 9;
   } */
 	}
-  @font-face {
+  ${
+		'' /* @font-face {
 	font-family: 'BadSignal';
 	src: url('/fonts/BadSignal.otf');
 	font-display: swap;
   
-}
+} */
+	}
 ${
 	'' /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap'); */
@@ -72,7 +74,7 @@ ${
 		left: 0;
 		height: 100%;
 		width: 100%;
-    background-image: url("/assets/tv_bg-sm-min.webp");
+    ${'' /* background-image: url("/assets/tv_bg-sm-min.webp"); */}
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: bottom center;
@@ -167,7 +169,7 @@ label .field-required{
 		left: 0;
 		height: 100%;
 		width: 100%;
-    background-image: url("/assets/tv_bg-sm-min.webp");
+    ${'' /* background-image: url("/assets/tv_bg-sm-min.webp"); */}
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: bottom center;
@@ -191,7 +193,7 @@ label .field-required{
 
   h1 {
 	font-size: 4rem;
-	font-family: 'BadSignal';
+	${'' /* font-family: 'BadSignal'; */}
 	letter-spacing: 0.3rem;
 }
 h2 {
