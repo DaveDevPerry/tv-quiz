@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {

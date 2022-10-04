@@ -1,5 +1,5 @@
 export const lightTheme = {
-	primaryColor: '#f706ff',
+	primaryColor: '#EEBB06',
 	// primaryColor: '#ff7a06',
 	secondaryColor: '#1f1c1e',
 	error: '#e7195a',
@@ -7,7 +7,7 @@ export const lightTheme = {
 	borderGrey: '#ddd',
 	bgGrey: '#efefef',
 	bgLightGrey: '#e3e3e3',
-	white: '#302f2f',
+	white: '#ffffff',
 	txtGrey: '#484848',
 	txtDarkGrey: '#333',
 	bgCircle: '#d8d8d8',

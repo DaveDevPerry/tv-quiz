@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 // import { useNavigate } from 'react-router-dom';
 
 export const useDarkMode = () => {

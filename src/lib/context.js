@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 
 // This is global state
 const AppContext = createContext();
@@ -14,6 +14,8 @@ export const StateContext = ({ children }) => {
 	const [defaultAnimation, setDefaultAnimation] = useState(null);
 	const [viewMode, setViewMode] = useState(null);
 	const [defaultViewMode, setDefaultViewMode] = useState(null);
+
+	const [gameScore, setGameScore] = useState(null);
 	// const [currentSong, setCurrentSong] = useState(null);
 	const audio = document.getElementById('audio');
 	// SONGS
@@ -189,6 +191,8 @@ export const StateContext = ({ children }) => {
 				setDefaultViewMode,
 				defaultAnimation,
 				setDefaultAnimation,
+				gameScore,
+				setGameScore,
 			}}
 		>
 			{children}

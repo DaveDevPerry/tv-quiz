@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
@@ -168,7 +168,7 @@ const Loader = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='tv-wrapper'>
-				<h1>loader</h1>
+				<h1>TerrorQuizion</h1>
 				{/* <div id='tv-signal'></div> */}
 				{/* <img
 					src={
@@ -191,70 +191,17 @@ const StyledLoader = styled(motion.section)`
 	height: 100vh;
 	width: 100%;
 	height: 100%;
-	background-color: ${({ theme }) => theme.black};
+	background-color: ${({ theme }) => theme.primaryColor};
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	z-index: 500;
-	.glitch {
-		font-size: 4rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		color: ${({ theme }) => theme.white};
-		letter-spacing: 0.5rem;
-		/* font-family: 'BadSignal'; */
-		text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-			-0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-			0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-		animation: glitch1 2500ms infinite;
-		#glitch-hyphen {
-			font-family: 'Roboto';
-		}
-	}
-	.tv-wrapper {
-		position: relative;
-		width: 200px;
-		height: 239px;
-		/* img#tv-signal {
-			position: absolute;
-			top: 120px;
-			left: 28px;
-			width: 11rem;
-			height: 50px;
-		} */
-		/* img#terror-tv {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 200px;
-			z-index: 100000;
-		} */
-	}
 
 	.tv-wrapper {
-		position: relative;
+		/* position: relative;
 		width: 200px;
-		height: 239px;
-		/* #tv-signal {
-			position: absolute;
-			top: 120px;
-			left: 28px;
-			width: 11rem;
-			height: 50px;
-			background: url('/assets/tv-signal.webp');
-			background-repeat: repeat;
-			background-position: 0 0;
-			background-size: auto 100%;
-			animation: tvSignal 500s linear infinite;
-		}
-		img#terror-tv {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 200px;
-			z-index: 100000;
-		} */
+		height: 239px; */
 	}
 `;
 

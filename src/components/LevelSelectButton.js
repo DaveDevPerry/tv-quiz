@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 import { useLevelsContext } from '../hooks/useLevelsContext';
 import { useGamesContext } from '../hooks/useGamesContext';
 import { useNavigate } from 'react-router-dom';
@@ -38,6 +38,7 @@ const LevelSelectButton = ({ level }) => {
 	};
 	return (
 		<StyledLevelSelectButton
+			className='br-field'
 			onClick={() => {
 				compileLevelData(level._id);
 			}}
@@ -52,12 +53,13 @@ const LevelSelectButton = ({ level }) => {
 	);
 };
 const StyledLevelSelectButton = styled.div`
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	padding: 2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	column-gap: 3rem;
+	background-color: ${({ theme }) => theme.bgGrey};
 	p {
 		text-transform: capitalize;
 		font-weight: bold;

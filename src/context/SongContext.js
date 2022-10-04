@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 
 export const SongsContext = createContext();
 

@@ -31,6 +31,7 @@ yarn-error.log*
 /src/components/Navbar test.js
 /src/components/FavouritesWidget copy.js
 /src/components/VisualyzerWidget copy.js
+# /src/components/Footer.js
 
 
 /src/context/playerContext.js

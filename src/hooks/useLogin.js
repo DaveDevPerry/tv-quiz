@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 // import { useStateContext } from '../lib/context';
 import { useAuthContext } from './useAuthContext';
 // import { useUsersContext } from './useUserContext';
@@ -51,7 +51,7 @@ export const useLogin = () => {
 		if (response.ok) {
 			// save the user to local storage
 			localStorage.setItem(
-				'user-terror-fi',
+				'user-tv-quiz',
 				JSON.stringify(json)
 				// JSON.stringify(userForLocalStorage)
 			);

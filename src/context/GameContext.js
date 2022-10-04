@@ -1,21 +1,28 @@
 import { createContext, useReducer } from 'react';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 
 export const GamesContext = createContext();
 
 export const gamesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_GAME_DATA':
+			const questionCount = 3;
 			log(action.payload, 'action payload set game data');
 			const clonedSongs = [...action.payload.songs];
 			log(clonedSongs, 'clonedSongs set game data');
-			const randomNumber = Math.floor(Math.random() * clonedSongs.length);
-			const songChosen = clonedSongs[randomNumber];
+
+			const shuffleSongs = clonedSongs.sort(() => Math.random() - 0.5);
+			log(shuffleSongs, 'shuffleSongs');
+			const songsReqForRound = shuffleSongs.splice(0, questionCount);
+
+			// const randomNumber = Math.floor(Math.random() * clonedSongs.length);
+			// const songChosen = clonedSongs[randomNumber];
 
 			return {
 				...state,
 				level: action.payload,
-				music: songChosen,
+				music: songsReqForRound,
+				// music: songChosen,
 				// songs: clonedSongs,
 			};
 

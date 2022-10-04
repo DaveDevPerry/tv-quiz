@@ -13,6 +13,9 @@ import Signup from './pages/Signup';
 import Loader from './pages/Loader';
 import Home from './pages/Home';
 import Game from './pages/Game';
+import Songs from './pages/Songs';
+import Play from './pages/Play';
+import Result from './pages/Result';
 // import Settings from './pages/Settings';
 // import { useState } from 'react';
 // import { log } from './helper';
@@ -85,6 +88,22 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					}
 				/>
 				<Route
+					path='/play'
+					element={
+						user ? (
+							<Play
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
 					path='/game'
 					element={
 						user ? (
@@ -100,6 +119,64 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						)
 					}
 				/>
+				<Route
+					path='/game/result'
+					element={
+						user ? (
+							<Result
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/songs'
+					element={
+						user ? (
+							<Songs
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				{/* <Route
+					path='/settings'
+					element={
+						user ? (
+							<Settings themeToggler={themeToggler} theme={theme} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/> */}
+				{/* <Route
+					path='/game/playing'
+					element={
+						user ? (
+							<Game
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/> */}
 				{/* <Route
 					path='/songs'
 					element={

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
@@ -11,9 +11,9 @@ import styled from 'styled-components';
 // import { useVenuesContext } from '../hooks/useVenuesContext';
 // import GigFormCities from './GigFormCities';
 // import GigFormVenues from './GigFormVenues';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 // import GigFormSupportBands from './GigFormSupportBands';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import GameFormSongs from './GameFormSongs';
 // import { motion } from 'framer-motion';
 
@@ -109,8 +109,14 @@ import GameFormSongs from './GameFormSongs';
 // 	);
 // };
 
-const GameForm = () => {
-	const navigate = useNavigate();
+const GameForm = ({
+	handleAnswerOptionClick,
+	title,
+	setTitle,
+	// search,
+	// setSearch,
+}) => {
+	// const navigate = useNavigate();
 
 	// const { dispatch } = useGigsContext();
 	// const { dispatch: bandDispatch } = useBandsContext();
@@ -119,8 +125,8 @@ const GameForm = () => {
 
 	const [createNewAnswer, setCreateNewAnswer] = useState(true);
 	const [display, setDisplay] = useState(false);
-	const [title, setTitle] = useState('');
-
+	// const [title, setTitle] = useState('');
+	const [search, setSearch] = useState('');
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
@@ -210,25 +216,33 @@ const GameForm = () => {
 		// }
 		// setIsFormActive(!isFormActive);
 		setEmptyFields([]);
-		notify();
-		navigate('/home');
+		handleAnswerOptionClick(title);
+
+		setSearch('');
+
+		// setTitle('');
+		// notify();
+		// navigate('/home');
 	};
 
 	// create a toast
-	const notify = () => {
-		toast.success(`${title} gig successfully added.`, {
-			duration: 5000,
-			style: {
-				border: '2px solid #1da000',
-			},
-		});
-	};
+	// const notify = () => {
+	// 	toast.success(`${title} gig successfully added.`, {
+	// 		duration: 5000,
+	// 		style: {
+	// 			border: '2px solid #1da000',
+	// 		},
+	// 	});
+	// };
 
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>
+			{/* <StyledForm className='create' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}> */}
+			{/* <StyledForm className='create' onSubmit={handleAnswerOptionClick}> */}
 			<div className='input-wrapper-band'>
 				<label>
-					song name:<span className='field-required'>*</span>
+					answer:
+					{/* <span className='field-required'>*</span> */}
 				</label>
 				<GameFormSongs
 					setDisplay={setDisplay}
@@ -237,12 +251,14 @@ const GameForm = () => {
 					title={title}
 					emptyFields={emptyFields}
 					setCreateNewAnswer={setCreateNewAnswer}
+					search={search}
+					setSearch={setSearch}
 				/>
 			</div>
 
 			<div className='btn-container'>
 				{error && <div className='error'>{error}</div>}
-				<button className='add-btn'>Add Gig</button>
+				<button className='add-btn'>SUBMIT</button>
 			</div>
 		</StyledForm>
 	);
@@ -302,15 +318,7 @@ const StyledForm = styled.form`
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-weight: bold;
 			}
-			/* #input-checkbox {
-				margin: 0;
-				font-size: 1.8rem;
-				color: ${({ theme }) => theme.black};
-				width: 3rem;
-				height: 3rem;
-				border: 2px solid ${({ theme }) => theme.borderGrey};
-				border-radius: 4px;
-			} */
+
 			input[type='checkbox'] {
 				/* ...existing styles */
 				display: grid;
@@ -370,27 +378,6 @@ const StyledForm = styled.form`
 			}
 		}
 	}
-	/* .input-wrapper {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		column-gap: 1rem;
-		margin-top: 1.5rem;
-		label {
-			font-size: 1.6rem;
-			text-align: right;
-			flex: 1;
-			color: ${({ theme }) => theme.txtDarkGrey};
-			font-weight: bold;
-		}
-		#input-number {
-			padding: 0.8rem 1rem;
-			margin: 0;
-			font-size: 1.8rem;
-			color: ${({ theme }) => theme.black};
-			flex: 1;
-		}
-	} */
 
 	.input-wrapper-band {
 		display: flex;
@@ -410,7 +397,7 @@ const StyledForm = styled.form`
 			padding: 0.8rem 1rem;
 			margin: 0;
 			font-size: 1.8rem;
-			color: ${({ theme }) => theme.black};
+			/* color: ${({ theme }) => theme.black}; */
 			flex: 1;
 		}
 		#input-number {

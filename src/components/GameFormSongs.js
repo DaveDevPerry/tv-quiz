@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { log } from '../helper';
+import { log } from '../utils/helper';
 import { useSongsContext } from '../hooks/useSongsContext';
 // import { CgCloseR } from 'react-icons/cg';
 // import { useBandsContext } from '../hooks/useBandsContext';
@@ -14,12 +14,14 @@ const GameFormSongs = ({
 	setTitle,
 	emptyFields,
 	setCreateNewAnswer,
+	search,
+	setSearch,
 }) => {
 	const { user } = useAuthContext();
 	const { songs } = useSongsContext();
 	// const [display, setDisplay] = useState(false);
 	const [options, setOptions] = useState([]);
-	const [search, setSearch] = useState('');
+	// const [search, setSearch] = useState('');
 	const wrapperRef = useRef(null);
 
 	useEffect(() => {
@@ -86,6 +88,7 @@ const GameFormSongs = ({
 				autoComplete='off'
 				required
 			/>
+			{/* {display && search && ( */}
 			{display && (
 				<div className='autoContainer'>
 					{options

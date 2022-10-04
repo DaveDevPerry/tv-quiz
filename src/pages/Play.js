@@ -1,39 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import CategoryButton from '../components/CategoryButton';
 // import LevelSelectButton from '../components/LevelSelectButton';
-// import { useLevelsContext } from '../hooks/useLevelsContext';
+import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
 
-const Home = () => {
+const Play = () => {
 	// const { songs } = useSongsContext();
-	// const { levels } = useLevelsContext();
+	const { levels } = useLevelsContext();
 	return (
-		<StyledHome>
-			<h2>home page</h2>
-
-			<p>this page contains basic player stats. eg</p>
-			<ol>
-				<li>welcome msg</li>
-				<li>show user</li>
-				<li>total players</li>
-				<li>current rank</li>
-			</ol>
+		<StyledPlay>
+			<h2>choose a category</h2>
 
 			{/* <ul>
 				<li>SONGS</li>
 				{songs && songs.map((song) => <li key={song._id}>{song.title}</li>)}
 			</ul> */}
 
-			{/* <div className='level-select-container br'>
+			<div className='level-select-container'>
+				{/* <div className='level-select-container br'> */}
 				{levels &&
 					levels.map((level) => (
-						<LevelSelectButton key={level._id} level={level} />
+						<CategoryButton key={level._id} level={level} />
 					))}
-			</div> */}
-		</StyledHome>
+				{/* <LevelSelectButton key={level._id} level={level} /> */}
+			</div>
+		</StyledPlay>
 	);
 };
-const StyledHome = styled.div`
+const StyledPlay = styled.div`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -50,20 +45,24 @@ const StyledHome = styled.div`
 	/* overflow: hidden; */
 	overflow: hidden;
 	transition: all 200ms linear;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	h2 {
 		color: ${({ theme }) => theme.primaryColor};
 		text-transform: capitalize;
 		text-align: center;
 	}
-	ol {
-		list-style: disc;
-		li {
-			display: list-item;
-			/* padding-left: 2rem; */
-			margin-left: 2rem;
-		}
+	.level-select-container {
+		padding: 1rem;
+		flex: 1;
+		/* border: 1px solid black; */
+		display: flex;
+		flex-direction: column;
+		/* align-items: stretch; */
+		justify-content: flex-start;
+		justify-content: flex-start;
+		row-gap: 2rem;
+		/* width: 100%; */
 	}
 `;
 
-export default Home;
+export default Play;
