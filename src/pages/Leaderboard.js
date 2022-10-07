@@ -2,37 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
-import { useSongsContext } from '../hooks/useSongsContext';
-import { FaStar } from 'react-icons/fa';
+// import { useSongsContext } from '../hooks/useSongsContext';
+// import { FaStar } from 'react-icons/fa';
 
-const Songs = () => {
-	const { songs } = useSongsContext();
+const Leaderboard = () => {
+	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	return (
-		<StyledSongs>
-			<h2>songs page</h2>
-
-			<ol className='br'>
-				{/* <li>SONGS</li> */}
-				{songs &&
-					songs.map((song) => (
-						<li key={song._id}>
-							<p>{song.title}</p>
-							<FaStar className='star-off' />
-						</li>
-					))}
-			</ol>
-
-			{/* <div className='level-select-container'>
-				{levels &&
-					levels.map((level) => (
-						<LevelSelectButton key={level._id} level={level} />
-					))}
-			</div> */}
-		</StyledSongs>
+		<StyledLeaderboard>
+			<h2>Leaderboard page</h2>
+		</StyledLeaderboard>
 	);
 };
-const StyledSongs = styled.div`
+const StyledLeaderboard = styled.div`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -85,4 +67,4 @@ const StyledSongs = styled.div`
 	}
 `;
 
-export default Songs;
+export default Leaderboard;

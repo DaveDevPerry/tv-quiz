@@ -47,7 +47,7 @@ const StyledPlay = styled.div`
 	transition: all 200ms linear;
 	/* margin: 0 auto; */
 	h2 {
-		color: ${({ theme }) => theme.primaryColor};
+		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
 		text-align: center;
 	}
@@ -60,7 +60,7 @@ const StyledPlay = styled.div`
 		/* align-items: stretch; */
 		justify-content: flex-start;
 		justify-content: flex-start;
-		row-gap: 2rem;
+		row-gap: 1rem;
 		/* width: 100%; */
 	}
 `;

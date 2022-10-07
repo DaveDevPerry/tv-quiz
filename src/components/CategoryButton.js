@@ -48,6 +48,7 @@ const CategoryButton = ({ level }) => {
 		>
 			<div className='category-header'>
 				<h3>{level && level.category}</h3>
+				<h4>{level && level.difficulty}</h4>
 				{/* <span>45%</span> */}
 			</div>
 
@@ -82,7 +83,7 @@ const CategoryButton = ({ level }) => {
 };
 const StyledCategoryButton = styled.div`
 	/* border: 1px solid red; */
-	padding: 2rem;
+	padding: 1rem 2rem;
 	display: flex;
 	justify-content: center;
 	/* align-items: center; */
@@ -94,11 +95,15 @@ const StyledCategoryButton = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		pointer-events: none;
+		border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
 		h3 {
 			/* color: ${({ theme }) => theme.primaryColor}; */
 			text-transform: capitalize;
 			/* font-weight: bold; */
-			flex: 1;
+			/* flex: 1; */
+		}
+		h4 {
+			font-style: italic;
 		}
 		p {
 			text-transform: capitalize;

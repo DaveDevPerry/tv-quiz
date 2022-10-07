@@ -52,7 +52,7 @@ const StyledHome = styled.div`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	h2 {
-		color: ${({ theme }) => theme.primaryColor};
+		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
 		text-align: center;
 	}

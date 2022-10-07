@@ -245,7 +245,7 @@ const StyledGame = styled.div`
 		row-gap: 2rem;
 	} */
 	h2 {
-		color: ${({ theme }) => theme.primaryColor};
+		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
 		text-align: center;
 	}

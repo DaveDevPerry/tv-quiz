@@ -16,6 +16,9 @@ import Game from './pages/Game';
 import Songs from './pages/Songs';
 import Play from './pages/Play';
 import Result from './pages/Result';
+import Stats from './pages/Stats';
+import Leaderboard from './pages/Leaderboard';
+import Settings from './pages/Settings';
 // import Settings from './pages/Settings';
 // import { useState } from 'react';
 // import { log } from './helper';
@@ -151,16 +154,42 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						)
 					}
 				/>
-				{/* <Route
-					path='/settings'
+				<Route
+					path='/stats'
 					element={
 						user ? (
-							<Settings themeToggler={themeToggler} theme={theme} />
+							<Stats
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
 						) : (
 							<Navigate to='/login' />
 						)
 					}
-				/> */}
+				/>
+				<Route
+					path='/leaderboard'
+					element={
+						user ? (
+							<Leaderboard
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/settings'
+					element={user ? <Settings theme={theme} /> : <Navigate to='/login' />}
+				/>
 				{/* <Route
 					path='/game/playing'
 					element={

@@ -75,14 +75,15 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<GiPodium className='nav-icon' />
-							<p>scores</p>
+							<p>rankings</p>
 						</NavLink>
 
 						<NavLink
 							to='/settings'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							<IoSettingsOutline className='settings-icon' />
+							<IoSettingsOutline className='nav-icon' />
+							{/* <IoSettingsOutline className='settings-icon' /> */}
 							<p>settings</p>
 						</NavLink>
 						{/* <NavLink
@@ -137,7 +138,7 @@ const StyledFooter = styled.footer`
 				justify-content: center;
 				align-items: center;
 				.nav-icon {
-					font-size: 2rem;
+					font-size: 2.4rem;
 					color: ${({ theme }) => theme.secondaryColor};
 					/* color: ${({ theme }) => theme.txtGrey}; */
 					position: relative;
@@ -165,7 +166,7 @@ const StyledFooter = styled.footer`
 
 				p {
 					text-transform: uppercase;
-					font-size: 1rem;
+					font-size: 1.2rem;
 					font-weight: normal;
 				}
 			}
