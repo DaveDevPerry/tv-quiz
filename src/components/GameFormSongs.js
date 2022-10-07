@@ -12,6 +12,7 @@ const GameFormSongs = ({
 	setDisplay,
 	display,
 	setTitle,
+	setSongID,
 	emptyFields,
 	setCreateNewAnswer,
 	search,
@@ -65,10 +66,11 @@ const GameFormSongs = ({
 		}
 	};
 
-	const setSongDex = (poke) => {
+	const setSongDex = (poke, songID) => {
 		log(poke, 'poke setSongDex');
 		setSearch(poke);
 		setTitle(poke);
+		setSongID(songID);
 		setCreateNewAnswer(false);
 		setDisplay(false);
 	};
@@ -98,7 +100,7 @@ const GameFormSongs = ({
 								<div
 									key={i}
 									className='option'
-									onClick={() => setSongDex(v.title)}
+									onClick={() => setSongDex(v.title, v._id)}
 								>
 									<span>{v.title}</span>
 								</div>

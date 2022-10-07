@@ -15,6 +15,8 @@ const QuestionWidget = ({
 	setDisableControls,
 	title,
 	setTitle,
+	setSongID,
+	songID,
 	questionCount,
 }) => {
 	// const { music } = useGamesContext();
@@ -42,6 +44,8 @@ const QuestionWidget = ({
 				handleAnswerOptionClick={handleAnswerOptionClick}
 				title={title}
 				setTitle={setTitle}
+				setSongID={setSongID}
+				songID={songID}
 			/>
 		</StyledQuestionWidget>
 	);

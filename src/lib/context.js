@@ -16,6 +16,7 @@ export const StateContext = ({ children }) => {
 	const [defaultViewMode, setDefaultViewMode] = useState(null);
 
 	const [gameScore, setGameScore] = useState(null);
+	const [gameResults, setGameResults] = useState(null);
 	// const [currentSong, setCurrentSong] = useState(null);
 	const audio = document.getElementById('audio');
 	// SONGS
@@ -193,6 +194,8 @@ export const StateContext = ({ children }) => {
 				setDefaultAnimation,
 				gameScore,
 				setGameScore,
+				gameResults,
+				setGameResults,
 			}}
 		>
 			{children}

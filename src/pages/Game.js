@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import AudioPlayer from '../components/AudioPlayer';
@@ -33,11 +33,13 @@ const Game = () => {
 	const [disableControls, setDisableControls] = useState(false);
 
 	const [title, setTitle] = useState('');
+	const [songID, setSongID] = useState('');
 	const [search, setSearch] = useState('');
 	// const [answers, setAnswers] = useState(null)
 	const [showQuestions, setShowQuestions] = useState(false);
 
 	const { setGameScore } = useStateContext();
+	const { setGameResults } = useStateContext();
 
 	const handleAnswerOptionClick = (title) => {
 		let correctSongTitle = music[currentQuestion].title;
@@ -50,6 +52,7 @@ const Game = () => {
 			log('correct answer');
 			setScore(score + 1);
 			const questionResult = {
+				songID: songID,
 				title: correctSongTitle,
 				isCorrect: true,
 			};
@@ -57,6 +60,7 @@ const Game = () => {
 		} else {
 			log('wrong answer');
 			const questionResult = {
+				songID: songID,
 				title: correctSongTitle,
 				isCorrect: false,
 			};
@@ -67,29 +71,28 @@ const Game = () => {
 		// 	// setScore(score + 1);
 		// }
 		log(title, 'title from user');
-
-		// if (scoreBoard.length === music.length) {
-		// 	log(scoreBoard, 'score board');
-		// 	setGameScore(scoreBoard);
-		// 	log('game over');
-		// 	setTitle('');
-		// 	setSearch('');
-		// 	navigate('/game/result');
-		// 	return
-		// }
+		setGameScore(scoreBoard);
 
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < music.length) {
 			setCurrentQuestion(nextQuestion);
 			setDisableControls(false);
+			log('here ?');
 		} else {
 			if (scoreBoard.length === music.length - 1) {
 				log(scoreBoard, 'score board');
 				setGameScore(scoreBoard);
 				log('game over');
 				setTitle('');
+				setSongID('');
 				setSearch('');
-				navigate('/game/result');
+				setTimeout(() => {
+					setGameResults(scoreBoard);
+					// setGameResults(gameScore);
+					log(scoreBoard, 'scoreboard');
+					navigate('/game/result');
+				}, 1000);
+				// navigate('/game/result');
 				return;
 			}
 			// setShowScore(true);
@@ -97,6 +100,7 @@ const Game = () => {
 			// setGameScore(scoreBoard);
 			// log('game over');
 			setTitle('');
+			setSongID('');
 			setSearch('');
 			// navigate('/game/result');
 		}
@@ -109,8 +113,13 @@ const Game = () => {
 		// 	navigate('/game/result');
 		// }
 		setTitle('');
+		setSongID('');
 		setSearch('');
 	};
+
+	useEffect(() => {
+		setGameScore(scoreBoard && scoreBoard);
+	}, [scoreBoard]);
 
 	// useEffect(() => {
 	// 	if (!questionNumber) {
@@ -176,6 +185,8 @@ const Game = () => {
 						setDisableControls={setDisableControls}
 						title={title}
 						setTitle={setTitle}
+						setSongID={setSongID}
+						songID={songID}
 						search={search}
 						setSearch={setSearch}
 					/>

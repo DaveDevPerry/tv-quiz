@@ -113,6 +113,8 @@ const GameForm = ({
 	handleAnswerOptionClick,
 	title,
 	setTitle,
+	setSongID,
+	songID,
 	// search,
 	// setSearch,
 }) => {
@@ -216,7 +218,8 @@ const GameForm = ({
 		// }
 		// setIsFormActive(!isFormActive);
 		setEmptyFields([]);
-		handleAnswerOptionClick(title);
+		handleAnswerOptionClick(title, songID);
+		// handleAnswerOptionClick(title);
 
 		setSearch('');
 
@@ -248,6 +251,7 @@ const GameForm = ({
 					setDisplay={setDisplay}
 					display={display}
 					setTitle={setTitle}
+					setSongID={setSongID}
 					title={title}
 					emptyFields={emptyFields}
 					setCreateNewAnswer={setCreateNewAnswer}
