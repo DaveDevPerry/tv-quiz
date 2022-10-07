@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useGamesContext } from '../hooks/useGamesContext';
 import { log } from '../utils/helper';
 
 const AudioPlayer = ({ music, disableControls, setDisableControls }) => {
@@ -7,6 +8,8 @@ const AudioPlayer = ({ music, disableControls, setDisableControls }) => {
 	const audio = useRef();
 
 	const [currentTime, setCurrentTime] = useState(0);
+
+	const { level } = useGamesContext();
 	// const [dur, setDur] = useState(0);
 	// const [disableControls, setDisableControls] = useState(false);
 
@@ -14,7 +17,8 @@ const AudioPlayer = ({ music, disableControls, setDisableControls }) => {
 		function () {
 			// log(audio, 'audio');
 			// log(currentTime, 'currentTime');
-			if (currentTime > 5) {
+			if (currentTime > level.songLength / 1000) {
+				// if (currentTime > 5) {
 				audio.current.pause();
 				setCurrentTime(0);
 				setDisableControls(true);

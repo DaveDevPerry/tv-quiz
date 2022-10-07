@@ -30,7 +30,7 @@ yarn-error.log*
 /src/pages/Landing.js
 /src/components/Navbar test.js
 /src/components/FavouritesWidget copy.js
-/src/components/VisualyzerWidget copy.js
+/src/components/CategoryButton copy.js
 # /src/components/Footer.js
 
 

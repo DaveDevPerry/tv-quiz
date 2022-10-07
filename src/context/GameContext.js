@@ -6,7 +6,9 @@ export const GamesContext = createContext();
 export const gamesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_GAME_DATA':
-			const questionCount = 3;
+			const questionCount = action.payload.questionCount;
+			const songDuration = action.payload.songLength;
+			// const questionCount = 5;
 			log(action.payload, 'action payload set game data');
 			const clonedSongs = [...action.payload.songs];
 			log(clonedSongs, 'clonedSongs set game data');
@@ -14,6 +16,7 @@ export const gamesReducer = (state, action) => {
 			const shuffleSongs = clonedSongs.sort(() => Math.random() - 0.5);
 			log(shuffleSongs, 'shuffleSongs');
 			const songsReqForRound = shuffleSongs.splice(0, questionCount);
+			// const songsReqForRound = shuffleSongs.splice(0, questionCount);
 
 			// const randomNumber = Math.floor(Math.random() * clonedSongs.length);
 			// const songChosen = clonedSongs[randomNumber];
@@ -22,6 +25,7 @@ export const gamesReducer = (state, action) => {
 				...state,
 				level: action.payload,
 				music: songsReqForRound,
+				songTimeInMS: songDuration,
 				// music: songChosen,
 				// songs: clonedSongs,
 			};
@@ -51,6 +55,7 @@ export const GamesContextProvider = ({ children }) => {
 		level: null,
 		// songs: null,
 		music: null,
+		songTimeInMS: null,
 		// favourite_songs: null,
 	});
 

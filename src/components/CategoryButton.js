@@ -5,18 +5,20 @@ import { useLevelsContext } from '../hooks/useLevelsContext';
 import { useGamesContext } from '../hooks/useGamesContext';
 import { useNavigate } from 'react-router-dom';
 
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
+import { MdOutlineQueueMusic } from 'react-icons/md';
+import { IoPlay } from 'react-icons/io5';
 
 const CategoryButton = ({ level }) => {
 	const navigate = useNavigate();
 	const { levels } = useLevelsContext();
 	const { dispatch } = useGamesContext();
 
-	const compileLevelData = async (levelID) => {
+	const compileLevelData = async (levelID, levelTime, levelDifficulty) => {
 		log(levelID, 'level in compile level data func');
+		log(levelTime, 'level time in compile level data func');
 
 		const clonedLevels = [...levels];
-		// const getLevel = clonedLevels.find((Obj) => Obj._id === '123');
 		const getLevel = clonedLevels.find((Obj) => Obj._id === levelID);
 		log(getLevel, ' get level');
 
@@ -25,34 +27,114 @@ const CategoryButton = ({ level }) => {
 		}
 		if (getLevel) {
 			log('level found');
+			getLevel.songLength = levelTime;
+			getLevel.roundDifficulty = levelDifficulty;
 			dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
+			// dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
 		}
 
 		setTimeout(() => {
 			navigate('/game');
 		}, 2000);
-		// const compileLevelData = async (levelID) => {
-		//   log(levelID, 'level in compile level data func');
+	};
+	// const compileLevelData = async (levelID) => {
+	// 	log(levelID, 'level in compile level data func');
 
-		//   const response = await fetch(
-		//     `${process.env.REACT_APP_BACKEND_URL}/api/songs`,
-		//   )
+	// 	const clonedLevels = [...levels];
+	// 	const getLevel = clonedLevels.find((Obj) => Obj._id === levelID);
+	// 	log(getLevel, ' get level');
+
+	// 	if (!getLevel) {
+	// 		log('level not found');
+	// 	}
+	// 	if (getLevel) {
+	// 		log('level found');
+	// 		dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
+	// 	}
+
+	// 	setTimeout(() => {
+	// 		navigate('/game');
+	// 	}, 2000);
+	// };
+
+	const handleClick = (time) => {
+		log(time, 'time clicked');
 	};
 	return (
 		<StyledCategoryButton
 			className='br'
 			// className='br-field'
-			onClick={() => {
-				compileLevelData(level._id);
-			}}
+			// onClick={() => {
+			// 	compileLevelData(level._id);
+			// }}
 		>
 			<div className='category-header'>
 				<h3>{level && level.category}</h3>
-				<h4>{level && level.difficulty}</h4>
+				<span>
+					<MdOutlineQueueMusic className='song-icon' />
+				</span>
+				<h4>{level && level.questionCount}</h4>
+				{/* <h4>
+					<span>
+						<MdOutlineQueueMusic className='song-icon' />
+					</span>
+					{level && level.questionCount}
+				</h4> */}
+				{/* <h4>
+					{level && level.questionCount}
+					{' songs'}
+				</h4> */}
+				{/* <h4>{level && level.difficulty}</h4> */}
 				{/* <span>45%</span> */}
 			</div>
 
-			<div className='stars-container'>
+			<div className='time-container'>
+				{level &&
+					level.difficultyTypes.map((type) => (
+						<div className='time-wrapper' key={type._id}>
+							<p className='difficulty-type'>{type.name}</p>
+							{/* <div className='result-wrapper'>3 / 5</div> */}
+							<p className='time-allotted'>
+								{type.timeInMS / 1000}
+								<span>
+									{type.timeInMS / 1000 === 1 ? ' second' : ' seconds'}
+								</span>
+								{/* <span> seconds</span> */}
+							</p>
+							<div
+								className='time-play-btn'
+								onClick={() => {
+									handleClick(type.timeInMS);
+									compileLevelData(level._id, type.timeInMS, type.name);
+								}}
+							>
+								{/* <div className='time-play-btn' onClick={handleClick}> */}
+								<p>play</p>
+								<IoPlay className='level-play-icon' />
+							</div>
+						</div>
+					))}
+			</div>
+			{/* <div className='time-container'>
+				{level &&
+					level.difficultyTypes.map((type) => (
+						<div className='time-wrapper' key={type._id}>
+							<p className='difficulty-type'>{type.name}</p>
+							<div className='result-wrapper'>3 / 5</div>
+							<p className='time-allotted'>
+								{type.timeInMS / 1000}
+								<span>
+									{type.timeInMS / 1000 === 1 ? ' second' : ' seconds'}
+								</span>
+							</p>
+							<div className='time-play-btn' onClick={handleClick}>
+								play
+							</div>
+						</div>
+					))}
+			</div> */}
+
+			{/* <div className='stars-container'>
 				<div className='wrapper'>
 					<FaStar className='star-on' />
 				</div>
@@ -71,24 +153,20 @@ const CategoryButton = ({ level }) => {
 				<div className='wrapper'>
 					<p className='cat-percentage'>45%</p>
 				</div>
-			</div>
-			{/* <p>
-				category: <span>{level && level.category}</span>
-			</p> */}
-			{/* <p>
-				difficulty: <span>{level && level.difficulty}</span>
-			</p> */}
+			</div> */}
 		</StyledCategoryButton>
 	);
 };
 const StyledCategoryButton = styled.div`
 	/* border: 1px solid red; */
+	/* padding: 1rem; */
 	padding: 1rem 2rem;
 	display: flex;
 	justify-content: center;
 	/* align-items: center; */
 	flex-direction: column;
-	row-gap: 0.5rem;
+	/* row-gap: 0.5rem; */
+	row-gap: 1rem;
 	/* background-color: ${({ theme }) => theme.bgGrey}; */
 	.category-header {
 		display: flex;
@@ -100,10 +178,24 @@ const StyledCategoryButton = styled.div`
 			/* color: ${({ theme }) => theme.primaryColor}; */
 			text-transform: capitalize;
 			/* font-weight: bold; */
-			/* flex: 1; */
+			flex: 1;
 		}
 		h4 {
 			font-style: italic;
+		}
+		h4 {
+			font-style: italic;
+			/* span {
+				.song-icon {
+					font-size: 2rem;
+				}
+			} */
+		}
+		span {
+			.song-icon {
+				font-size: 2rem;
+				/* color: ${({ theme }) => theme.primaryColor}; */
+			}
 		}
 		p {
 			text-transform: capitalize;
@@ -112,6 +204,57 @@ const StyledCategoryButton = styled.div`
 		}
 		span {
 			font-weight: light;
+		}
+	}
+	.time-container {
+		display: flex;
+		/* flex-direction: column; */
+		justify-content: space-between;
+		align-items: center;
+		/* font-size: 2.5rem; */
+		/* pointer-events: none; */
+		column-gap: 2rem;
+		.time-wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			row-gap: 0.3rem;
+			/* font-size: 2.5rem; */
+			/* pointer-events: none; */
+			flex: 1;
+			.difficulty-type {
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+			.result-wrapper {
+				flex: 1;
+			}
+			.time-allotted {
+				font-size: 1.4rem;
+				span {
+					text-transform: lowercase;
+					font-style: italic;
+				}
+			}
+			.time-play-btn {
+				background-color: ${({ theme }) => theme.primaryColor};
+				text-transform: uppercase;
+				padding: 0.3rem 0.5rem;
+				/* padding: 0.3rem 1rem; */
+				border-radius: 4px;
+				/* pointer-events: unset; */
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				column-gap: 0.3rem;
+				p {
+					font-size: 1.4rem;
+				}
+				.level-play-icon {
+					font-size: 1.6rem;
+				}
+			}
 		}
 	}
 	.stars-container {

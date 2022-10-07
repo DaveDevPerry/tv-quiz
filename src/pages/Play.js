@@ -40,7 +40,8 @@ const StyledPlay = styled.div`
 
 	flex: 1;
 	max-width: 42rem;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0rem;
+	/* padding: 0.5rem 1rem; */
 	/* overflow-y: auto; */
 	/* overflow: hidden; */
 	overflow: hidden;

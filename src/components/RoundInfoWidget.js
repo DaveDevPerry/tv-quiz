@@ -18,16 +18,26 @@ const RoundInfoWidget = ({
 					<p> {level.category}</p>
 				</li>
 				<li>
+					<h3>Difficulty:</h3>
+					<p> {level.roundDifficulty}</p>
+				</li>
+				<li>
 					<h3>Selection:</h3>
 					<p> Intro</p>
 				</li>
 				<li>
 					<h3>Game Length:</h3>
-					<p> 3 Songs</p>
+					<p> {level.questionCount} Songs</p>
+					{/* <p> 3 Songs</p> */}
 				</li>
 				<li>
-					<h3>Song Time:</h3>
-					<p> 5 Seconds</p>
+					<h3>Song Length:</h3>
+					<p>
+						{' '}
+						{level.songLength / 1000}{' '}
+						{level.songLength / 1000 === 1 ? 'second' : 'seconds'}
+					</p>
+					{/* <p> 5 Seconds</p> */}
 				</li>
 
 				{/* <h3>Selection: Intro</h3>
