@@ -33,11 +33,13 @@ const Result = () => {
 
 			<div className='results-wrapper br'>
 				<p className='result-percentage'>
-					{(gameScore.filter((obj) => {
-						return obj.isCorrect === true;
-					}).length /
-						gameScore.length) *
-						100}{' '}
+					{(
+						(gameScore.filter((obj) => {
+							return obj.isCorrect === true;
+						}).length /
+							gameScore.length) *
+						100
+					).toFixed(2)}{' '}
 					%
 				</p>
 				<p>
