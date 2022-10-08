@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
@@ -9,12 +10,16 @@ const Settings = () => {
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	return (
-		<StyledSettings>
+		<StyledSettings
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>Settings page</h2>
 		</StyledSettings>
 	);
 };
-const StyledSettings = styled.div`
+const StyledSettings = styled(motion.div)`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

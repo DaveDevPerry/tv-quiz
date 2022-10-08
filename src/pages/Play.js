@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import CategoryButton from '../components/CategoryButton';
@@ -9,7 +10,11 @@ const Play = () => {
 	// const { songs } = useSongsContext();
 	const { levels } = useLevelsContext();
 	return (
-		<StyledPlay>
+		<StyledPlay
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>choose a category</h2>
 
 			{/* <ul>
@@ -28,7 +33,7 @@ const Play = () => {
 		</StyledPlay>
 	);
 };
-const StyledPlay = styled.div`
+const StyledPlay = styled(motion.div)`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

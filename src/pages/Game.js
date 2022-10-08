@@ -13,6 +13,7 @@ import { log } from '../utils/helper';
 import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
+import { motion } from 'framer-motion';
 // import { FaRegCircle } from 'react-icons/fa';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
@@ -133,7 +134,11 @@ const Game = () => {
 	// 	}
 	// }, [questionNumber]);
 	return (
-		<StyledGame>
+		<StyledGame
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			{/* <h2>Game Settings</h2> */}
 			{/* <h1>Game page</h1> */}
 			{showQuestions === false ? (
@@ -228,7 +233,7 @@ const Game = () => {
 		</StyledGame>
 	);
 };
-const StyledGame = styled.div`
+const StyledGame = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

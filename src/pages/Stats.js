@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
@@ -9,12 +10,16 @@ const Stats = () => {
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	return (
-		<StyledStats>
+		<StyledStats
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>stats page</h2>
 		</StyledStats>
 	);
 };
-const StyledStats = styled.div`
+const StyledStats = styled(motion.div)`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

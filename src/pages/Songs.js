@@ -4,17 +4,22 @@ import styled from 'styled-components';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { FaStar } from 'react-icons/fa';
-import { useStateContext } from '../lib/context';
+// import { useStateContext } from '../lib/context';
+import { motion } from 'framer-motion';
 
 const Songs = () => {
 	const { songs } = useSongsContext();
-	const { tempCorrectIDs } = useStateContext();
+	// const { tempCorrectIDs } = useStateContext();
 	// const { levels } = useLevelsContext();
 	return (
-		<StyledSongs>
+		<StyledSongs
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>songs page</h2>
 
-			<ol className='br'>
+			{/* <ol className='br'>
 				{songs &&
 					songs.map((song) => (
 						<li key={song._id}>
@@ -26,8 +31,8 @@ const Songs = () => {
 							)}
 						</li>
 					))}
-			</ol>
-			{/* <ol className='br'>
+			</ol> */}
+			<ol className='br'>
 				{songs &&
 					songs.map((song) => (
 						<li key={song._id}>
@@ -35,7 +40,7 @@ const Songs = () => {
 							<FaStar className='star-off' />
 						</li>
 					))}
-			</ol> */}
+			</ol>
 
 			{/* <div className='level-select-container'>
 				{levels &&
@@ -46,7 +51,7 @@ const Songs = () => {
 		</StyledSongs>
 	);
 };
-const StyledSongs = styled.div`
+const StyledSongs = styled(motion.div)`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

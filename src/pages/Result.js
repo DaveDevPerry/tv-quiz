@@ -6,6 +6,7 @@ import { log } from '../utils/helper';
 // import {GiCheckMark} from 'react-icons/gi'
 import { ImCross, ImCheckmark } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Result = () => {
 	const navigate = useNavigate();
@@ -36,7 +37,11 @@ const Result = () => {
 		navigate('/home');
 	};
 	return (
-		<StyledResult>
+		<StyledResult
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>Game Result</h2>
 
 			<ol className='br'>
@@ -89,7 +94,7 @@ const Result = () => {
 		</StyledResult>
 	);
 };
-const StyledResult = styled.div`
+const StyledResult = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	/* justify-content: flex-start; */

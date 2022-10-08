@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
@@ -8,7 +9,11 @@ const Home = () => {
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	return (
-		<StyledHome>
+		<StyledHome
+			initial={{ width: 0 }}
+			animate={{ width: '100%' }}
+			exit={{ x: window.innerWidth }}
+		>
 			<h2>home page</h2>
 
 			<p>this page contains basic player stats. eg</p>
@@ -33,7 +38,7 @@ const Home = () => {
 		</StyledHome>
 	);
 };
-const StyledHome = styled.div`
+const StyledHome = styled(motion.div)`
 	/* display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
