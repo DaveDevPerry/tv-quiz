@@ -17,6 +17,7 @@ export const StateContext = ({ children }) => {
 
 	const [gameScore, setGameScore] = useState(null);
 	const [gameResults, setGameResults] = useState(null);
+	const [tempCorrectIDs, setTempCorrectIDs] = useState(null);
 	// const [currentSong, setCurrentSong] = useState(null);
 	const audio = document.getElementById('audio');
 	// SONGS
@@ -196,6 +197,8 @@ export const StateContext = ({ children }) => {
 				setGameScore,
 				gameResults,
 				setGameResults,
+				tempCorrectIDs,
+				setTempCorrectIDs,
 			}}
 		>
 			{children}

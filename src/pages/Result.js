@@ -5,13 +5,36 @@ import { log } from '../utils/helper';
 // import { FaStar } from 'react-icons/fa';
 // import {GiCheckMark} from 'react-icons/gi'
 import { ImCross, ImCheckmark } from 'react-icons/im';
+import { useNavigate } from 'react-router-dom';
 
 const Result = () => {
-	const { gameScore } = useStateContext();
+	const navigate = useNavigate();
+	const { gameScore, setTempCorrectIDs } = useStateContext();
 
 	useEffect(() => {
 		log(gameScore, 'gameScore');
 	}, []);
+
+	const compileResults = async () => {
+		// update user with song ids that user got correct
+		const clonedResults = [...gameScore];
+		const correctResults = clonedResults.filter(
+			(obj) => obj.isCorrect === true
+		);
+
+		const correctIDs = [];
+
+		correctResults.forEach((result) => {
+			correctIDs.push(result.songID);
+		});
+
+		setTempCorrectIDs(correctIDs);
+
+		// const response = await fetch(
+		// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/${}`,
+		// )
+		navigate('/home');
+	};
 	return (
 		<StyledResult>
 			<h2>Game Result</h2>
@@ -50,6 +73,15 @@ const Result = () => {
 					}{' '}
 					out of {gameScore.length}
 				</p>
+			</div>
+
+			<div
+				className='add-results-to-user-btn'
+				onClick={() => {
+					compileResults();
+				}}
+			>
+				SAVE PROGRESS
 			</div>
 			{/* <p>total score: {gameScore.reduce((count, value) => {
 				return 

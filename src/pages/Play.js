@@ -42,9 +42,9 @@ const StyledPlay = styled.div`
 	max-width: 42rem;
 	padding: 0.5rem 0rem;
 	/* padding: 0.5rem 1rem; */
-	/* overflow-y: auto; */
+	overflow-y: scroll;
 	/* overflow: hidden; */
-	overflow: hidden;
+	/* overflow: hidden; */
 	transition: all 200ms linear;
 	/* margin: 0 auto; */
 	h2 {
@@ -63,6 +63,7 @@ const StyledPlay = styled.div`
 		justify-content: flex-start;
 		row-gap: 1rem;
 		/* width: 100%; */
+		overflow-y: scroll;
 	}
 `;
 

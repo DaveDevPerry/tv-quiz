@@ -4,16 +4,30 @@ import styled from 'styled-components';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { FaStar } from 'react-icons/fa';
+import { useStateContext } from '../lib/context';
 
 const Songs = () => {
 	const { songs } = useSongsContext();
+	const { tempCorrectIDs } = useStateContext();
 	// const { levels } = useLevelsContext();
 	return (
 		<StyledSongs>
 			<h2>songs page</h2>
 
 			<ol className='br'>
-				{/* <li>SONGS</li> */}
+				{songs &&
+					songs.map((song) => (
+						<li key={song._id}>
+							<p>{song.title}</p>
+							{tempCorrectIDs.includes(song._id) ? (
+								<FaStar className='star-on' />
+							) : (
+								<FaStar className='star-off' />
+							)}
+						</li>
+					))}
+			</ol>
+			{/* <ol className='br'>
 				{songs &&
 					songs.map((song) => (
 						<li key={song._id}>
@@ -21,7 +35,7 @@ const Songs = () => {
 							<FaStar className='star-off' />
 						</li>
 					))}
-			</ol>
+			</ol> */}
 
 			{/* <div className='level-select-container'>
 				{levels &&
@@ -78,7 +92,12 @@ const StyledSongs = styled.div`
 			}
 			.star-off {
 				/* color: ${({ theme }) => theme.bgCircle}; */
-				color: ${({ theme }) => theme.borderLine};
+				color: ${({ theme }) => theme.tapeBase};
+				/* color: ${({ theme }) => theme.bgLightGrey}; */
+			}
+			.star-on {
+				/* color: ${({ theme }) => theme.bgCircle}; */
+				color: ${({ theme }) => theme.green};
 				/* color: ${({ theme }) => theme.bgLightGrey}; */
 			}
 		}
