@@ -8,6 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
 import { useResultsContext } from '../hooks/useResultsContext';
+import { useStateContext } from '../lib/context';
 // import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -27,13 +28,7 @@ const Loader = () => {
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
 	const { dispatch: resultDispatch } = useResultsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
-	// const {
-	// 	setDataLoaded,
-	// 	setDefaultAnimation,
-	// 	setDefaultViewMode,
-	// 	setViewMode,
-	// 	setMediaToDisplay,
-	// } = useStateContext();
+	const { setDataLoaded } = useStateContext();
 
 	const navigate = useNavigate();
 	// useEffect(() => {
@@ -67,7 +62,7 @@ const Loader = () => {
 			fetchSongs();
 		}
 		setTimeout(() => {
-			// setDataLoaded(true);
+			setDataLoaded(true);
 			setTimeout(() => {
 				// log(songs, 'songs');
 				// log(albums, 'albums');
