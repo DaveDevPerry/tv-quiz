@@ -118,6 +118,16 @@ const Loader = () => {
 			log(user, 'user');
 			log(json, 'json user');
 
+			const userCount = json.length;
+
+			const clonedForUserRanking = [...json];
+			// const completedSongOrder = clonedForUserRanking.sort((a, b) => {
+			// 	return a.correctSongIDs.length - b.correctSongIDs.length;
+			// });
+			const completedSongOrder = clonedForUserRanking.sort((a, b) => {
+				return b.correctSongIDs.length - a.correctSongIDs.length;
+			});
+
 			const clonedUsers = [...json];
 			const getUser = clonedUsers.find((obj) => obj.email === user.email);
 			// const getUser = json.find((obj) => obj.email === user.email);
@@ -126,10 +136,24 @@ const Loader = () => {
 
 			if (response.ok) {
 				dispatch({
+					type: 'SET_USERS',
+					payload: completedSongOrder,
+				});
+				dispatch({
 					type: 'SET_USER',
 					payload: getUser,
 				});
+				dispatch({
+					type: 'SET_USER_COUNT',
+					payload: userCount,
+				});
 			}
+			// if (response.ok) {
+			// 	dispatch({
+			// 		type: 'SET_USER',
+			// 		payload: getUser,
+			// 	});
+			// }
 		};
 		if (user) {
 			fetchUsers();

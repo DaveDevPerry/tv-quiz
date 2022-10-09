@@ -19,6 +19,7 @@ import Result from './pages/Result';
 import Stats from './pages/Stats';
 import Leaderboard from './pages/Leaderboard';
 import Settings from './pages/Settings';
+import { useState } from 'react';
 // import Settings from './pages/Settings';
 // import { useState } from 'react';
 // import { log } from './helper';
@@ -61,6 +62,7 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 	// 	setPlaylistDisplay(false);
 	// 	navigate('/player');
 	// };
+	const [scoreBoard, setScoreBoard] = useState([]);
 
 	return (
 		<AnimatePresence mode='wait'>
@@ -113,6 +115,8 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 							<Game
 								// themeToggler={themeToggler}
 								theme={theme}
+								scoreBoard={scoreBoard}
+								setScoreBoard={setScoreBoard}
 								// handlePlaylist={handlePlaylist}
 								// handleViewPlaylist={handleViewPlaylist}
 								// handleShufflePlaylist={handleShufflePlaylist}

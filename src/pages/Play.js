@@ -1,14 +1,29 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CategoryButton from '../components/CategoryButton';
 // import LevelSelectButton from '../components/LevelSelectButton';
 import { useLevelsContext } from '../hooks/useLevelsContext';
+import { useStateContext } from '../lib/context';
 // import { useSongsContext } from '../hooks/useSongsContext';
 
 const Play = () => {
 	// const { songs } = useSongsContext();
 	const { levels } = useLevelsContext();
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+		// if (isMobile) {
+		// 	log('is mobile');
+		// } else {
+		// 	log('is not mobile');
+		// }
+	}, [navigate, dataLoaded]);
 	return (
 		<StyledPlay
 			initial={{ width: 0 }}

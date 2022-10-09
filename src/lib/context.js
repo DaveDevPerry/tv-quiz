@@ -16,7 +16,7 @@ export const StateContext = ({ children }) => {
 	const [defaultViewMode, setDefaultViewMode] = useState(null);
 
 	const [gameScore, setGameScore] = useState(null);
-	const [gameResults, setGameResults] = useState(null);
+	const [gameResults, setGameResults] = useState([]);
 	const [tempCorrectIDs, setTempCorrectIDs] = useState(null);
 	// const [currentSong, setCurrentSong] = useState(null);
 	const audio = document.getElementById('audio');

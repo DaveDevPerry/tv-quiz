@@ -5,47 +5,70 @@ import { log } from '../utils/helper';
 // import { FaStar } from 'react-icons/fa';
 // import {GiCheckMark} from 'react-icons/gi'
 import { ImCross, ImCheckmark } from 'react-icons/im';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useGamesContext } from '../hooks/useGamesContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
 const Result = () => {
 	// const navigate = useNavigate();
-	// const { gameScore,  tempCorrectIDs } = useStateContext();
-	const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
+	const { gameScore } = useStateContext();
+	const { dispatch } = useGamesContext();
+	// const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
 	// const { user, currentUser } = useAuthContext();
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+		// if (isMobile) {
+		// 	log('is mobile');
+		// } else {
+		// 	log('is not mobile');
+		// }
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		// log(gameScore, 'gameScore');
 	}, []);
 
-	const compileResults = async () => {
-		// update user with song ids that user got correct
-		const clonedResults = [...gameScore];
-		const correctResults = clonedResults.filter(
-			(obj) => obj.isCorrect === true
-		);
+	const handleClose = () => {
+		log('handle close');
+		// clear game context
+		dispatch({ type: 'CLEAR_GAME_DATA', payload: null });
 
-		const correctIDs = [];
-
-		correctResults.forEach((result) => {
-			log(result.songID, 'res.songID');
-			correctIDs.push(result.songID);
-			log(correctIDs, 'arr');
-		});
-
-		setTempCorrectIDs(correctIDs);
-
-		// setUserResults(correctIDs);
-
-		// const response = await fetch(
-		// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/${}`,
-		// )
-		// navigate('/home');
+		navigate('/');
 	};
-	useEffect(() => {
-		log(tempCorrectIDs);
-	}, [tempCorrectIDs]);
+
+	// const compileResults = async () => {
+	// 	// update user with song ids that user got correct
+	// 	const clonedResults = [...gameScore];
+	// 	const correctResults = clonedResults.filter(
+	// 		(obj) => obj.isCorrect === true
+	// 	);
+
+	// 	const correctIDs = [];
+
+	// 	correctResults.forEach((result) => {
+	// 		log(result.songID, 'res.songID');
+	// 		correctIDs.push(result.songID);
+	// 		log(correctIDs, 'arr');
+	// 	});
+
+	// 	setTempCorrectIDs(correctIDs);
+
+	// 	// setUserResults(correctIDs);
+
+	// 	// const response = await fetch(
+	// 	// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/${}`,
+	// 	// )
+	// 	// navigate('/home');
+	// };
+	// useEffect(() => {
+	// 	log(tempCorrectIDs);
+	// }, [tempCorrectIDs]);
 
 	// const setUserResults = async (arrOfIDs) => {
 	// 	const response = await fetch(
@@ -118,7 +141,8 @@ const Result = () => {
 			<div
 				className='add-results-to-user-btn'
 				onClick={() => {
-					compileResults();
+					// compileResults();
+					handleClose();
 				}}
 			>
 				SAVE PROGRESS

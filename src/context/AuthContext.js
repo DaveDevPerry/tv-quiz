@@ -16,6 +16,16 @@ export const authReducer = (state, action) => {
 		// 	return {
 		// 		user: { ...state.user, favourites: updatedFavourites },
 		// 	};
+		case 'SET_USERS':
+			return {
+				...state,
+				users: action.payload,
+			};
+		case 'SET_USER_COUNT':
+			return {
+				...state,
+				userCount: action.payload,
+			};
 		case 'SET_USER':
 			return {
 				...state,
@@ -35,8 +45,10 @@ export const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(authReducer, {
+		users: null,
 		user: null,
 		currentUser: null,
+		userCount: null,
 	});
 
 	useEffect(() => {

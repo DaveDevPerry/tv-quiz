@@ -1,12 +1,27 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useStateContext } from '../lib/context';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
 // import { FaStar } from 'react-icons/fa';
 
 const Settings = () => {
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+		// if (isMobile) {
+		// 	log('is mobile');
+		// } else {
+		// 	log('is not mobile');
+		// }
+	}, [navigate, dataLoaded]);
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	return (

@@ -30,6 +30,13 @@ export const gamesReducer = (state, action) => {
 				// songs: clonedSongs,
 			};
 
+		case 'CLEAR_GAME_DATA':
+			return {
+				level: null,
+				music: null,
+				songTimeInMS: null,
+			};
+
 		// case 'SET_LEVEL':
 		// 	log(action.payload, 'action payload song');
 

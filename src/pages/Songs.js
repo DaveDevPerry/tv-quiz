@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
@@ -7,10 +7,26 @@ import { FaStar } from 'react-icons/fa';
 // import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 
 const Songs = () => {
 	const { songs } = useSongsContext();
 	const { currentUser } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+		// if (isMobile) {
+		// 	log('is mobile');
+		// } else {
+		// 	log('is not mobile');
+		// }
+	}, [navigate, dataLoaded]);
 	// const { tempCorrectIDs } = useStateContext();
 	// const { levels } = useLevelsContext();
 	return (

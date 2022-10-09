@@ -11,7 +11,7 @@ import { useGamesContext } from '../hooks/useGamesContext';
 import { log } from '../utils/helper';
 
 import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -20,7 +20,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
 
-const Game = () => {
+const Game = ({ scoreBoard, setScoreBoard }) => {
 	// const navigate = useNavigate();
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
@@ -37,7 +37,7 @@ const Game = () => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	// const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-	const [scoreBoard, setScoreBoard] = useState([]);
+	// const [scoreBoard, setScoreBoard] = useState([]);
 	const [disableControls, setDisableControls] = useState(false);
 
 	const [title, setTitle] = useState('');
@@ -47,7 +47,21 @@ const Game = () => {
 	const [showQuestions, setShowQuestions] = useState(false);
 
 	const { setGameScore } = useStateContext();
-	const { setGameResults } = useStateContext();
+	const { setGameResults, gameResults } = useStateContext();
+
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+		// if (isMobile) {
+		// 	log('is mobile');
+		// } else {
+		// 	log('is not mobile');
+		// }
+	}, [navigate, dataLoaded]);
 
 	// const handleAnswerOptionClick = async () => {
 	// 	let correctSongTitle = music[currentQuestion].title;
@@ -147,6 +161,7 @@ const Game = () => {
 			const correctSongID = await songID;
 			// update result
 			updateUserResults(correctSongID);
+			setGameResults([...gameResults, questionResult]);
 		} else {
 			log('wrong answer');
 			setScore(score + 1);
@@ -157,6 +172,7 @@ const Game = () => {
 			};
 			// setScoreBoard(scoreBoard.push(0));
 			setScoreBoard([...scoreBoard, questionResult]);
+			setGameResults([...gameResults, questionResult]);
 		}
 		// if (isCorrect) {
 		// 	// setScore(score + 1);
@@ -165,14 +181,20 @@ const Game = () => {
 		setGameScore(scoreBoard);
 
 		const nextQuestion = currentQuestion + 1;
+		log(nextQuestion, music.length, 'before condition');
 		if (nextQuestion < music.length) {
+			log(nextQuestion, music.length, 'nextQuestion is lower condition');
 			setCurrentQuestion(nextQuestion);
 			setDisableControls(false);
 			log('here ?');
+			setGameScore(scoreBoard);
+			setGameResults(scoreBoard);
 		} else {
+			log(nextQuestion, music.length, 'nextQuestion isnt lower condition');
 			log(scoreBoard.length, music.length - 1, 'lengths');
 			log(scoreBoard, 'score board');
 			setGameScore(scoreBoard);
+			setGameResults(scoreBoard);
 			// if (scoreBoard.length === music.length) {
 			if (scoreBoard.length === music.length - 1) {
 				log(scoreBoard, 'score board');
@@ -182,13 +204,13 @@ const Game = () => {
 				setTitle('');
 				setSongID('');
 				setSearch('');
-				// setTimeout(() => {
-				// 	// setGameResults(gameScore);
-				// 	log(scoreBoard, 'scoreboard');
-				// 	navigate('/game/result');
-				// }, 1000);
+				setTimeout(() => {
+					// setGameResults(gameScore);
+					log(scoreBoard, 'scoreboard');
+					navigate('/game/result');
+				}, 1000);
 				// navigate('/game/result');
-				// return;
+				return;
 			}
 			// if (score === level.questionCount) {
 			// 	setTimeout(() => {
@@ -304,7 +326,8 @@ const Game = () => {
 	// };
 
 	useEffect(() => {
-		log(scoreBoard.length, 'scoreboard length');
+		log(scoreBoard.length, scoreBoard, 'scoreboard length');
+		log(gameResults, 'gameResults');
 		// log(level.questionCount, 'level q count');
 		// if (scoreBoard.length === level && level.questionCount) {
 		// 	setGameScore(scoreBoard);
@@ -314,9 +337,9 @@ const Game = () => {
 		// 		navigate('/game/result');
 		// 	}, 1000);
 		// }
-		// setGameScore(scoreBoard);
+		setGameScore(scoreBoard);
 		// setGameScore(scoreBoard && scoreBoard);
-	}, [scoreBoard]);
+	}, [scoreBoard, gameResults]);
 
 	// useEffect(() => {
 	// 	if (!questionNumber) {
