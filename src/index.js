@@ -6,6 +6,7 @@ import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
 import { SongsContextProvider } from './context/SongContext';
 import { LevelsContextProvider } from './context/LevelContext';
+import { ResultsContextProvider } from './context/ResultContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
 		<AuthContextProvider>
 			<LevelsContextProvider>
 				<SongsContextProvider>
-					<App />
+					<ResultsContextProvider>
+						<App />
+					</ResultsContextProvider>
 				</SongsContextProvider>
 			</LevelsContextProvider>
 		</AuthContextProvider>

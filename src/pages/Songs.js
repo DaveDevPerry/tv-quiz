@@ -6,9 +6,11 @@ import { useSongsContext } from '../hooks/useSongsContext';
 import { FaStar } from 'react-icons/fa';
 // import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Songs = () => {
 	const { songs } = useSongsContext();
+	const { currentUser } = useAuthContext();
 	// const { tempCorrectIDs } = useStateContext();
 	// const { levels } = useLevelsContext();
 	return (
@@ -19,20 +21,20 @@ const Songs = () => {
 		>
 			<h2>songs page</h2>
 
-			{/* <ol className='br'>
+			<ol className='br'>
 				{songs &&
 					songs.map((song) => (
 						<li key={song._id}>
 							<p>{song.title}</p>
-							{tempCorrectIDs.includes(song._id) ? (
+							{currentUser.correctSongIDs.includes(song._id) ? (
 								<FaStar className='star-on' />
 							) : (
 								<FaStar className='star-off' />
 							)}
 						</li>
 					))}
-			</ol> */}
-			<ol className='br'>
+			</ol>
+			{/* <ol className='br'>
 				{songs &&
 					songs.map((song) => (
 						<li key={song._id}>
@@ -40,7 +42,7 @@ const Songs = () => {
 							<FaStar className='star-off' />
 						</li>
 					))}
-			</ol>
+			</ol> */}
 
 			{/* <div className='level-select-container'>
 				{levels &&

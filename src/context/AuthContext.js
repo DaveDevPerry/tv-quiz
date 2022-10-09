@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect } from 'react';
+import { log } from '../utils/helper';
 
 export const AuthContext = createContext();
 
@@ -15,6 +16,18 @@ export const authReducer = (state, action) => {
 		// 	return {
 		// 		user: { ...state.user, favourites: updatedFavourites },
 		// 	};
+		case 'SET_USER':
+			return {
+				...state,
+				currentUser: action.payload,
+			};
+		case 'UPDATE_USER':
+			log(action.payload, 'payload - update user');
+			log(state, 'state');
+			return {
+				...state,
+				currentUser: action.payload,
+			};
 		default:
 			return state;
 	}
@@ -23,6 +36,7 @@ export const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(authReducer, {
 		user: null,
+		currentUser: null,
 	});
 
 	useEffect(() => {

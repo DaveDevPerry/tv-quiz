@@ -11,18 +11,25 @@ import { useGamesContext } from '../hooks/useGamesContext';
 import { log } from '../utils/helper';
 
 import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
+import { useAuthContext } from '../hooks/useAuthContext';
+// import { useResultsContext } from '../hooks/useResultsContext';
 // import { FaRegCircle } from 'react-icons/fa';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
 
 const Game = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	// const { songs } = useSongsContext();
 	// const { levels } = useLevelsContext();
 	const { level, music } = useGamesContext();
+	// const { dispatch } = useResultsContext();
+
+	// const { user } = useAuthContext();
+	const { dispatch, currentUser, user } = useAuthContext();
+	// const { results } = useResultsContext();
 
 	const [questionNumber, setQuestionNumber] = useState(null);
 	// const [question, setQuestion] = useState(null);
@@ -42,26 +49,109 @@ const Game = () => {
 	const { setGameScore } = useStateContext();
 	const { setGameResults } = useStateContext();
 
-	const handleAnswerOptionClick = (title) => {
+	// const handleAnswerOptionClick = async () => {
+	// 	let correctSongTitle = music[currentQuestion].title;
+	// 	let guessedSongTitle = title;
+	// 	log(correctSongTitle, 'correctSongTitle');
+	// 	log(guessedSongTitle, 'guessedSongTitle');
+	// 	const musicID = await songID;
+	// 	if (correctSongTitle === guessedSongTitle) {
+	// 		log('correct answer');
+	// 		setScore(score + 1);
+	// 		const questionResult = {
+	// 			songID: musicID,
+	// 			title: correctSongTitle,
+	// 			isCorrect: true,
+	// 		};
+	// 		setScoreBoard([...scoreBoard, questionResult]);
+	// 		log(songID, 'songID');
+	// 		// const correctSongID = await songID;
+	// 		// update result
+	// 		// updateUserResults(correctSongID);
+	// 	} else {
+	// 		log('wrong answer');
+	// 		const questionResult = {
+	// 			songID: songID,
+	// 			title: correctSongTitle,
+	// 			isCorrect: false,
+	// 		};
+	// 		// setScoreBoard(scoreBoard.push(0));
+	// 		setScoreBoard([...scoreBoard, questionResult]);
+	// 	}
+	// 	// if (isCorrect) {
+	// 	// 	// setScore(score + 1);
+	// 	// }
+	// 	log(title, 'title from user');
+	// 	setGameScore(scoreBoard);
+
+	// 	const nextQuestion = currentQuestion + 1;
+	// 	if (nextQuestion < music.length) {
+	// 		setCurrentQuestion(nextQuestion);
+	// 		setDisableControls(false);
+	// 		log('here ?');
+	// 	} else {
+	// 		if (scoreBoard.length === music.length - 1) {
+	// 			log(scoreBoard, 'score board');
+	// 			setGameScore(scoreBoard);
+	// 			log('game over');
+	// 			setTitle('');
+	// 			setSongID('');
+	// 			setSearch('');
+	// 			setTimeout(() => {
+	// 				setGameResults(scoreBoard);
+	// 				// setGameResults(gameScore);
+	// 				log(scoreBoard, 'scoreboard');
+	// 				navigate('/game/result');
+	// 			}, 1000);
+	// 			// navigate('/game/result');
+	// 			return;
+	// 		}
+	// 		// setShowScore(true);
+	// 		// log(scoreBoard, 'score board');
+	// 		// setGameScore(scoreBoard);
+	// 		// log('game over');
+	// 		setTitle('');
+	// 		setSongID('');
+	// 		setSearch('');
+	// 		// navigate('/game/result');
+	// 	}
+	// 	// if (scoreBoard.length === music.length) {
+	// 	// 	log(scoreBoard, 'score board');
+	// 	// 	setGameScore(scoreBoard);
+	// 	// 	log('game over');
+	// 	// 	setTitle('');
+	// 	// 	setSearch('');
+	// 	// 	navigate('/game/result');
+	// 	// }
+	// 	setTitle('');
+	// 	setSongID('');
+	// 	setSearch('');
+	// };
+	const handleAnswerOptionClick = async (title, songID) => {
 		let correctSongTitle = music[currentQuestion].title;
 		let guessedSongTitle = title;
-
 		log(correctSongTitle, 'correctSongTitle');
 		log(guessedSongTitle, 'guessedSongTitle');
+		const musicID = await songID;
 
 		if (correctSongTitle === guessedSongTitle) {
 			log('correct answer');
 			setScore(score + 1);
 			const questionResult = {
-				songID: songID,
+				songID: musicID,
 				title: correctSongTitle,
 				isCorrect: true,
 			};
 			setScoreBoard([...scoreBoard, questionResult]);
+			// log(songID, 'songID');
+			const correctSongID = await songID;
+			// update result
+			updateUserResults(correctSongID);
 		} else {
 			log('wrong answer');
+			setScore(score + 1);
 			const questionResult = {
-				songID: songID,
+				songID: musicID,
 				title: correctSongTitle,
 				isCorrect: false,
 			};
@@ -80,31 +170,50 @@ const Game = () => {
 			setDisableControls(false);
 			log('here ?');
 		} else {
+			log(scoreBoard.length, music.length - 1, 'lengths');
+			log(scoreBoard, 'score board');
+			setGameScore(scoreBoard);
+			// if (scoreBoard.length === music.length) {
 			if (scoreBoard.length === music.length - 1) {
 				log(scoreBoard, 'score board');
 				setGameScore(scoreBoard);
+				setGameResults(scoreBoard);
 				log('game over');
 				setTitle('');
 				setSongID('');
 				setSearch('');
-				setTimeout(() => {
-					setGameResults(scoreBoard);
-					// setGameResults(gameScore);
-					log(scoreBoard, 'scoreboard');
-					navigate('/game/result');
-				}, 1000);
+				// setTimeout(() => {
+				// 	// setGameResults(gameScore);
+				// 	log(scoreBoard, 'scoreboard');
+				// 	navigate('/game/result');
+				// }, 1000);
 				// navigate('/game/result');
-				return;
+				// return;
 			}
+			// if (score === level.questionCount) {
+			// 	setTimeout(() => {
+			// 		// setGameResults(gameScore);
+			// 		log(scoreBoard, 'scoreboard');
+			// 		navigate('/game/result');
+			// 	}, 1000);
+			// }
 			// setShowScore(true);
 			// log(scoreBoard, 'score board');
 			// setGameScore(scoreBoard);
 			// log('game over');
+			log('reset 1');
 			setTitle('');
 			setSongID('');
 			setSearch('');
 			// navigate('/game/result');
 		}
+		// if (score === level.questionCount) {
+		// 	setTimeout(() => {
+		// 		// setGameResults(gameScore);
+		// 		log(scoreBoard, 'scoreboard');
+		// 		navigate('/game/result');
+		// 	}, 1000);
+		// }
 		// if (scoreBoard.length === music.length) {
 		// 	log(scoreBoard, 'score board');
 		// 	setGameScore(scoreBoard);
@@ -116,10 +225,97 @@ const Game = () => {
 		setTitle('');
 		setSongID('');
 		setSearch('');
+		log('reset 2');
 	};
 
+	const updateUserResults = async (correctSongID) => {
+		// const correctResultData = {
+		// 	correctSongID: musicID,
+		// };
+		log(correctSongID, 'correctSongID in updateUserResults func');
+
+		// const obj = {
+		// 	newID: await songID,
+		// };
+		// const
+		// add song to user
+		// `${process.env.REACT_APP_BACKEND_URL}/api/results/${results._id}`,
+		// `${process.env.REACT_APP_BACKEND_URL}/api/results/6342b347aa7633b8f5f7ead3`,
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/${currentUser._id}`,
+			{
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+				body: JSON.stringify({ correctSongID }),
+			}
+		);
+		const json = await response.json();
+		log(json, 'json results updated');
+		if (!response.ok) {
+			log('error in patch');
+		}
+		if (response.ok) {
+			log('response ok in patch');
+			dispatch({
+				type: 'UPDATE_USER',
+				payload: json,
+			});
+		}
+	};
+	// const updateUserResults = async (correctSongID) => {
+	// 	// const correctResultData = {
+	// 	// 	correctSongID: musicID,
+	// 	// };
+	// 	log(correctSongID, 'correctSongID in updateUserResults func');
+
+	// 	// const obj = {
+	// 	// 	newID: await songID,
+	// 	// };
+	// 	// const
+	// 	// add song to user
+	// 	// `${process.env.REACT_APP_BACKEND_URL}/api/results/${results._id}`,
+	// 	// `${process.env.REACT_APP_BACKEND_URL}/api/results/6342b347aa7633b8f5f7ead3`,
+	// 	const response = await fetch(
+	// 		`${process.env.REACT_APP_BACKEND_URL}/api/results/${results[0]._id}`,
+	// 		{
+	// 			method: 'PATCH',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				Authorization: `Bearer ${user.token}`,
+	// 			},
+	// 			body: JSON.stringify({ correctSongID }),
+	// 		}
+	// 	);
+	// 	const json = await response.json();
+	// 	log(json, 'json results updated');
+	// 	if (!response.ok) {
+	// 		log('error in patch');
+	// 	}
+	// 	if (response.ok) {
+	// 		log('response ok in patch');
+	// 		dispatch({
+	// 			type: 'UPDATE_RESULTS',
+	// 			payload: json,
+	// 		});
+	// 	}
+	// };
+
 	useEffect(() => {
-		setGameScore(scoreBoard && scoreBoard);
+		log(scoreBoard.length, 'scoreboard length');
+		// log(level.questionCount, 'level q count');
+		// if (scoreBoard.length === level && level.questionCount) {
+		// 	setGameScore(scoreBoard);
+		// 	setTimeout(() => {
+		// 		// setGameResults(gameScore);
+		// 		log(scoreBoard, 'scoreboard');
+		// 		navigate('/game/result');
+		// 	}, 1000);
+		// }
+		// setGameScore(scoreBoard);
+		// setGameScore(scoreBoard && scoreBoard);
 	}, [scoreBoard]);
 
 	// useEffect(() => {

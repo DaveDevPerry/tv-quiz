@@ -7,6 +7,7 @@ import { log } from '../utils/helper';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
+import { useResultsContext } from '../hooks/useResultsContext';
 // import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -19,12 +20,12 @@ import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
-	const { user } = useAuthContext();
+	const { user, dispatch } = useAuthContext();
 	// const { active_user } = useUsersContext();
-	const { dispatch } = useSongsContext();
+	const { dispatch: songsDispatch } = useSongsContext();
 	const { dispatch: levelDispatch } = useLevelsContext();
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
-	// const { dispatch: playlistDispatch } = usePlaylistsContext();
+	const { dispatch: resultDispatch } = useResultsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
 	// const {
 	// 	setDataLoaded,
@@ -53,9 +54,10 @@ const Loader = () => {
 				}
 			);
 			const json = await response.json();
-			log(json, 'json');
+			// log(user, 'user');
+			// log(json, 'json');
 			if (response.ok) {
-				dispatch({
+				songsDispatch({
 					type: 'SET_SONGS',
 					payload: json,
 				});
@@ -101,31 +103,72 @@ const Loader = () => {
 		}
 	}, [levelDispatch, user]);
 
-	// useEffect(() => {
-	// 	const fetchPlaylists = async () => {
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/playlists`,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${user.token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const json = await response.json();
-	// 		log(json, 'playlists json');
-	// 		// json.reverse();
-	// 		if (response.ok) {
-	// 			playlistDispatch({
-	// 				type: 'SET_PLAYLISTS',
-	// 				payload: json,
-	// 			});
-	// 		}
-	// 	};
-	// 	// if we have a value for the user then fetch the workouts
-	// 	if (user) {
-	// 		fetchPlaylists();
-	// 	}
-	// }, [playlistDispatch, user]);
+	useEffect(() => {
+		const fetchUsers = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/user`
+				// ,
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${user.token}`,
+				// 	},
+				// }
+			);
+			const json = await response.json();
+			log(user, 'user');
+			log(json, 'json user');
+
+			const clonedUsers = [...json];
+			const getUser = clonedUsers.find((obj) => obj.email === user.email);
+			// const getUser = json.find((obj) => obj.email === user.email);
+
+			log(getUser, 'get user');
+
+			if (response.ok) {
+				dispatch({
+					type: 'SET_USER',
+					payload: getUser,
+				});
+			}
+		};
+		if (user) {
+			fetchUsers();
+		}
+		// setTimeout(() => {
+		// 	// setDataLoaded(true);
+		// 	setTimeout(() => {
+		// 		// log(songs, 'songs');
+		// 		// log(albums, 'albums');
+		// 		navigate('/home');
+		// 	}, 1000);
+		// }, 2000);
+	}, [dispatch, user]);
+
+	useEffect(() => {
+		const fetchResults = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/results`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'results json');
+			// json.reverse();
+			if (response.ok) {
+				resultDispatch({
+					type: 'SET_RESULTS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchResults();
+		}
+	}, [resultDispatch, user]);
 	// useEffect(() => {
 	// 	const fetchFavourites = async () => {
 	// 		const response = await fetch(

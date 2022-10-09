@@ -145,29 +145,6 @@ const GameForm = ({
 		}
 		if (createNewAnswer === true) {
 			log('new gig, create new band');
-			// const band = { name: title };
-			// const response = await fetch(
-			// 	`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
-			// 	{
-			// 		method: 'POST',
-			// 		body: JSON.stringify(band),
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 			Authorization: `Bearer ${user.token}`,
-			// 		},
-			// 	}
-			// );
-			// const json = await response.json();
-			// log(json, 'json creating band in form post submit');
-			// if (!response.ok) {
-			// 	setError(json.error);
-			// }
-			// if (response.ok) {
-			// 	setError(null);
-			// 	log('new band added', json);
-			// 	bandDispatch({ type: 'CREATE_BAND', payload: json });
-			// }
-			// log('new band added', json);
 		}
 		// log('new band added, now adding gig');
 		// const handleClose = () => {

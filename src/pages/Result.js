@@ -5,15 +5,18 @@ import { log } from '../utils/helper';
 // import { FaStar } from 'react-icons/fa';
 // import {GiCheckMark} from 'react-icons/gi'
 import { ImCross, ImCheckmark } from 'react-icons/im';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 const Result = () => {
-	const navigate = useNavigate();
-	const { gameScore, setTempCorrectIDs } = useStateContext();
+	// const navigate = useNavigate();
+	// const { gameScore,  tempCorrectIDs } = useStateContext();
+	const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
+	// const { user, currentUser } = useAuthContext();
 
 	useEffect(() => {
-		log(gameScore, 'gameScore');
+		// log(gameScore, 'gameScore');
 	}, []);
 
 	const compileResults = async () => {
@@ -26,16 +29,48 @@ const Result = () => {
 		const correctIDs = [];
 
 		correctResults.forEach((result) => {
+			log(result.songID, 'res.songID');
 			correctIDs.push(result.songID);
+			log(correctIDs, 'arr');
 		});
 
 		setTempCorrectIDs(correctIDs);
 
+		// setUserResults(correctIDs);
+
 		// const response = await fetch(
 		// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/${}`,
 		// )
-		navigate('/home');
+		// navigate('/home');
 	};
+	useEffect(() => {
+		log(tempCorrectIDs);
+	}, [tempCorrectIDs]);
+
+	// const setUserResults = async (arrOfIDs) => {
+	// 	const response = await fetch(
+	// 		`${process.env.REACT_APP_BACKEND_URL}/api/user/${currentUser._id}`,
+	// 		{
+	// 			method: 'PATCH',
+	// 			headers: {
+	// 				Authorization: `Bearer ${user.token}`,
+	// 			},
+	// 			body: arrOfIDs,
+	// 		}
+	// 	);
+	// 	const json = await response.json();
+	// 	log(json, 'json user updated');
+	// 	if (!response.ok) {
+	// 		log('error in patch');
+	// 	}
+	// 	if (response.ok) {
+	// 		log('response ok in patch');
+	// 		log('check back end');
+	// 		// dispatch({
+	// 		// 	type: 'UPDATE_RESULTS',			payload: getUser,
+	// 		// });
+	// 	}
+	// };
 	return (
 		<StyledResult
 			initial={{ width: 0 }}
