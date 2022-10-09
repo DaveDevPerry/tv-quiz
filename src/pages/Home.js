@@ -39,9 +39,9 @@ const Home = () => {
 		>
 			<h2>home page</h2>
 
-			<p>this page contains basic player stats. eg</p>
+			<h3>Welcome, {currentUser && currentUser.username}</h3>
 			<ol>
-				<li>welcome msg</li>
+				{/* <li>welcome msg</li> */}
 				<li>show user</li>
 				{/* <li>total players</li>
 				<li>current rank</li> */}

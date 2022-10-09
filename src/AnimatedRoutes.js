@@ -20,6 +20,7 @@ import Stats from './pages/Stats';
 import Leaderboard from './pages/Leaderboard';
 import Settings from './pages/Settings';
 import { useState } from 'react';
+import Category from './pages/Category';
 // import Settings from './pages/Settings';
 // import { useState } from 'react';
 // import { log } from './helper';
@@ -147,6 +148,22 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					element={
 						user ? (
 							<Songs
+								// themeToggler={themeToggler}
+								theme={theme}
+								// handlePlaylist={handlePlaylist}
+								// handleViewPlaylist={handleViewPlaylist}
+								// handleShufflePlaylist={handleShufflePlaylist}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/category'
+					element={
+						user ? (
+							<Category
 								// themeToggler={themeToggler}
 								theme={theme}
 								// handlePlaylist={handlePlaylist}

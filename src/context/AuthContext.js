@@ -54,7 +54,8 @@ export const AuthContextProvider = ({ children }) => {
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user-tv-quiz'));
 		if (user) {
-			dispatch({ type: 'LOGIN', payload: user });
+			// dispatch({ type: 'LOGIN', payload: user });
+			localStorage.removeItem('user-tv-quiz');
 		}
 	}, []);
 
