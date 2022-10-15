@@ -35,7 +35,7 @@ const CategoryButton = ({ level }) => {
 
 		setTimeout(() => {
 			navigate('/game');
-		}, 2000);
+		}, 500);
 	};
 	// const compileLevelData = async (levelID) => {
 	// 	log(levelID, 'level in compile level data func');

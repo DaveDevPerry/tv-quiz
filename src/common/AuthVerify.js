@@ -18,7 +18,7 @@ const AuthVerify = () => {
 	let location = useLocation();
 
 	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem('user-why-weight'));
+		const user = JSON.parse(localStorage.getItem('user-tv-quiz'));
 		// log(user, ' auth verify 1');
 		if (user) {
 			const decodedJwt = parseJwt(user.token);

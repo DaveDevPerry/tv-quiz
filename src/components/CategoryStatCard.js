@@ -56,21 +56,25 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 	);
 };
 const StyledCategoryStatCard = styled.div`
-	padding: 1rem;
+	/* padding: 2em; */
+	padding: 2rem;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	/* row-gap: 1rem; */
-	flex: 1 1 40%;
+	align-items: flex-start;
+	/* row-gap: 0.5rem; */
+	flex: 1 1 46%;
 	cursor: pointer;
 	.stat-card-bar {
 		/* border: 1px solid green; */
-		padding: 0 1rem 0.5rem;
+		/* padding: 0 1rem 0.5rem; */
+		width: 100%;
+		margin-top: 2rem;
 	}
 	.stat-card-ratio {
 		/* border: 1px solid blue; */
 		text-align: center;
-		font-size: 3rem;
+		font-size: 2.5rem;
 		font-weight: bolder;
 		color: ${({ theme }) => theme.gold};
 	}

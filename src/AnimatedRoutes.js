@@ -65,6 +65,13 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 	// };
 	const [scoreBoard, setScoreBoard] = useState([]);
 
+	const [showDialog, setShowDialog] = useState(false);
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		setShowDialog((showDialog) => !showDialog);
+	};
+
 	return (
 		<AnimatePresence mode='wait'>
 			<Routes location={location} key={location.pathname}>
@@ -84,6 +91,10 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 							<Home
 								// themeToggler={themeToggler}
 								theme={theme}
+								handleClick={handleClick}
+								showDialog={showDialog}
+								setShowDialog={setShowDialog}
+
 								// handlePlaylist={handlePlaylist}
 								// handleViewPlaylist={handleViewPlaylist}
 								// handleShufflePlaylist={handleShufflePlaylist}

@@ -92,6 +92,15 @@ ${
   color: ${({ theme }) => theme.txtDarkGrey};
   text-decoration: none;
 }
+
+${
+	'' /* dialog {
+		background-color: lightblue;
+	}
+	 :modal {
+		background-color: lightcoral;
+	} */
+}
 ${
 	'' /* label, input {
   display: block;

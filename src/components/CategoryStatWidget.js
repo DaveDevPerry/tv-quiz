@@ -10,64 +10,8 @@ import { MdOutlineQueueMusic } from 'react-icons/md';
 // import { IoPlay } from 'react-icons/io5';
 
 const CategoryStatWidget = ({ level }) => {
-	// const navigate = useNavigate();
-	// const { levels } = useLevelsContext();
-	// const { dispatch } = useGamesContext();
-
-	// const compileLevelData = async (levelID, levelTime, levelDifficulty) => {
-	// 	log(levelID, 'level in compile level data func');
-	// 	log(levelTime, 'level time in compile level data func');
-
-	// 	const clonedLevels = [...levels];
-	// 	const getLevel = clonedLevels.find((Obj) => Obj._id === levelID);
-	// 	log(getLevel, ' get level');
-
-	// 	if (!getLevel) {
-	// 		log('level not found');
-	// 	}
-	// 	if (getLevel) {
-	// 		log('level found');
-	// 		getLevel.songLength = levelTime;
-	// 		getLevel.roundDifficulty = levelDifficulty;
-	// 		dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
-	// 		// dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
-	// 	}
-
-	// 	setTimeout(() => {
-	// 		navigate('/game');
-	// 	}, 2000);
-	// };
-	// const compileLevelData = async (levelID) => {
-	// 	log(levelID, 'level in compile level data func');
-
-	// 	const clonedLevels = [...levels];
-	// 	const getLevel = clonedLevels.find((Obj) => Obj._id === levelID);
-	// 	log(getLevel, ' get level');
-
-	// 	if (!getLevel) {
-	// 		log('level not found');
-	// 	}
-	// 	if (getLevel) {
-	// 		log('level found');
-	// 		dispatch({ type: 'SET_GAME_DATA', payload: getLevel });
-	// 	}
-
-	// 	setTimeout(() => {
-	// 		navigate('/game');
-	// 	}, 2000);
-	// };
-
-	// const handleClick = (time) => {
-	// 	log(time, 'time clicked');
-	// };
 	return (
-		<StyledCategoryStatWidget
-			className='br'
-			// className='br-field'
-			// onClick={() => {
-			// 	compileLevelData(level._id);
-			// }}
-		>
+		<StyledCategoryStatWidget className='br'>
 			<div className='category-header'>
 				<h3>{level && level.category}</h3>
 				<span>

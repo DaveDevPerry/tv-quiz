@@ -7,14 +7,18 @@ import CategoryStatCard from '../components/CategoryStatCard';
 import { useAuthContext } from '../hooks/useAuthContext';
 // import LevelSelectButton from '../components/LevelSelectButton';
 import { useLevelsContext } from '../hooks/useLevelsContext';
-import { useSongsContext } from '../hooks/useSongsContext';
-import { FaStar } from 'react-icons/fa';
+// import { useSongsContext } from '../hooks/useSongsContext';
+// import { FaStar } from 'react-icons/fa';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import CorrectSongCard from '../components/CorrectSongCard';
+import PlayerRankCard from '../components/PlayerRankCard';
+// import ResultsModal from '../components/ResultsModal';
 
-const Home = () => {
-	const { songs } = useSongsContext();
-	const { currentUser, userCount, users } = useAuthContext();
+const Home = ({ handleClick, setShowDialog, showDialog }) => {
+	// const { songs } = useSongsContext();
+	const { currentUser } = useAuthContext();
+	// const { currentUser, userCount, users } = useAuthContext();
 	const { levels } = useLevelsContext();
 
 	const { dataLoaded } = useStateContext();
@@ -31,6 +35,13 @@ const Home = () => {
 		// }
 	}, [navigate, dataLoaded]);
 
+	// const [showDialog, setShowDialog] = useState(false);
+
+	// const handleClick = (e) => {
+	// 	e.preventDefault();
+	// 	setShowDialog(true);
+	// };
+
 	return (
 		<StyledHome
 			initial={{ width: 0 }}
@@ -40,6 +51,17 @@ const Home = () => {
 			{/* <h2>home page</h2> */}
 
 			<h3>Welcome, {currentUser && currentUser.username}</h3>
+
+			{/* <button onClick={handleClick}>show</button>
+			{showDialog === false && (
+				<dialog className='example-dialog'>
+					<h2>modal</h2>
+					<button className='close-modal' onClick={handleClick}>
+						close
+					</button>
+				</dialog>
+			)} */}
+			{/* {showDialog === true && <ResultsModal handleClick={handleClick} />} */}
 			{/* <ol>
 				<li>welcome msg</li>
 				<li>show user</li>
@@ -51,7 +73,7 @@ const Home = () => {
 				<li>current rank</li>
 			</ol> */}
 
-			<div className='song-total-widget br'>
+			{/* <div className='song-total-widget br'>
 				<h6>Player Rank</h6>
 				<FaStar className='star-on' />
 				<h5>
@@ -74,8 +96,10 @@ const Home = () => {
 					/ {userCount && userCount < 10 ? `0${userCount}` : userCount}
 				</h5>
 				<h6>2nd</h6>
-			</div>
-			<div className='song-total-widget br'>
+			</div> */}
+
+			<PlayerRankCard />
+			{/* <div className='song-total-widget br'>
 				<h6>Songs Correct</h6>
 				<FaStar className='star-on' />
 				<h5>
@@ -87,7 +111,8 @@ const Home = () => {
 						? `0${songs && songs.length}`
 						: songs && songs.length}
 				</h5>
-			</div>
+			</div> */}
+			<CorrectSongCard />
 
 			{/* <div>
 				<ProgressBarWidget

@@ -2,19 +2,26 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
-import { useSongsContext } from '../hooks/useSongsContext';
-import { FaStar } from 'react-icons/fa';
+// import { useSongsContext } from '../hooks/useSongsContext';
+// import { FaStar } from 'react-icons/fa';
 // import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import CorrectSongCard from '../components/CorrectSongCard';
+import SongsTable from '../components/SongsTable';
+import SongsTableMobile from '../components/SongsTableMobile';
+import { useViewport } from '../hooks/useViewport';
 
 const Songs = () => {
-	const { songs } = useSongsContext();
-	const { currentUser } = useAuthContext();
+	// const { songs } = useSongsContext();
+	// const { currentUser } = useAuthContext();
 
 	const { dataLoaded } = useStateContext();
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -37,7 +44,9 @@ const Songs = () => {
 		>
 			{/* <h2>songs page</h2> */}
 
-			<div className='song-total-widget br'>
+			<CorrectSongCard />
+
+			{/* <div className='song-total-widget br'>
 				<h6>Songs Correct</h6>
 				<FaStar className='star-on' />
 				<h5>
@@ -46,9 +55,9 @@ const Songs = () => {
 						: currentUser.correctSongIDs.length}{' '}
 					/ {songs && songs.length < 10 ? `0${songs.length}` : songs.length}
 				</h5>
-			</div>
+			</div> */}
 
-			<div className='songs-container br'>
+			{/* <div className='songs-container br'>
 				<ol className=''>
 					{songs &&
 						songs.map((song) => (
@@ -62,7 +71,10 @@ const Songs = () => {
 							</li>
 						))}
 				</ol>
-			</div>
+			</div> */}
+			{/* <div className='table-wrapper'> */}
+			{width < breakpoint ? <SongsTableMobile /> : <SongsTable />}
+			{/* </div> */}
 
 			{/* <ol className='br'>
 				{songs &&
@@ -117,36 +129,11 @@ const StyledSongs = styled(motion.div)`
 			color: ${({ theme }) => theme.gold};
 		}
 	}
-	.songs-container {
-		overflow-y: auto;
-		/* padding: 2rem 0; */
-		/* padding: 2rem; */
-		ol {
-			padding: 2rem;
-			/* margin-top: 2rem; */
-			flex: 1;
-			/* list-style:  */
-			li {
-				display: flex;
-				/* display: list-item; */
-				justify-content: space-between;
-				align-items: center;
-				p {
-					text-transform: capitalize;
-				}
-				.star-off {
-					/* color: ${({ theme }) => theme.bgCircle}; */
-					color: ${({ theme }) => theme.tapeBase};
-					/* color: ${({ theme }) => theme.bgLightGrey}; */
-				}
-				.star-on {
-					/* color: ${({ theme }) => theme.bgCircle}; */
-					color: ${({ theme }) => theme.green};
-					/* color: ${({ theme }) => theme.bgLightGrey}; */
-				}
-			}
-		}
-	}
+	/* .table-wrapper {
+		border: 1px solid;
+		flex: 1;
+		overflow-y: hidden;
+	} */
 `;
 
 export default Songs;

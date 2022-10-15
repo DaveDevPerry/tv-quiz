@@ -8,12 +8,22 @@ import { useStateContext } from '../lib/context';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
+import LeaderboardTable from '../components/LeaderboardTable';
+import LeaderboardTableMobile from '../components/LeaderboardTableMobile';
+import { useViewport } from '../hooks/useViewport';
+// import CategoryStatWidget from '../components/CategoryStatWidget';
+import CategoryStatCard from '../components/CategoryStatCard';
+import { useLevelsContext } from '../hooks/useLevelsContext';
 
 const Leaderboard = () => {
 	const { dataLoaded } = useStateContext();
 
+	const { width } = useViewport();
+	const breakpoint = 620;
+
 	const { users } = useAuthContext();
+	const { levels } = useLevelsContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -36,33 +46,26 @@ const Leaderboard = () => {
 		>
 			<h2>Leaderboard page</h2>
 
-			<div className='table-container br'>
-				<table>
-					<thead>
-						<tr>
-							<th></th>
-							<th className='full'>username</th>
-							<th>
-								<FaStar className='star-on' />
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{users &&
-							users.map((user, index) => (
-								<tr key={index}>
-									<td>{index + 1 < 10 ? `0${index + 1}` : index + 1}</td>
-									<td className='full'>{user.username}</td>
-									<td>
-										{user.correctSongIDs.length < 10
-											? `0${user.correctSongIDs.length}`
-											: user.correctSongIDs.length}
-									</td>
-								</tr>
-							))}
-					</tbody>
-				</table>
+			<div className='category-card-container'>
+				{/* <div className='level-select-container br'> */}
+				{levels &&
+					levels.map((level, index) => (
+						<CategoryStatCard
+							key={level._id}
+							level={level}
+							levelIndex={index}
+						/>
+					))}
+				{/* <LevelSelectButton key={level._id} level={level} /> */}
 			</div>
+
+			{/* <CategoryStatWidget  */}
+
+			{width < breakpoint ? (
+				<LeaderboardTableMobile users={users} />
+			) : (
+				<LeaderboardTable users={users} />
+			)}
 
 			<ChartWidget users={users} />
 		</StyledLeaderboard>
@@ -91,6 +94,20 @@ const StyledLeaderboard = styled(motion.div)`
 		text-transform: capitalize;
 		text-align: center;
 	}
+	.category-card-container {
+		/* padding: 0.5rem; */
+		/* flex: 1; */
+		flex-wrap: wrap;
+		/* border: 1px solid black; */
+		display: flex;
+		flex-direction: row;
+		/* align-items: stretch; */
+		justify-content: flex-start;
+		/* justify-content: flex-start; */
+		gap: 2rem;
+		/* width: 100%; */
+		/* overflow-y: scroll; */
+	}
 	ol {
 		padding: 2rem;
 		flex: 1;
@@ -107,41 +124,6 @@ const StyledLeaderboard = styled(motion.div)`
 				/* color: ${({ theme }) => theme.bgCircle}; */
 				color: ${({ theme }) => theme.borderLine};
 				/* color: ${({ theme }) => theme.bgLightGrey}; */
-			}
-		}
-	}
-	.table-container {
-		padding: 2rem;
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			thead {
-				tr {
-					th {
-						border-bottom: 1px solid;
-						padding: 0.3rem;
-						.star-on {
-							/* color: ${({ theme }) => theme.bgCircle}; */
-							color: ${({ theme }) => theme.gold};
-							/* color: ${({ theme }) => theme.bgLightGrey}; */
-						}
-					}
-				}
-			}
-			tbody {
-				border-bottom: 1px solid;
-				tr {
-					&:nth-of-type(odd) {
-						background-color: #d2d2d2;
-					}
-					td {
-						padding: 0.3rem;
-					}
-				}
-			}
-			.full {
-				flex: 1;
-				text-align: left;
 			}
 		}
 	}
