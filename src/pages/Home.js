@@ -62,11 +62,13 @@ const Home = () => {
 						1 <
 						10
 						? `0${
+								users &&
 								users.findIndex((object) => {
 									return object._id === currentUser._id;
 								}) + 1
 						  }`
-						: users.findIndex((object) => {
+						: users &&
+						  users.findIndex((object) => {
 								return object._id === currentUser._id;
 						  }) + 1}{' '}
 					/ {userCount && userCount < 10 ? `0${userCount}` : userCount}
@@ -78,8 +80,8 @@ const Home = () => {
 				<FaStar className='star-on' />
 				<h5>
 					{currentUser && currentUser.correctSongIDs.length < 10
-						? `0${currentUser.correctSongIDs.length}`
-						: currentUser.correctSongIDs.length}{' '}
+						? `0${currentUser && currentUser.correctSongIDs.length}`
+						: currentUser && currentUser.correctSongIDs.length}{' '}
 					/ {songs && songs.length < 10 ? `0${songs.length}` : songs.length}
 				</h5>
 			</div>

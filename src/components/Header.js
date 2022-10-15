@@ -44,29 +44,25 @@ const Header = () => {
 							to='/play'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* <MdQueueMusic className='nav-icon' /> */}
 							<p>play</p>
 						</NavLink>
 						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* <FaTasks className='nav-icon' /> */}
 							<p>songs</p>
 						</NavLink>
 
-						<NavLink
+						{/* <NavLink
 							to='/stats'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* <HiPresentationChartLine className='nav-icon' /> */}
 							<p>stats</p>
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to='/leaderboard'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* <GiPodium className='nav-icon' /> */}
 							<p>rankings</p>
 						</NavLink>
 
@@ -74,7 +70,6 @@ const Header = () => {
 							to='/settings'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* <IoSettingsOutline className='nav-icon' /> */}
 							<p>settings</p>
 						</NavLink>
 					</nav>
@@ -96,7 +91,7 @@ const StyledHeader = styled.header`
 		/* background: ${({ theme }) => theme.white}; */
 		z-index: 500;
 		h1 {
-			font-size: 2rem;
+			font-size: 2.2rem;
 			color: ${({ theme }) => theme.secondaryColor};
 			font-family: 'Signika', sans-serif;
 			span {

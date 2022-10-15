@@ -255,7 +255,7 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 0.5rem;
+	row-gap: 1rem;
 	/* row-gap: 1rem; */
 	flex: 1;
 	p.form-title {
@@ -411,7 +411,7 @@ const StyledForm = styled.form`
 		flex: 1;
 		justify-content: flex-end;
 		.add-btn {
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.secondaryColor};
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;

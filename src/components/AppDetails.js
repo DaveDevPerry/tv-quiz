@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const AppDetails = ({ theme }) => {
 	useEffect(() => {}, [theme]);
 	return (
-		<StyledAppDetails>
+		<StyledAppDetails className='br'>
 			<div
 				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
 			></div>
@@ -45,10 +45,10 @@ const StyledAppDetails = styled.div`
 	padding-bottom: 3rem;
 	/* background: ${({ theme }) => theme.white}; */
 	/* background: ${({ theme }) => theme.bgCircle}; */
-	background-color: ${({ theme }) => theme.bgGrey};
-	border: 0.2rem solid ${({ theme }) => theme.primaryColor};
-	border-radius: 1rem; /* border-radius: 4px; */
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	background-color: ${({ theme }) => theme.white};
+	/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
+	/* border-radius: 1rem; border-radius: 4px; */
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	transition: all 200ms linear;
 	margin: 0 1rem;
 	.dev-link-container {
@@ -98,7 +98,7 @@ const Brand = styled.div`
 	font-weight: lighter;
 	text-align: center;
 	line-height: 1;
-	color: ${({ theme }) => theme.white};
+	color: ${({ theme }) => theme.secondaryColor};
 	span {
 		font-weight: bolder;
 		/* color: ${({ theme }) => theme.txtGrey}; */

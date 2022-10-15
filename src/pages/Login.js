@@ -27,7 +27,7 @@ const Login = ({ theme }) => {
 			</div> */}
 
 			<div className='form-page-container'>
-				<form onSubmit={handleSubmit} className='login'>
+				<form onSubmit={handleSubmit} className='login br'>
 					<h3>Log in</h3>
 					<div>
 						<label>Email:</label>
@@ -70,13 +70,14 @@ const Login = ({ theme }) => {
 const StyledLogin = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	row-gap: 2rem;
-	margin: 0 auto;
+	margin: 2rem auto;
 	max-width: 42rem;
 	overflow: hidden;
 	transition: all 200ms linear;
 	flex: 1;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	align-items: center;
 	z-index: 600;
 
@@ -85,17 +86,17 @@ const StyledLogin = styled(motion.div)`
 		flex-direction: column;
 		row-gap: 2rem;
 		flex: 1;
-		justify-content: center;
+		justify-content: flex-start;
 	}
 	.login {
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
-		background-color: ${({ theme }) => theme.bgGrey};
-		border: 0.2rem solid ${({ theme }) => theme.primaryColor};
-		border-radius: 1rem;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		background-color: ${({ theme }) => theme.white};
+		/* border: 0.2rem solid ${({ theme }) => theme.primaryColor}; */
+		/* border-radius: 1rem; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		z-index: 601;
 		margin: 0 1rem;
 		h3 {

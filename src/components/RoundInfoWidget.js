@@ -126,7 +126,11 @@ const StyledRoundInfoWidget = styled(motion.div)`
 			}
 		}
 	}
-
+	.personal-best {
+		h3 {
+			text-align: center;
+		}
+	}
 	.start-game-btn {
 		background-color: ${({ theme }) => theme.primaryColor};
 		padding: 1rem 2rem;

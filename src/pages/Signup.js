@@ -23,13 +23,8 @@ const Signup = ({ theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<div className='brand-wrapper'>
-				<h1 id='brand'>
-					Terror<span id='hyphen'>-</span>Fi
-				</h1>
-			</div>
 			<div className='form-page-container'>
-				<form onSubmit={handleSubmit} className='signup'>
+				<form onSubmit={handleSubmit} className='signup br'>
 					<h3>Sign up</h3>
 					<div>
 						<label>Email:</label>
@@ -67,12 +62,6 @@ const Signup = ({ theme }) => {
 				</p>
 				<AppDetails theme={theme} />
 			</div>
-
-			<div className='launch-wrapper'>
-				<h1 className='launch-btn' id='lets-rock'>
-					The Demo Tapes
-				</h1>
-			</div>
 		</StyledSignup>
 	);
 };
@@ -80,7 +69,7 @@ const StyledSignup = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
-	margin: 0 auto;
+	margin: 2rem auto;
 	max-width: 42rem;
 	overflow: hidden;
 	transition: all 200ms linear;
@@ -88,80 +77,32 @@ const StyledSignup = styled(motion.div)`
 	justify-content: space-between;
 	align-items: center;
 	z-index: 600;
-	.brand-wrapper {
-		background-color: ${({ theme }) => theme.primaryColor};
-		/* border: 2px solid ${({ theme }) => theme.bgGrey}; */
-		margin-right: 5rem;
-		width: 100%;
-		height: 1.5rem;
-		transform: rotate(-2.5deg);
-		margin-top: 5rem;
-		border-radius: 0.5rem;
-		position: relative;
-		h1#brand {
-			position: absolute;
-			top: 0;
-			right: 0.5rem;
-			transform: translate(0, -40%);
-			color: ${({ theme }) => theme.white};
-			text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-				-0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-				0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-			animation: glitch1 2500ms infinite;
-		}
-		span#hyphen {
-			/* font-family: 'Roboto'; */
-			color: ${({ theme }) => theme.white};
-		}
-	}
-	.launch-wrapper {
-		/* border: 2px solid ${({ theme }) => theme.bgGrey}; */
-		background-color: ${({ theme }) => theme.primaryColor};
-		margin-left: 5rem;
-		width: 100%;
-		height: 1.5rem;
-		transform: rotate(-2.5deg);
-		margin-bottom: 5rem;
-		border-radius: 0.5rem;
-		position: relative;
-		.launch-btn {
-			position: absolute;
-			top: 0;
-			left: 0.5rem;
-			transform: translate(0, -30%);
-			color: ${({ theme }) => theme.white};
-			font-size: 3.6rem;
-			letter-spacing: 0.1rem;
-		}
-	}
+
 	.form-page-container {
 		display: flex;
 		flex-direction: column;
 		row-gap: 2rem;
 		flex: 1;
-		justify-content: center;
+		justify-content: flex-start;
 	}
 	.signup {
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
-		background-color: ${({ theme }) => theme.bgGrey};
-		border: 0.2rem solid ${({ theme }) => theme.primaryColor};
-		border-radius: 1rem;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		background-color: ${({ theme }) => theme.white};
 		z-index: 601;
 		margin: 0 1rem;
 		h3 {
 			text-align: center;
 			margin: 0;
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.txtGrey};
 		}
 		input {
 			padding: 0.8rem 1rem;
 			margin: 0;
 			font-size: 1.8rem;
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.txtGrey};
 			flex: 1;
 			&:focus {
 				outline: none;
@@ -172,7 +113,7 @@ const StyledSignup = styled(motion.div)`
 			}
 		}
 		.action-btn {
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.secondaryColor};
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;
@@ -180,13 +121,13 @@ const StyledSignup = styled(motion.div)`
 	}
 	p {
 		text-align: center;
-		color: ${({ theme }) => theme.white};
+		color: ${({ theme }) => theme.txtGrey};
 		a {
 			color: ${({ theme }) => theme.secondaryColor};
 			text-decoration: none;
 		}
 	}
-	label,
+	/* label,
 	input {
 		display: block;
 		color: ${({ theme }) => theme.white};
@@ -224,7 +165,7 @@ const StyledSignup = styled(motion.div)`
 	}
 	input.error {
 		border: 1px solid ${({ theme }) => theme.error};
-	}
+	} */
 `;
 
 export default Signup;

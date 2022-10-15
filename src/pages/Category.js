@@ -154,7 +154,7 @@ const StyledCategory = styled(motion.div)`
 	}
 	ol {
 		padding: 2rem;
-		flex: 1;
+		/* flex: 1; */
 		/* list-style:  */
 		li {
 			display: flex;

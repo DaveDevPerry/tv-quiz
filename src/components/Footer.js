@@ -15,7 +15,7 @@ import { FaTasks } from 'react-icons/fa';
 // 	// RiRoadMapLine,
 // } from 'react-icons/ri';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { HiPresentationChartLine } from 'react-icons/hi';
+// import { HiPresentationChartLine } from 'react-icons/hi';
 // import { GrMap } from 'react-icons/gr';
 // import { MdOutlineMapsHomeWork } from 'react-icons/md';
 import { MdQueueMusic } from 'react-icons/md';
@@ -50,13 +50,13 @@ const Footer = () => {
 							<p>songs</p>
 						</NavLink>
 
-						<NavLink
+						{/* <NavLink
 							to='/stats'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<HiPresentationChartLine className='nav-icon' />
 							<p>stats</p>
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to='/leaderboard'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}

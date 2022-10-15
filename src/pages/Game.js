@@ -257,6 +257,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 		// };
 		log(correctSongID, 'correctSongID in updateUserResults func');
 
+		log(currentUser._id, ' current user id');
+
 		// const obj = {
 		// 	newID: await songID,
 		// };
