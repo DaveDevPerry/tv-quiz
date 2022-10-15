@@ -82,7 +82,10 @@ const Home = () => {
 					{currentUser && currentUser.correctSongIDs.length < 10
 						? `0${currentUser && currentUser.correctSongIDs.length}`
 						: currentUser && currentUser.correctSongIDs.length}{' '}
-					/ {songs && songs.length < 10 ? `0${songs.length}` : songs.length}
+					/{' '}
+					{songs && songs.length < 10
+						? `0${songs && songs.length}`
+						: songs && songs.length}
 				</h5>
 			</div>
 
