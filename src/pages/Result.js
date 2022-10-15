@@ -158,31 +158,21 @@ const Result = ({ setScoreBoard }) => {
 const StyledResult = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	/* justify-content: flex-start; */
+	justify-content: flex-start;
 	row-gap: 1rem;
-	/* padding: 1rem;
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	row-gap: 1rem; */
-
-	flex: 1;
-	max-width: 42rem;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
-	/* overflow-y: auto; */
+	overflow-y: hidden;
+	/* overflow-y: scroll; */
 	/* overflow: hidden; */
-	overflow: hidden;
+	z-index: 1;
+	/* overflow-y: auto; */
 	transition: all 200ms linear;
-	/* margin: 0 auto; */
-	/* .level-select-container {
-		padding: 0.5rem;
-		flex: 1;
-		border: 1px solid black;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		row-gap: 2rem;
-	} */
+	margin: 0 auto;
+	flex: 1;
 	h2 {
 		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;

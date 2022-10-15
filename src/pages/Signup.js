@@ -110,7 +110,7 @@ const StyledSignup = styled(motion.div)`
 			animation: glitch1 2500ms infinite;
 		}
 		span#hyphen {
-			font-family: 'Roboto';
+			/* font-family: 'Roboto'; */
 			color: ${({ theme }) => theme.white};
 		}
 	}

@@ -105,6 +105,13 @@ const StyledAudioPlayer = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	/* audio{ */
+	audio::-webkit-media-controls-panel {
+		background-color: ${({ theme }) => theme.primaryColor};
+		/* color: #a0276e; */
+		/* border-radius: 4px; */
+	}
+	/* } */
 	.disable {
 		pointer-events: none;
 	}

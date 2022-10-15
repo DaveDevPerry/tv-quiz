@@ -59,7 +59,8 @@ const StyledQuestionWidget = styled(motion.div)`
 	flex: 1;
 	padding: 1rem;
 	h3 {
-		color: ${({ theme }) => theme.primaryColor};
+		color: ${({ theme }) => theme.txtGrey};
+		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-align: left;
 		/* padding-left: 1rem; */
 		padding: 1rem;

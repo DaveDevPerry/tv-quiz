@@ -49,24 +49,25 @@ const Play = () => {
 	);
 };
 const StyledPlay = styled(motion.div)`
-	/* display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	row-gap: 2rem;
-	padding: 1rem; */
+	/* overflow-y: scroll; */
+
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	row-gap: 1rem;
-
-	flex: 1;
-	max-width: 42rem;
-	padding: 0.5rem 0rem;
-	/* padding: 0.5rem 1rem; */
-	overflow-y: scroll;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0.5rem 1rem;
+	overflow-y: hidden;
+	/* overflow-y: scroll; */
 	/* overflow: hidden; */
-	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
 	transition: all 200ms linear;
-	/* margin: 0 auto; */
+	margin: 0 auto;
+	flex: 1;
 	h2 {
 		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
@@ -83,7 +84,7 @@ const StyledPlay = styled(motion.div)`
 		justify-content: flex-start;
 		row-gap: 1rem;
 		/* width: 100%; */
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 `;
 

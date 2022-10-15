@@ -127,23 +127,28 @@ const Home = () => {
 	);
 };
 const StyledHome = styled(motion.div)`
-	/* display: flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 2rem;
-	padding: 1rem; */
-	display: flex;
-	flex-direction: column;
-	row-gap: 1rem;
-
-	flex: 1;
-	max-width: 42rem;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
+	overflow-y: auto;
+	/* overflow-y: scroll; */
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
+
 	/* overflow-y: auto; */
 	/* overflow: hidden; */
 	overflow: hidden;
-	transition: all 200ms linear;
-	margin: 0 auto;
+
 	h2 {
 		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
@@ -182,7 +187,7 @@ const StyledHome = styled(motion.div)`
 		overflow-y: scroll;
 	}
 	.category-card-container {
-		padding: 0.5rem;
+		/* padding: 0.5rem; */
 		/* flex: 1; */
 		flex-wrap: wrap;
 		/* border: 1px solid black; */
@@ -191,7 +196,7 @@ const StyledHome = styled(motion.div)`
 		/* align-items: stretch; */
 		justify-content: flex-start;
 		/* justify-content: flex-start; */
-		gap: 2rem;
+		gap: 1rem;
 		/* width: 100%; */
 		/* overflow-y: scroll; */
 	}

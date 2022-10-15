@@ -11,6 +11,7 @@ import { useGamesContext } from '../hooks/useGamesContext';
 import { log } from '../utils/helper';
 
 import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
+import { BsCircle } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
@@ -358,8 +359,6 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <h2>Game Settings</h2> */}
-			{/* <h1>Game page</h1> */}
 			{showQuestions === false ? (
 				<>
 					<h2>Game Settings</h2>
@@ -372,31 +371,50 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				</>
 			) : (
 				<>
-					<h2>Name the Song</h2>
+					<h2>{level && level.category}</h2>
 					<div className='scoreBoard-container br'>
-						{scoreBoard &&
-							scoreBoard.length >= 0 &&
-							scoreBoard.map((score, index) => (
+						<div className='scoreboard-wrapper'>
+							{music &&
+								music.length >= 0 &&
+								music.map((song, index) => (
+									<div className='icon-wrapper' key={index}>
+										{/* <span> */}
+										{scoreBoard && !scoreBoard[index] ? (
+											<BsCircle className='result-icon blank-icon' />
+										) : (
+											<>
+												{scoreBoard && scoreBoard[index].isCorrect === true ? (
+													<IoMdCheckmarkCircle className='result-icon correct-icon' />
+												) : (
+													<IoMdCloseCircle className='result-icon wrong-icon' />
+												)}
+											</>
+										)}
+										{/* </span> */}
+									</div>
+								))}
+						</div>
+					</div>
+					{/* <div className='scoreBoard-container br'>
+						{music &&
+							music.length >= 0 &&
+							music.map((song, index) => (
 								<p key={index}>
-									{score && score.isCorrect && (
-										<span>
-											<IoMdCheckmarkCircle className='result-icon correct-icon' />
-										</span>
-									)}
-									{score && score.isCorrect === false && (
-										<span>
-											<IoMdCloseCircle className='result-icon wrong-icon' />
-										</span>
-									)}
+									<span>
+										{scoreBoard && !scoreBoard[index] ? (
+											<BsCircle className='result-icon blank-icon' />
+										) : (
+											<>
+												{scoreBoard && scoreBoard[index].isCorrect === true ? (
+													<IoMdCheckmarkCircle className='result-icon correct-icon' />
+												) : (
+													<IoMdCloseCircle className='result-icon wrong-icon' />
+												)}
+											</>
+										)}
+									</span>
 								</p>
 							))}
-					</div>
-
-					{/* <div className='question-section'>
-						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/{music.length}
-						</div>
-						<div className='question-text'>{music[currentQuestion].title}</div>
 					</div> */}
 
 					<QuestionWidget
@@ -456,33 +474,67 @@ const StyledGame = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 2rem;
-	padding: 1rem;
+	row-gap: 1rem;
+	max-width: 100rem;
+
+	padding: 0.5rem 1rem;
+	overflow-y: hidden;
+
+	z-index: 1;
+
+	transition: all 200ms linear;
+	margin: 0 auto;
 	flex: 1;
-	/* .level-select-container {
-		padding: 0.5rem;
-		flex: 1;
-		border: 1px solid black;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		row-gap: 2rem;
-	} */
 	h2 {
-		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
 		text-align: center;
 	}
 	.scoreBoard-container {
-		/* border: 2px solid blue; */
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 		column-gap: 2rem;
 		padding: 1rem;
-		p {
-			/* flex: 1; */
+		.scoreboard-wrapper {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			align-items: center;
+			column-gap: 2rem;
+			padding: 1rem;
+			position: relative;
+			height: 5rem;
+			.icon-wrapper {
+				display: grid;
+				place-content: center;
+				background-color: ${({ theme }) => theme.white};
+				z-index: 5;
+				width: 4rem;
+				.result-icon {
+					font-size: 3rem;
+				}
+				.wrong-icon {
+					color: ${({ theme }) => theme.red};
+					font-size: 3.8rem;
+				}
+				.correct-icon {
+					color: ${({ theme }) => theme.green};
+					font-size: 3.8rem;
+				}
+			}
+			&::before {
+				content: '';
+				background-color: ${({ theme }) => theme.txtGrey};
+				top: 50%;
+				left: 50%;
+				height: 0.7rem;
+				width: 90%;
+				transform: translate(-50%, -50%);
+				position: absolute;
+			}
+		}
+		/* p {
 			text-align: center;
 			span {
 				display: grid;
@@ -492,13 +544,41 @@ const StyledGame = styled(motion.div)`
 				}
 				.wrong-icon {
 					color: ${({ theme }) => theme.red};
+					font-size: 4rem;
 				}
 				.correct-icon {
 					color: ${({ theme }) => theme.green};
+					font-size: 3.8rem;
+				}
+			}
+		} */
+	}
+	/* .scoreBoard-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		column-gap: 2rem;
+		padding: 1rem;
+		p {
+			text-align: center;
+			span {
+				display: grid;
+				place-content: center;
+				.result-icon {
+					font-size: 3rem;
+				}
+				.wrong-icon {
+					color: ${({ theme }) => theme.red};
+					font-size: 4rem;
+				}
+				.correct-icon {
+					color: ${({ theme }) => theme.green};
+					font-size: 3.8rem;
 				}
 			}
 		}
-	}
+	} */
 `;
 
 export default Game;

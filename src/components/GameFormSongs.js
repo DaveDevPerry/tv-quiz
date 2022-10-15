@@ -113,6 +113,11 @@ const GameFormSongs = ({
 };
 const StyledGameFormSongs = styled.div`
 	position: relative;
+	#auto {
+		&:focus {
+			border: 1px solid ${({ theme }) => theme.primaryColor};
+		}
+	}
 	.autoContainer {
 		position: absolute;
 		background-color: ${({ theme }) => theme.white};

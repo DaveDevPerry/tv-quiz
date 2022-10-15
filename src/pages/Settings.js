@@ -171,7 +171,7 @@ const StyledSettings = styled(motion.div)`
 				border: 2px solid ${({ theme }) => theme.secondaryColor};
 				padding: 0.3rem 0.6rem;
 				border-radius: 0.4rem;
-				font-family: 'Poppins';
+				font-family: 'Signika', sans-serif;
 				cursor: pointer;
 				font-size: 1em;
 			}

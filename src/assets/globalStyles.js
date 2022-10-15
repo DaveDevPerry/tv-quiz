@@ -33,7 +33,8 @@ ${
 	  -moz-user-select: none;
 	  -ms-user-select: none;
 	  user-select: none;
-    font-family: 'Roboto', sans-serif;
+    ${'' /* font-family: 'Roboto', sans-serif; */}
+    font-family: 'Signika', sans-serif;
   }
   body {
     -webkit-font-smoothing: antialiased;
@@ -43,6 +44,7 @@ ${
 	font-size: 1.6rem;
 	font-weight: 400;
   color: ${({ theme }) => theme.txtGrey};
+  overflow: hidden;
   }
   ${
 		'' /* .App {

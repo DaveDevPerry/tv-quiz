@@ -11,11 +11,15 @@ import Header from './components/Header';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
 import { StateContext } from './lib/context';
+import { useViewport } from './hooks/useViewport';
 
 function App() {
 	const { user } = useAuthContext();
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	if (!mountedComponent) return <div id='unmounted'>Can i see this</div>;
 	return (
@@ -32,7 +36,7 @@ function App() {
 								themeToggler={themeToggler}
 								theme={theme}
 							/>
-							<Footer />
+							{width < breakpoint && <Footer />}
 						</BrowserRouter>
 					</div>
 				</StateContext>

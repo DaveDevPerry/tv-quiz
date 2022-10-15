@@ -62,6 +62,7 @@ const StyledCategoryStatCard = styled.div`
 	flex-direction: column;
 	/* row-gap: 1rem; */
 	flex: 1 1 40%;
+	cursor: pointer;
 	.stat-card-bar {
 		/* border: 1px solid green; */
 		padding: 0 1rem 0.5rem;

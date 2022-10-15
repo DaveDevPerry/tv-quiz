@@ -35,26 +35,13 @@ const Footer = () => {
 			<nav>
 				{user && (
 					<div>
-						{/* <NavLink
-							to='/home'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<HiPresentationChartLine className='nav-icon' />
-						</NavLink> */}
 						<NavLink
 							to='/play'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* Home */}
 							<MdQueueMusic className='nav-icon' />
 							<p>play</p>
-							{/* <BsMusicNoteList className='nav-icon' /> */}
-							{/* <HiPresentationChartLine className='nav-icon' /> */}
 						</NavLink>
-						{/* <NavLink
-							to='/add-weight'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						> */}
 						<NavLink
 							to='/songs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -83,28 +70,8 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<IoSettingsOutline className='nav-icon' />
-							{/* <IoSettingsOutline className='settings-icon' /> */}
 							<p>settings</p>
 						</NavLink>
-						{/* <NavLink
-							to='/cities'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<GrMap className='nav-icon' />
-						</NavLink> */}
-						{/* <NavLink
-							to='/history'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<RiMenuFoldFill className='nav-icon' />
-							<p>history</p>
-						</NavLink> */}
-						{/* <NavLink
-							to='/bands'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							<FaUsers className='nav-icon' />
-						</NavLink> */}
 					</div>
 				)}
 			</nav>

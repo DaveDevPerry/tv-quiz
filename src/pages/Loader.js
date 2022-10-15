@@ -248,17 +248,9 @@ const Loader = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='tv-wrapper'>
-				<h1>TerrorQuizion</h1>
-				{/* <div id='tv-signal'></div> */}
-				{/* <img
-					src={
-						theme === 'light'
-							? '/assets/tv-telly_white.webp'
-							: '/assets/tv-telly_screen.webp'
-					}
-					alt='telly'
-					id='terror-tv'
-				/> */}
+				<h1>
+					Terror<span>quiz</span>ion
+				</h1>
 			</div>
 			<AuthVerify />
 		</StyledLoader>
@@ -280,9 +272,14 @@ const StyledLoader = styled(motion.section)`
 	z-index: 500;
 
 	.tv-wrapper {
-		/* position: relative;
-		width: 200px;
-		height: 239px; */
+		h1 {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 4rem;
+			font-family: 'Signika', sans-serif;
+			span {
+				color: ${({ theme }) => theme.green};
+			}
+		}
 	}
 `;
 
