@@ -35,21 +35,35 @@ const Songs = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>songs page</h2>
+			{/* <h2>songs page</h2> */}
 
-			<ol className='br'>
-				{songs &&
-					songs.map((song) => (
-						<li key={song._id}>
-							<p>{song.title}</p>
-							{currentUser.correctSongIDs.includes(song._id) ? (
-								<FaStar className='star-on' />
-							) : (
-								<FaStar className='star-off' />
-							)}
-						</li>
-					))}
-			</ol>
+			<div className='song-total-widget br'>
+				<h6>Songs Correct</h6>
+				<FaStar className='star-on' />
+				<h5>
+					{currentUser && currentUser.correctSongIDs.length < 10
+						? `0${currentUser.correctSongIDs.length}`
+						: currentUser.correctSongIDs.length}{' '}
+					/ {songs && songs.length < 10 ? `0${songs.length}` : songs.length}
+				</h5>
+			</div>
+
+			<div className='songs-container br'>
+				<ol className=''>
+					{songs &&
+						songs.map((song) => (
+							<li key={song._id}>
+								<p>{song.title}</p>
+								{currentUser.correctSongIDs.includes(song._id) ? (
+									<FaStar className='star-on' />
+								) : (
+									<FaStar className='star-off' />
+								)}
+							</li>
+						))}
+				</ol>
+			</div>
+
 			{/* <ol className='br'>
 				{songs &&
 					songs.map((song) => (
@@ -101,27 +115,44 @@ const StyledSongs = styled(motion.div)`
 		text-transform: capitalize;
 		text-align: center;
 	}
-	ol {
-		padding: 2rem;
-		flex: 1;
-		/* list-style:  */
-		li {
-			display: flex;
-			/* display: list-item; */
-			justify-content: space-between;
-			align-items: center;
-			p {
-				text-transform: capitalize;
-			}
-			.star-off {
-				/* color: ${({ theme }) => theme.bgCircle}; */
-				color: ${({ theme }) => theme.tapeBase};
-				/* color: ${({ theme }) => theme.bgLightGrey}; */
-			}
-			.star-on {
-				/* color: ${({ theme }) => theme.bgCircle}; */
-				color: ${({ theme }) => theme.green};
-				/* color: ${({ theme }) => theme.bgLightGrey}; */
+	.song-total-widget {
+		padding: 1rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		column-gap: 1rem;
+		font-size: 2.5rem;
+		.star-on {
+			color: ${({ theme }) => theme.gold};
+		}
+	}
+	.songs-container {
+		overflow-y: auto;
+		/* padding: 2rem 0; */
+		/* padding: 2rem; */
+		ol {
+			padding: 2rem;
+			/* margin-top: 2rem; */
+			flex: 1;
+			/* list-style:  */
+			li {
+				display: flex;
+				/* display: list-item; */
+				justify-content: space-between;
+				align-items: center;
+				p {
+					text-transform: capitalize;
+				}
+				.star-off {
+					/* color: ${({ theme }) => theme.bgCircle}; */
+					color: ${({ theme }) => theme.tapeBase};
+					/* color: ${({ theme }) => theme.bgLightGrey}; */
+				}
+				.star-on {
+					/* color: ${({ theme }) => theme.bgCircle}; */
+					color: ${({ theme }) => theme.green};
+					/* color: ${({ theme }) => theme.bgLightGrey}; */
+				}
 			}
 		}
 	}

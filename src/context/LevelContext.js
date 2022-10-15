@@ -11,6 +11,18 @@ export const levelsReducer = (state, action) => {
 				...state,
 				levels: action.payload,
 			};
+		case 'SET_SONGS_IN_LEVELS':
+			log(action.payload, 'action payload set songs in levels');
+			return {
+				...state,
+				songsInLevels: action.payload,
+			};
+		case 'SET_SONGS_IN_LEVEL':
+			log(action.payload, 'action payload set songs in level');
+			return {
+				...state,
+				songsInLevel: action.payload,
+			};
 
 		// case 'SET_FAVOURITE_SONGS':
 		// 	return {
@@ -43,6 +55,8 @@ export const LevelsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(levelsReducer, {
 		levels: null,
 		level: null,
+		songsInLevels: null,
+		songsInLevel: null,
 		// favourite_songs: null,
 	});
 

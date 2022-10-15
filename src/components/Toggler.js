@@ -10,12 +10,13 @@ const Toggle = ({ toggleTheme, theme }) => {
 			onClick={toggleTheme}
 			className='toggle-icon'
 		>
-			<p>Dark mode:</p>
+			<p>colour theme:</p>
 			{theme === 'light' ? (
 				<CgToggleSquare className='mode-toggle-icons' />
 			) : (
 				<CgToggleSquareOff className='mode-toggle-icons active' />
 			)}
+			<span>{theme && theme}</span>
 		</StyledToggle>
 	);
 };
@@ -28,8 +29,16 @@ const StyledToggle = styled.div`
 	column-gap: 1rem;
 	color: ${({ theme }) => theme.txtGrey};
 	p {
-		width: 8.5rem;
+		/* color: ${({ theme }) => theme.secondaryColor}; */
+		font-size: 1.4rem;
+		font-weight: bold;
+		width: 11rem;
 		text-align: right;
+	}
+	span {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-size: 1.4rem;
+		font-weight: lighter;
 	}
 	.mode-toggle-icons {
 		cursor: pointer;

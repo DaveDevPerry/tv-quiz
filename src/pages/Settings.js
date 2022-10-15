@@ -177,19 +177,19 @@ const StyledSettings = styled(motion.div)`
 			}
 		}
 	}
-	/* h3 {
+	h3 {
 		text-align: center;
-		position: relative;
+		/* position: relative; */
 		color: ${({ theme }) => theme.secondaryColor};
-		.close-icon {
+		/* .close-icon {
 			position: absolute;
 			right: 0;
 			top: 50%;
 			transform: translateY(-50%);
 			font-size: 2rem;
 			color: ${({ theme }) => theme.txtDarkGrey};
-		}
-	} */
+		} */
+	}
 `;
 
 export default Settings;

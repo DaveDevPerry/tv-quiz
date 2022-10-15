@@ -3,17 +3,20 @@ import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
-// import { FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 // import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+// import { useSongsContext } from '../hooks/useSongsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLevelsContext } from '../hooks/useLevelsContext';
 
 const Category = () => {
-	// const { songs } = useSongsContext();
-	// const { currentUser } = useAuthContext();
-
+	// const { categorySongs } = useSongsContext();
+	const { currentUser } = useAuthContext();
+	const { level, songsInLevel } = useLevelsContext();
 	const { dataLoaded } = useStateContext();
 
 	let navigate = useNavigate();
@@ -35,7 +38,52 @@ const Category = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>category page</h2>
+			<h2>{level && level.category}</h2>
+
+			<div className='song-total-widget br'>
+				<h6>Songs Correct</h6>
+				<FaStar className='star-on' />
+				<h5>
+					{songsInLevel && songsInLevel.length < 10
+						? `0${songsInLevel.length}`
+						: songsInLevel.length}{' '}
+					/{' '}
+					{level && level.songs.length < 10
+						? `0${level.songs.length}`
+						: level.songs.length}
+				</h5>
+			</div>
+
+			<ol className='br'>
+				{level &&
+					level.songs
+						.sort((a, b) => {
+							return a.title > b.title ? 1 : -1;
+						})
+						.map((song) => (
+							<li key={song._id}>
+								<p>{song.title}</p>
+								{currentUser.correctSongIDs.includes(song._id) ? (
+									<FaStar className='star-on' />
+								) : (
+									<FaStar className='star-off' />
+								)}
+							</li>
+						))}
+			</ol>
+			{/* <ol className='br'>
+				{categorySongs &&
+					categorySongs.map((song) => (
+						<li key={song._id}>
+							<p>{song.title}</p>
+							{currentUser.correctSongIDs.includes(song._id) ? (
+								<FaStar className='star-on' />
+							) : (
+								<FaStar className='star-off' />
+							)}
+						</li>
+					))}
+			</ol> */}
 
 			{/* <ol className='br'>
 				{songs &&
@@ -100,6 +148,17 @@ const StyledCategory = styled(motion.div)`
 		/* color: ${({ theme }) => theme.primaryColor}; */
 		text-transform: capitalize;
 		text-align: center;
+	}
+	.song-total-widget {
+		padding: 1rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		column-gap: 1rem;
+		font-size: 2.5rem;
+		.star-on {
+			color: ${({ theme }) => theme.gold};
+		}
 	}
 	ol {
 		padding: 2rem;

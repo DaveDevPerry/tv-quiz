@@ -30,7 +30,7 @@ const Play = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>choose a category</h2>
+			{/* <h2>choose a category</h2> */}
 
 			{/* <ul>
 				<li>SONGS</li>

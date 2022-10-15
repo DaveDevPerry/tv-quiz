@@ -7,8 +7,9 @@ import { log } from '../utils/helper';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
-import { useResultsContext } from '../hooks/useResultsContext';
+// import { useResultsContext } from '../hooks/useResultsContext';
 import { useStateContext } from '../lib/context';
+import AuthVerify from '../common/AuthVerify';
 // import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -21,12 +22,12 @@ import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
-	const { user, dispatch } = useAuthContext();
+	const { user, currentUser, dispatch } = useAuthContext();
 	// const { active_user } = useUsersContext();
 	const { dispatch: songsDispatch } = useSongsContext();
 	const { dispatch: levelDispatch } = useLevelsContext();
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
-	const { dispatch: resultDispatch } = useResultsContext();
+	// const { dispatch: resultDispatch } = useResultsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
 	const { setDataLoaded } = useStateContext();
 
@@ -70,33 +71,6 @@ const Loader = () => {
 			}, 1000);
 		}, 2000);
 	}, [dispatch, user]);
-
-	useEffect(() => {
-		const fetchLevels = async () => {
-			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/levels`
-				// {
-				// 	headers: {
-				// 		Authorization: `Bearer ${user.token}`,
-				// 	},
-				// }
-			);
-			const json = await response.json();
-			log(json, 'albums json');
-			// json.reverse();
-			if (response.ok) {
-				// setWorkouts(json);
-				levelDispatch({
-					type: 'SET_LEVELS',
-					payload: json,
-				});
-			}
-		};
-		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchLevels();
-		}
-	}, [levelDispatch, user]);
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -164,30 +138,74 @@ const Loader = () => {
 	}, [dispatch, user]);
 
 	useEffect(() => {
-		const fetchResults = async () => {
+		const fetchLevels = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/results`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
+				`${process.env.REACT_APP_BACKEND_URL}/api/levels`
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${user.token}`,
+				// 	},
+				// }
 			);
 			const json = await response.json();
-			log(json, 'results json');
+			log(json, 'albums json');
+
+			const allLevelsCorrectSongs = [];
+
+			json.forEach((level) => {
+				const clonedSongs = [...level.songs];
+				log(clonedSongs, 'cloned songs');
+				const correctSongsInLevel = clonedSongs.filter((song) => {
+					return currentUser && currentUser.correctSongIDs.includes(song._id);
+				});
+				log(correctSongsInLevel, 'correctSongsInLevel');
+				allLevelsCorrectSongs.push(correctSongsInLevel);
+				log(allLevelsCorrectSongs, 'all levels correct songs');
+			});
 			// json.reverse();
 			if (response.ok) {
-				resultDispatch({
-					type: 'SET_RESULTS',
+				// setWorkouts(json);
+				levelDispatch({
+					type: 'SET_LEVELS',
 					payload: json,
+				});
+				levelDispatch({
+					type: 'SET_SONGS_IN_LEVELS',
+					payload: allLevelsCorrectSongs,
 				});
 			}
 		};
 		// if we have a value for the user then fetch the workouts
 		if (user) {
-			fetchResults();
+			fetchLevels();
 		}
-	}, [resultDispatch, user]);
+	}, [levelDispatch, currentUser]);
+
+	// useEffect(() => {
+	// 	const fetchResults = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/results`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+	// 		log(json, 'results json');
+	// 		// json.reverse();
+	// 		if (response.ok) {
+	// 			resultDispatch({
+	// 				type: 'SET_RESULTS',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchResults();
+	// 	}
+	// }, [resultDispatch, user]);
 	// useEffect(() => {
 	// 	const fetchFavourites = async () => {
 	// 		const response = await fetch(
@@ -242,6 +260,7 @@ const Loader = () => {
 					id='terror-tv'
 				/> */}
 			</div>
+			<AuthVerify />
 		</StyledLoader>
 	);
 };

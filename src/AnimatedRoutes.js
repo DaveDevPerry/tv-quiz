@@ -134,6 +134,7 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 							<Result
 								// themeToggler={themeToggler}
 								theme={theme}
+								setScoreBoard={setScoreBoard}
 								// handlePlaylist={handlePlaylist}
 								// handleViewPlaylist={handleViewPlaylist}
 								// handleShufflePlaylist={handleShufflePlaylist}
@@ -209,7 +210,13 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 				/>
 				<Route
 					path='/settings'
-					element={user ? <Settings theme={theme} /> : <Navigate to='/login' />}
+					element={
+						user ? (
+							<Settings themeToggler={themeToggler} theme={theme} />
+						) : (
+							<Navigate to='/login' />
+						)
+					}
 				/>
 				{/* <Route
 					path='/game/playing'

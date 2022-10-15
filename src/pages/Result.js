@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { useGamesContext } from '../hooks/useGamesContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
-const Result = () => {
+const Result = ({ setScoreBoard }) => {
 	// const navigate = useNavigate();
 	const { gameScore } = useStateContext();
 	const { dispatch } = useGamesContext();
@@ -38,6 +38,8 @@ const Result = () => {
 		log('handle close');
 		// clear game context
 		dispatch({ type: 'CLEAR_GAME_DATA', payload: null });
+		setScoreBoard([]);
+		// setGameScore(null);
 
 		navigate('/');
 	};

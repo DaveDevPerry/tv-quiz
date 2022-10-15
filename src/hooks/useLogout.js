@@ -1,5 +1,7 @@
 // import { useStateContext } from '../lib/context';
 import { useAuthContext } from './useAuthContext';
+import { useLevelsContext } from './useLevelsContext';
+import { useResultsContext } from './useResultsContext';
 // import { usePlaylistsContext } from './usePlaylistsContext';
 // import { usePlayerContext } from './usePlayerContext';
 import { useSongsContext } from './useSongsContext';
@@ -7,6 +9,8 @@ import { useSongsContext } from './useSongsContext';
 export const useLogout = () => {
 	const { dispatch } = useAuthContext();
 	const { dispatch: songsDispatch } = useSongsContext();
+	const { dispatch: levelsDispatch } = useLevelsContext();
+	const { dispatch: resultsDispatch } = useResultsContext();
 	// const { dispatch: playlistsDispatch } = usePlaylistsContext();
 	// const {dispatch: playerDispatch} = usePlayerContext()
 
@@ -35,6 +39,20 @@ export const useLogout = () => {
 		songsDispatch(
 			{ type: 'SET_SONGS', payload: null },
 			{ type: 'SET_SONG', payload: null }
+		);
+		levelsDispatch({ type: 'SET_LEVELS', payload: null });
+		levelsDispatch({ type: 'SET_LEVEL', payload: null });
+		levelsDispatch({ type: 'SET_SONGS_IN_LEVELS', payload: null });
+		levelsDispatch({ type: 'SET_SONGS_IN_LEVEL', payload: null });
+		// levelsDispatch(
+		// 	{ type: 'SET_LEVELS', payload: null },
+		// 	{ type: 'SET_LEVEL', payload: null },
+		// 	{ type: 'SET_SONGS_IN_LEVELS', payload: null },
+		// 	{ type: 'SET_SONGS_IN_LEVEL', payload: null }
+		// );
+		resultsDispatch(
+			{ type: 'SET_RESULTS', payload: null },
+			{ type: 'SET_RESULT', payload: null }
 		);
 		// playlistsDispatch(
 		// 	{ type: 'SET_PLAYLISTS', payload: null },

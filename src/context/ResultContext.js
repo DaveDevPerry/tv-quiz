@@ -17,6 +17,8 @@ export const resultsReducer = (state, action) => {
 			return {
 				// results: state,
 				// result: action.payload,
+				...state,
+				result: action.payload,
 			};
 
 		case 'CREATE_RESULT':

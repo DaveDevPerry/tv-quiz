@@ -42,6 +42,7 @@ ${
   background-color: ${({ theme }) => theme.black};
 	font-size: 1.6rem;
 	font-weight: 400;
+  color: ${({ theme }) => theme.txtGrey};
   }
   ${
 		'' /* .App {

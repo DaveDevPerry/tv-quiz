@@ -22,9 +22,9 @@ const Login = ({ theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<div className='brand-wrapper'>
+			{/* <div className='brand-wrapper'>
 				<h1 id='brand'>TV Quiz</h1>
-			</div>
+			</div> */}
 
 			<div className='form-page-container'>
 				<form onSubmit={handleSubmit} className='login'>
@@ -59,11 +59,11 @@ const Login = ({ theme }) => {
 				<AppDetails theme={theme} />
 			</div>
 
-			<div className='launch-wrapper'>
+			{/* <div className='launch-wrapper'>
 				<h1 className='launch-btn' id='lets-rock'>
 					It's the CD's or Me
 				</h1>
-			</div>
+			</div> */}
 		</StyledLogin>
 	);
 };
@@ -79,50 +79,7 @@ const StyledLogin = styled(motion.div)`
 	justify-content: space-between;
 	align-items: center;
 	z-index: 600;
-	.brand-wrapper {
-		background-color: ${({ theme }) => theme.primaryColor};
-		margin-right: 5rem;
-		width: 100%;
-		height: 1.5rem;
-		transform: rotate(-2.5deg);
-		margin-top: 5rem;
-		border-radius: 0.5rem;
-		position: relative;
-		h1#brand {
-			position: absolute;
-			top: 0;
-			right: 0.5rem;
-			transform: translate(0, -40%);
-			color: ${({ theme }) => theme.white};
-			text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-				-0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-				0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-			/* animation: glitch1 2500ms infinite; */
-		}
-		span#hyphen {
-			/* font-family: 'Roboto'; */
-			color: ${({ theme }) => theme.white};
-		}
-	}
-	.launch-wrapper {
-		background-color: ${({ theme }) => theme.primaryColor};
-		margin-left: 5rem;
-		width: 100%;
-		height: 1.5rem;
-		transform: rotate(-2.5deg);
-		margin-bottom: 5rem;
-		border-radius: 0.5rem;
-		position: relative;
-		.launch-btn {
-			position: absolute;
-			top: 0;
-			left: 0.5rem;
-			transform: translate(0, -30%);
-			color: ${({ theme }) => theme.white};
-			font-size: 3.6rem;
-			letter-spacing: 0.1rem;
-		}
-	}
+
 	.form-page-container {
 		display: flex;
 		flex-direction: column;
@@ -144,7 +101,7 @@ const StyledLogin = styled(motion.div)`
 		h3 {
 			text-align: center;
 			margin: 0;
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.txtGrey};
 		}
 		input {
 			padding: 0.8rem 1rem;
@@ -169,50 +126,11 @@ const StyledLogin = styled(motion.div)`
 	}
 	p {
 		text-align: center;
-		color: ${({ theme }) => theme.white};
+		color: ${({ theme }) => theme.txtGrey};
 		a {
 			color: ${({ theme }) => theme.secondaryColor};
 			text-decoration: none;
 		}
-	}
-	label,
-	input {
-		display: block;
-		color: ${({ theme }) => theme.white};
-	}
-	input {
-		padding: 10px;
-		margin-top: 10px;
-		margin-bottom: 20px;
-		width: 100%;
-		border: 2px solid ${({ theme }) => theme.borderGrey};
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-	input:focus {
-		outline: none;
-		border: none;
-		border: 2px solid ${({ theme }) => theme.primaryColor};
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-	form button {
-		background: ${({ theme }) => theme.primaryColor};
-		border: 0;
-		color: #fff;
-		padding: 1rem;
-		border-radius: 4px;
-		cursor: pointer;
-	}
-	div.error {
-		padding: 1rem;
-		background: ${({ theme }) => theme.bgError};
-		border: 1px solid ${({ theme }) => theme.error};
-		color: ${({ theme }) => theme.error};
-		border-radius: 4px;
-	}
-	input.error {
-		border: 1px solid ${({ theme }) => theme.error};
 	}
 `;
 

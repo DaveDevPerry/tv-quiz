@@ -37,19 +37,19 @@ const Home = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>home page</h2>
+			{/* <h2>home page</h2> */}
 
 			<h3>Welcome, {currentUser && currentUser.username}</h3>
-			<ol>
-				{/* <li>welcome msg</li> */}
-				<li>show user</li>
-				{/* <li>total players</li>
-				<li>current rank</li> */}
-				{/* <li>welcome msg</li>
+			{/* <ol>
+				<li>welcome msg</li>
 				<li>show user</li>
 				<li>total players</li>
-				<li>current rank</li> */}
-			</ol>
+				<li>current rank</li>
+				<li>welcome msg</li>
+				<li>show user</li>
+				<li>total players</li>
+				<li>current rank</li>
+			</ol> */}
 
 			<div className='song-total-widget br'>
 				<h6>Player Rank</h6>
@@ -102,8 +102,12 @@ const Home = () => {
 			<div className='category-card-container'>
 				{/* <div className='level-select-container br'> */}
 				{levels &&
-					levels.map((level) => (
-						<CategoryStatCard key={level._id} level={level} />
+					levels.map((level, index) => (
+						<CategoryStatCard
+							key={level._id}
+							level={level}
+							levelIndex={index}
+						/>
 					))}
 				{/* <LevelSelectButton key={level._id} level={level} /> */}
 			</div>
