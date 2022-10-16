@@ -69,7 +69,7 @@ const Loader = () => {
 				// log(albums, 'albums');
 				navigate('/home');
 			}, 1000);
-		}, 2000);
+		}, 1000);
 	}, [dispatch, user]);
 
 	useEffect(() => {

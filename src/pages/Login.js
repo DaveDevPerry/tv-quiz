@@ -72,13 +72,19 @@ const StyledLogin = styled(motion.div)`
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 2rem;
-	margin: 2rem auto;
-	max-width: 42rem;
-	overflow: hidden;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0.5rem 1rem;
+	overflow-y: auto;
+	/* overflow-y: scroll; */
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
 	transition: all 200ms linear;
+	margin: 0 auto;
 	flex: 1;
-	/* justify-content: space-between; */
-	align-items: center;
 	z-index: 600;
 
 	.form-page-container {
@@ -108,7 +114,7 @@ const StyledLogin = styled(motion.div)`
 			padding: 0.8rem 1rem;
 			margin: 0;
 			font-size: 1.8rem;
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.secondaryColor};
 			flex: 1;
 			&:focus {
 				outline: none;
