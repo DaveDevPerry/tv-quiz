@@ -18,8 +18,13 @@ const Result = ({ setScoreBoard }) => {
 	// const { dispatch } = useGamesContext();
 	// const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
 	const { user } = useAuthContext();
-	const { dataLoaded, songCount, playedCount, correctSongsArray } =
-		useStateContext();
+	const {
+		dataLoaded,
+		songCount,
+		playedCount,
+		correctSongsArray,
+		correctSongCount,
+	} = useStateContext();
 	// const { dataLoaded, songCount, setSongCount, playedCount, setPlayedCount } =
 	// 	useStateContext();
 
@@ -54,6 +59,7 @@ const Result = ({ setScoreBoard }) => {
 	const compileResults = async () => {
 		log('compile results func');
 		log(songCount, 'songCount');
+		log(correctSongCount, 'correctSongCount');
 		log(playedCount, 'playedCount');
 		log(result._id, 'result id');
 		log(correctSongsArray, 'correctSongsArray');
@@ -62,6 +68,7 @@ const Result = ({ setScoreBoard }) => {
 			songCountToAdd: songCount,
 			playedCountToAdd: playedCount,
 			correctSongIds: correctSongsArray,
+			correctSongCountToAdd: correctSongCount,
 		};
 
 		// update user results

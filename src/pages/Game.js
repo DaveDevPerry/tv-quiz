@@ -57,6 +57,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 		setPlayedCount,
 		correctSongsArray,
 		setCorrectSongsArray,
+		correctSongCount,
+		setCorrectSongCount,
 	} = useStateContext();
 
 	const { dataLoaded } = useStateContext();
@@ -171,6 +173,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				title: correctSongTitle,
 				isCorrect: true,
 			};
+			setCorrectSongCount(correctSongCount + 1);
 			setCorrectSongsArray([...correctSongsArray, musicID]);
 			setScoreBoard([...scoreBoard, questionResult]);
 			// log(songID, 'songID');

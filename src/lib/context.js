@@ -21,6 +21,7 @@ export const StateContext = ({ children }) => {
 
 	// for results
 	const [songCount, setSongCount] = useState(0);
+	const [correctSongCount, setCorrectSongCount] = useState(0);
 	const [playedCount, setPlayedCount] = useState(0);
 	const [correctSongsArray, setCorrectSongsArray] = useState([]);
 	// const [currentSong, setCurrentSong] = useState(null);
@@ -210,6 +211,8 @@ export const StateContext = ({ children }) => {
 				setPlayedCount,
 				correctSongsArray,
 				setCorrectSongsArray,
+				correctSongCount,
+				setCorrectSongCount,
 			}}
 		>
 			{children}

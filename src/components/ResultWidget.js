@@ -7,6 +7,7 @@ const ResultWidget = ({ result }) => {
 			<ul>
 				<li>playedCount: {result && result.playedCount}</li>
 				<li>songCount:{result && result.songCount}</li>
+				<li>correctSongCount:{result && result.correctSongCount}</li>
 				<li>correctSongs: {result && result.correctSongs.length}</li>
 			</ul>
 		</div>
