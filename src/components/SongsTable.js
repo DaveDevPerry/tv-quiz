@@ -9,6 +9,7 @@ const SongsTable = () => {
 	const { currentUser } = useAuthContext();
 	return (
 		<StyledSongsTable className='br'>
+			<h2>all songs</h2>
 			<table>
 				<thead>
 					<tr>
@@ -48,6 +49,14 @@ const SongsTable = () => {
 };
 const StyledSongsTable = styled.div`
 	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	row-gap: 1rem;
+	h2 {
+		color: ${({ theme }) => theme.txtGrey};
+		text-transform: capitalize;
+	}
 	table {
 		width: 100%;
 		border-collapse: collapse;

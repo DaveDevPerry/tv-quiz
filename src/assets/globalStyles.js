@@ -268,6 +268,15 @@ label .field-required{
    background-color: ${({ theme }) => theme.black};
 	${'' /* box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5); */}
 }
+.br-inset{
+  background-color: ${({ theme }) => theme.bgLightGrey};
+    border-radius: 4px;
+    ${'' /* box-shadow: inset -1px -1px 2px rgba(0,0,0,0.5); */}
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.3), inset -1px -1px 1px rgba(0,0,0,0.1);
+    ${
+			'' /* box-shadow: inset -1px -1px 3px rgba(0,0,0,0.5), inset 1px 1px 3px rgba(0,0,0,0.3); */
+		}
+  }
 .br-field{
     border-radius: 5px;
     ${'' /* box-shadow: inset -1px -1px 2px rgba(0,0,0,0.5); */}

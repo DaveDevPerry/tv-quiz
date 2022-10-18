@@ -433,6 +433,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 						songID={songID}
 						search={search}
 						setSearch={setSearch}
+						level={level}
 					/>
 				</>
 			)}

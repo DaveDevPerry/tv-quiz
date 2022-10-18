@@ -30,7 +30,7 @@ const Play = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <h2>choose a category</h2> */}
+			<h2>level select</h2>
 
 			{/* <ul>
 				<li>SONGS</li>
@@ -55,11 +55,11 @@ const StyledPlay = styled(motion.div)`
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 1rem;
-	/* padding: 0.5rem; */
+	/* padding: 0.5rem 0; */
 	max-width: 100rem;
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
-	padding: 0.5rem 1rem;
+	/* padding: 0.5rem 1rem; */
 	overflow-y: hidden;
 	/* overflow-y: scroll; */
 	/* overflow: hidden; */
@@ -74,7 +74,7 @@ const StyledPlay = styled(motion.div)`
 		text-align: center;
 	}
 	.level-select-container {
-		padding: 1rem;
+		padding: 0.5rem 1rem;
 		flex: 1;
 		/* border: 1px solid black; */
 		display: flex;

@@ -9,6 +9,7 @@ import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 import Toggle from '../components/Toggler';
+import TVAppLinks from '../components/TVAppLinks';
 
 const Settings = ({ themeToggler, theme }) => {
 	const { logout } = useLogout();
@@ -70,6 +71,8 @@ const Settings = ({ themeToggler, theme }) => {
 					<Toggle toggleTheme={themeToggler} theme={theme} />
 				</div>
 
+				<TVAppLinks />
+
 				{/* <Navbar targets={targets} /> */}
 
 				{/* {targets && targets.length === 1 && <TargetWidget targets={targets} />} */}
@@ -100,7 +103,7 @@ const StyledSettings = styled(motion.div)`
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		row-gap: 1rem;
+		row-gap: 2rem;
 		padding: 1rem 2rem;
 		background: ${({ theme }) => theme.white};
 		flex: 1;
@@ -150,7 +153,7 @@ const StyledSettings = styled(motion.div)`
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: flex-start;
-			flex: 1;
+			/* flex: 1; */
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
 				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};

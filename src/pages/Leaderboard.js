@@ -13,8 +13,10 @@ import LeaderboardTable from '../components/LeaderboardTable';
 import LeaderboardTableMobile from '../components/LeaderboardTableMobile';
 import { useViewport } from '../hooks/useViewport';
 // import CategoryStatWidget from '../components/CategoryStatWidget';
-import CategoryStatCard from '../components/CategoryStatCard';
-import { useLevelsContext } from '../hooks/useLevelsContext';
+// import CategoryStatCard from '../components/CategoryStatCard';
+// import { useLevelsContext } from '../hooks/useLevelsContext';
+import LeaderboardUserStats from '../components/LeaderboardUserStats';
+import LeaderboardUserStatsMobile from '../components/LeaderboardUserStatsMobile';
 
 const Leaderboard = () => {
 	const { dataLoaded } = useStateContext();
@@ -22,8 +24,8 @@ const Leaderboard = () => {
 	const { width } = useViewport();
 	const breakpoint = 620;
 
-	const { users } = useAuthContext();
-	const { levels } = useLevelsContext();
+	const { users, user } = useAuthContext();
+	// const { levels } = useLevelsContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -44,10 +46,9 @@ const Leaderboard = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>Leaderboard page</h2>
+			{/* <h2>Leaderboard page</h2> */}
 
-			<div className='category-card-container'>
-				{/* <div className='level-select-container br'> */}
+			{/* <div className='category-card-container'>
 				{levels &&
 					levels.map((level, index) => (
 						<CategoryStatCard
@@ -56,8 +57,23 @@ const Leaderboard = () => {
 							levelIndex={index}
 						/>
 					))}
-				{/* <LevelSelectButton key={level._id} level={level} /> */}
-			</div>
+			</div> */}
+
+			{/* <LeaderboardUserStats
+				userStats={users.find((Obj) => Obj.email === user.email)}
+				users={users}
+			/> */}
+			{width < breakpoint ? (
+				<LeaderboardUserStatsMobile
+					userStats={users.find((Obj) => Obj.email === user.email)}
+					users={users}
+				/>
+			) : (
+				<LeaderboardUserStats
+					userStats={users.find((Obj) => Obj.email === user.email)}
+					users={users}
+				/>
+			)}
 
 			{/* <CategoryStatWidget  */}
 

@@ -73,13 +73,13 @@ const PlayerRankCard = () => {
 };
 const StyledPlayerRankCard = styled.div`
 	/* padding: 2em; */
-	padding: 2rem;
+	padding: 2rem 1rem;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-direction: column;
 	align-items: flex-start;
 	/* row-gap: 0.5rem; */
-	/* flex: 1 1 48%; */
+	flex: 1 1 48%;
 	cursor: pointer;
 	.stat-card-bar {
 		/* border: 1px solid green; */

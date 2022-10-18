@@ -22,8 +22,8 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 	};
 	return (
 		<StyledCategoryStatCard
-			className='br'
-			// className='br-field'
+			// className='br'
+			className='br-inset'
 			onClick={() => {
 				handleClick(levelIndex, level);
 			}}
@@ -69,7 +69,7 @@ const StyledCategoryStatCard = styled.div`
 		/* border: 1px solid green; */
 		/* padding: 0 1rem 0.5rem; */
 		width: 100%;
-		margin-top: 2rem;
+		/* margin-top: 2rem; */
 	}
 	.stat-card-ratio {
 		/* border: 1px solid blue; */

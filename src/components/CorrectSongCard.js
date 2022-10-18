@@ -32,7 +32,7 @@ const CorrectSongCard = () => {
 			// 	handleClick(levelIndex, level);
 			// }}
 		>
-			<h2>Completed Songs</h2>
+			<h2>Songs</h2>
 			<div className='stat-card-ratio'>
 				{currentUser && currentUser.correctSongIDs.length < 10
 					? `0${currentUser && currentUser.correctSongIDs.length}`
@@ -62,13 +62,13 @@ const CorrectSongCard = () => {
 };
 const StyledCorrectSongCard = styled.div`
 	/* padding: 2em; */
-	padding: 2rem;
+	padding: 2rem 1rem;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-direction: column;
 	align-items: flex-start;
 	/* row-gap: 0.5rem; */
-	/* flex: 1 1 48%; */
+	flex: 1 1 48%;
 	cursor: pointer;
 	.stat-card-bar {
 		/* border: 1px solid green; */

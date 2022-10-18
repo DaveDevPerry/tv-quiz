@@ -101,7 +101,7 @@ const StyledRoundInfoWidget = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 2rem;
+	row-gap: 1rem;
 	/* padding: 2rem; */
 	/* flex: 1; */
 	/* border: 2px solid green; */
@@ -142,6 +142,7 @@ const StyledRoundInfoWidget = styled(motion.div)`
 		cursor: pointer;
 		border-radius: 4px;
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+		margin-top: 1rem;
 	}
 `;
 

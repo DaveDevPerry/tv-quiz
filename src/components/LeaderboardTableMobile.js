@@ -5,6 +5,7 @@ import { FaStar } from 'react-icons/fa';
 const LeaderboardTableMobile = ({ users }) => {
 	return (
 		<StyledLeaderboardTableMobile className='br'>
+			<h2>leaderboard</h2>
 			<table>
 				<thead>
 					<tr>
@@ -37,7 +38,16 @@ const LeaderboardTableMobile = ({ users }) => {
 	);
 };
 const StyledLeaderboardTableMobile = styled.div`
-	padding: 2rem;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	row-gap: 1rem;
+	flex: 1;
+	h2 {
+		color: ${({ theme }) => theme.txtGrey};
+		text-transform: capitalize;
+	}
 	table {
 		width: 100%;
 		border-collapse: collapse;

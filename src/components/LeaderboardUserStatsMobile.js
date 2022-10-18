@@ -1,21 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
-import { useSongsContext } from '../hooks/useSongsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
 
-const SongsTableMobile = () => {
-	const { songs } = useSongsContext();
-	const { currentUser } = useAuthContext();
+const LeaderboardUserStatsMobile = ({ userStats, users }) => {
 	return (
-		<StyledSongsTableMobile className='br'>
-			{/* <div className='table-container'> */}
-			<h2>all songs</h2>
+		<StyledLeaderboardUserStatsMobile className='br'>
+			<h2>current position</h2>
 			<table>
+				{/* <caption>current position</caption> */}
 				<thead>
 					<tr>
-						<th></th>
-						<th className='full'>title</th>
+						<th>pos</th>
+						<th className='full'>username</th>
 						{/* <th>singles</th>
 						<th>album</th>
 						<th>b-sides</th> */}
@@ -25,32 +21,38 @@ const SongsTableMobile = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{songs &&
-						songs.map((song, index) => (
+					{userStats && userStats && (
+						<tr>
+							<td>
+								{users.findIndex((object) => {
+									return object.username === userStats.username;
+								}) + 1}
+							</td>
+							<td className='full'>{userStats.username}</td>
+							{/* <td>-</td>
+							<td>-</td>
+							<td>-</td> */}
+							<td>{userStats.correctSongIDs.length}</td>
+						</tr>
+					)}
+					{/* {userStats &&
+						userStats.map((user, index) => (
 							<tr key={index}>
 								<td>{index + 1}</td>
-								<td className='full'>{song.title}</td>
-								{/* <td>-</td>
+								<td className='full'>{user.username}</td>
 								<td>-</td>
-								<td>-</td> */}
-								<td>
-									{currentUser.correctSongIDs.includes(song._id) ? (
-										<FaStar className='star-on' />
-									) : (
-										<FaStar className='star-off' />
-									)}
-								</td>
+								<td>-</td>
+								<td>-</td>
+								<td>{user.correctSongIDs.length}</td>
 							</tr>
-						))}
+						))} */}
 				</tbody>
 			</table>
-			{/* </div> */}
-		</StyledSongsTableMobile>
+		</StyledLeaderboardUserStatsMobile>
 	);
 };
-const StyledSongsTableMobile = styled.div`
+const StyledLeaderboardUserStatsMobile = styled.div`
 	padding: 1rem;
-	/* overflow-y: auto; */
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -63,19 +65,13 @@ const StyledSongsTableMobile = styled.div`
 		width: 100%;
 		border-collapse: collapse;
 		thead {
-			/* position: sticky;
-				top: 0; */
 			tr {
 				background-color: #dddddd;
 				text-transform: uppercase;
-				/* position: sticky;
-					top: 0; */
 				th {
 					border-bottom: 1px solid #bdbdbd;
 					/* padding: 1rem 0.5rem; */
 					padding: 1rem;
-					/* position: sticky;
-						top: 0; */
 					.star-on {
 						color: ${({ theme }) => theme.txtGrey};
 					}
@@ -90,6 +86,15 @@ const StyledSongsTableMobile = styled.div`
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
 					}
+					/* &:nth-of-type(4) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(5) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(6) {
+						background-color: rgba(0, 0, 0, 0.07);
+					} */
 				}
 			}
 		}
@@ -118,17 +123,17 @@ const StyledSongsTableMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
-						.star-off {
-							/* color: ${({ theme }) => theme.bgCircle}; */
-							color: ${({ theme }) => theme.tapeBase};
-							/* color: ${({ theme }) => theme.bgLightGrey}; */
-						}
-						.star-on {
-							/* color: ${({ theme }) => theme.bgCircle}; */
-							color: ${({ theme }) => theme.green};
-							/* color: ${({ theme }) => theme.bgLightGrey}; */
-						}
 					}
+					/* &:nth-of-type(4) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(5) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(6) {
+						background-color: rgba(0, 0, 0, 0.07);
+						font-weight: bolder;
+					} */
 				}
 			}
 		}
@@ -137,11 +142,6 @@ const StyledSongsTableMobile = styled.div`
 			text-align: left;
 		} */
 	}
-	/* thead th {
-			position: sticky;
-			top: 0;
-		} */
-	/* } */
 `;
 
-export default SongsTableMobile;
+export default LeaderboardUserStatsMobile;

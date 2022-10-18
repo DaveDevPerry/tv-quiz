@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
-import { useSongsContext } from '../hooks/useSongsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useLevelsContext } from '../hooks/useLevelsContext';
 
-const SongsTableMobile = () => {
-	const { songs } = useSongsContext();
+const CategorySongsTableMobile = () => {
+	const { level } = useLevelsContext();
 	const { currentUser } = useAuthContext();
 	return (
-		<StyledSongsTableMobile className='br'>
-			{/* <div className='table-container'> */}
-			<h2>all songs</h2>
+		<StyledCategorySongsTableMobile className='br'>
+			<h2>all {level && level.category}</h2>
 			<table>
 				<thead>
 					<tr>
@@ -25,36 +24,40 @@ const SongsTableMobile = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{songs &&
-						songs.map((song, index) => (
-							<tr key={index}>
-								<td>{index + 1}</td>
-								<td className='full'>{song.title}</td>
-								{/* <td>-</td>
+					{level &&
+						level.songs
+							.sort((a, b) => {
+								return a.title > b.title ? 1 : -1;
+							})
+							.map((song, index) => (
+								<tr key={song._id}>
+									<td>{index + 1}</td>
+									<td className='full'>{song.title}</td>
+									{/* <td>-</td>
 								<td>-</td>
 								<td>-</td> */}
-								<td>
-									{currentUser.correctSongIDs.includes(song._id) ? (
-										<FaStar className='star-on' />
-									) : (
-										<FaStar className='star-off' />
-									)}
-								</td>
-							</tr>
-						))}
+									<td>
+										{currentUser.correctSongIDs.includes(song._id) ? (
+											<FaStar className='star-on' />
+										) : (
+											<FaStar className='star-off' />
+										)}
+									</td>
+								</tr>
+							))}
 				</tbody>
 			</table>
-			{/* </div> */}
-		</StyledSongsTableMobile>
+		</StyledCategorySongsTableMobile>
 	);
 };
-const StyledSongsTableMobile = styled.div`
-	padding: 1rem;
-	/* overflow-y: auto; */
+const StyledCategorySongsTableMobile = styled.div`
+	padding: 2rem;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 1rem;
+	flex: 1;
 	h2 {
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
@@ -144,4 +147,4 @@ const StyledSongsTableMobile = styled.div`
 	/* } */
 `;
 
-export default SongsTableMobile;
+export default CategorySongsTableMobile;

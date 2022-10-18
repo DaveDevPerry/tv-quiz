@@ -5,6 +5,7 @@ import { FaStar } from 'react-icons/fa';
 const LeaderboardTable = ({ users }) => {
 	return (
 		<StyledLeaderboardTable className='br'>
+			<h2>leaderboard</h2>
 			<table>
 				<thead>
 					<tr>
@@ -38,6 +39,14 @@ const LeaderboardTable = ({ users }) => {
 };
 const StyledLeaderboardTable = styled.div`
 	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	row-gap: 1rem;
+	h2 {
+		color: ${({ theme }) => theme.txtGrey};
+		text-transform: capitalize;
+	}
 	table {
 		width: 100%;
 		border-collapse: collapse;

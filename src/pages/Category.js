@@ -10,14 +10,20 @@ import { motion } from 'framer-motion';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 // import { useSongsContext } from '../hooks/useSongsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
+import CategorySongsTableMobile from '../components/mobile/CategorySongsTableMobile';
+import CategorySongsTable from '../components/CategorySongsTable';
+import { useViewport } from '../hooks/useViewport';
 
 const Category = () => {
 	// const { categorySongs } = useSongsContext();
-	const { currentUser } = useAuthContext();
+	// const { currentUser } = useAuthContext();
 	const { level, songsInLevel } = useLevelsContext();
 	const { dataLoaded } = useStateContext();
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -54,7 +60,13 @@ const Category = () => {
 				</h5>
 			</div>
 
-			<ol className='br'>
+			{width < breakpoint ? (
+				<CategorySongsTableMobile />
+			) : (
+				<CategorySongsTable />
+			)}
+
+			{/* <ol className='br'>
 				{level &&
 					level.songs
 						.sort((a, b) => {
@@ -70,50 +82,7 @@ const Category = () => {
 								)}
 							</li>
 						))}
-			</ol>
-			{/* <ol className='br'>
-				{categorySongs &&
-					categorySongs.map((song) => (
-						<li key={song._id}>
-							<p>{song.title}</p>
-							{currentUser.correctSongIDs.includes(song._id) ? (
-								<FaStar className='star-on' />
-							) : (
-								<FaStar className='star-off' />
-							)}
-						</li>
-					))}
 			</ol> */}
-
-			{/* <ol className='br'>
-				{songs &&
-					songs.map((song) => (
-						<li key={song._id}>
-							<p>{song.title}</p>
-							{currentUser.correctSongIDs.includes(song._id) ? (
-								<FaStar className='star-on' />
-							) : (
-								<FaStar className='star-off' />
-							)}
-						</li>
-					))}
-			</ol> */}
-			{/* <ol className='br'>
-				{songs &&
-					songs.map((song) => (
-						<li key={song._id}>
-							<p>{song.title}</p>
-							<FaStar className='star-off' />
-						</li>
-					))}
-			</ol> */}
-
-			{/* <div className='level-select-container'>
-				{levels &&
-					levels.map((level) => (
-						<LevelSelectButton key={level._id} level={level} />
-					))}
-			</div> */}
 		</StyledCategory>
 	);
 };
@@ -152,30 +121,24 @@ const StyledCategory = styled(motion.div)`
 			color: ${({ theme }) => theme.gold};
 		}
 	}
-	ol {
+	/* ol {
 		padding: 2rem;
-		/* flex: 1; */
-		/* list-style:  */
+
 		li {
 			display: flex;
-			/* display: list-item; */
 			justify-content: space-between;
 			align-items: center;
 			p {
 				text-transform: capitalize;
 			}
 			.star-off {
-				/* color: ${({ theme }) => theme.bgCircle}; */
 				color: ${({ theme }) => theme.tapeBase};
-				/* color: ${({ theme }) => theme.bgLightGrey}; */
 			}
 			.star-on {
-				/* color: ${({ theme }) => theme.bgCircle}; */
 				color: ${({ theme }) => theme.green};
-				/* color: ${({ theme }) => theme.bgLightGrey}; */
 			}
 		}
-	}
+	} */
 `;
 
 export default Category;

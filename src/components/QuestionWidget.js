@@ -18,6 +18,7 @@ const QuestionWidget = ({
 	setSongID,
 	songID,
 	questionCount,
+	level,
 }) => {
 	// const { music } = useGamesContext();
 
@@ -31,8 +32,11 @@ const QuestionWidget = ({
 			className='br'
 		>
 			<h3>
-				Song {number} / {questionCount}
+				{level && level.category} - {number}/{questionCount}
 			</h3>
+			{/* <h3>
+				Song {number} / {questionCount}
+			</h3> */}
 			<AudioPlayer
 				music={question.fileName}
 				disableControls={disableControls}
@@ -56,7 +60,7 @@ const StyledQuestionWidget = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	/* flex: 1; */
+	flex: 1;
 	padding: 1rem;
 	h3 {
 		color: ${({ theme }) => theme.txtGrey};
@@ -64,6 +68,7 @@ const StyledQuestionWidget = styled(motion.div)`
 		text-align: left;
 		/* padding-left: 1rem; */
 		padding: 1rem;
+		text-transform: capitalize;
 		/* text-align: center; */
 	}
 `;
