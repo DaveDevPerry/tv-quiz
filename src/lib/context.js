@@ -18,6 +18,11 @@ export const StateContext = ({ children }) => {
 	const [gameScore, setGameScore] = useState(null);
 	const [gameResults, setGameResults] = useState([]);
 	const [tempCorrectIDs, setTempCorrectIDs] = useState(null);
+
+	// for results
+	const [songCount, setSongCount] = useState(0);
+	const [playedCount, setPlayedCount] = useState(0);
+	const [correctSongsArray, setCorrectSongsArray] = useState([]);
 	// const [currentSong, setCurrentSong] = useState(null);
 	const audio = document.getElementById('audio');
 	// SONGS
@@ -199,6 +204,12 @@ export const StateContext = ({ children }) => {
 				setGameResults,
 				tempCorrectIDs,
 				setTempCorrectIDs,
+				songCount,
+				setSongCount,
+				playedCount,
+				setPlayedCount,
+				correctSongsArray,
+				setCorrectSongsArray,
 			}}
 		>
 			{children}

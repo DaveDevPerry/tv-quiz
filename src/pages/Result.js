@@ -7,16 +7,24 @@ import { log } from '../utils/helper';
 import { ImCross, ImCheckmark } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useGamesContext } from '../hooks/useGamesContext';
+import { useResultsContext } from '../hooks/useResultsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
+// import { useGamesContext } from '../hooks/useGamesContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
 const Result = ({ setScoreBoard }) => {
 	// const navigate = useNavigate();
 	const { gameScore } = useStateContext();
-	const { dispatch } = useGamesContext();
+	// const { dispatch } = useGamesContext();
 	// const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
-	// const { user, currentUser } = useAuthContext();
-	const { dataLoaded } = useStateContext();
+	const { user } = useAuthContext();
+	const { dataLoaded, songCount, playedCount, correctSongsArray } =
+		useStateContext();
+	// const { dataLoaded, songCount, setSongCount, playedCount, setPlayedCount } =
+	// 	useStateContext();
+
+	// const { result } = useResultsContext();
+	const { result, dispatch } = useResultsContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -39,8 +47,53 @@ const Result = ({ setScoreBoard }) => {
 		// clear game context
 		dispatch({ type: 'CLEAR_GAME_DATA', payload: null });
 		setScoreBoard([]);
-		// setGameScore(null);
 
+		// navigate('/');
+	};
+
+	const compileResults = async () => {
+		log('compile results func');
+		log(songCount, 'songCount');
+		log(playedCount, 'playedCount');
+		log(result._id, 'result id');
+		log(correctSongsArray, 'correctSongsArray');
+
+		const resultData = {
+			songCountToAdd: songCount,
+			playedCountToAdd: playedCount,
+			correctSongIds: correctSongsArray,
+		};
+
+		// update user results
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/results/${result._id}`,
+			{
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+				body: JSON.stringify({ resultData }),
+			}
+		);
+		const json = await response.json();
+		log(json, 'json user results updated');
+		if (!response.ok) {
+			log('error in patch');
+		}
+		if (response.ok) {
+			log('results response ok in patch');
+			log('check back end');
+			log(json, 'json user results updated');
+			dispatch({
+				type: 'UPDATE_RESULT',
+				payload: json,
+			});
+			// dispatch({
+			// 	type: 'UPDATE_RESULTS',
+			// 	payload: json,
+			// });
+		}
 		navigate('/');
 	};
 
@@ -143,7 +196,7 @@ const Result = ({ setScoreBoard }) => {
 			<div
 				className='add-results-to-user-btn'
 				onClick={() => {
-					// compileResults();
+					compileResults();
 					handleClose();
 				}}
 			>

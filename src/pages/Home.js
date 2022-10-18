@@ -14,11 +14,14 @@ import { useNavigate } from 'react-router-dom';
 import CorrectSongCard from '../components/CorrectSongCard';
 import PlayerRankCard from '../components/PlayerRankCard';
 import CategoryStatCardContainer from '../components/CategoryStatCardContainer';
+import { useResultsContext } from '../hooks/useResultsContext';
+import { log } from '../utils/helper';
+import ResultWidget from '../components/ResultWidget';
 // import ResultsModal from '../components/ResultsModal';
 
 const Home = ({ handleClick, setShowDialog, showDialog }) => {
 	// const { songs } = useSongsContext();
-	const { currentUser } = useAuthContext();
+	// const { currentUser } = useAuthContext();
 	// const { currentUser, userCount, users } = useAuthContext();
 	// const { levels } = useLevelsContext();
 
@@ -36,6 +39,24 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 		// }
 	}, [navigate, dataLoaded]);
 
+	const { currentUser } = useAuthContext();
+	const { results, result, dispatch } = useResultsContext();
+
+	useEffect(() => {
+		log(results, 'results - animated');
+		log(currentUser, 'current user - animated');
+
+		const findUserResult = results.find(
+			(obj) => obj.user_id === currentUser._id
+		);
+		log(findUserResult, 'findUserResult animated');
+
+		dispatch({
+			type: 'SET_RESULT',
+			payload: findUserResult,
+		});
+	}, []);
+
 	// const [showDialog, setShowDialog] = useState(false);
 
 	// const handleClick = (e) => {
@@ -50,6 +71,11 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 			exit={{ x: window.innerWidth }}
 		>
 			<h3>Welcome, {currentUser && currentUser.username}</h3>
+
+			<div className='test-wrapper'>
+				<ResultWidget result={result} />
+			</div>
+			{/* {result && result} */}
 
 			<div className='card-wrapper'>
 				<PlayerRankCard />

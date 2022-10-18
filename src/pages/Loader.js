@@ -7,7 +7,7 @@ import { log } from '../utils/helper';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useLevelsContext } from '../hooks/useLevelsContext';
-// import { useResultsContext } from '../hooks/useResultsContext';
+import { useResultsContext } from '../hooks/useResultsContext';
 import { useStateContext } from '../lib/context';
 import AuthVerify from '../common/AuthVerify';
 // import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ const Loader = () => {
 	const { dispatch: songsDispatch } = useSongsContext();
 	const { dispatch: levelDispatch } = useLevelsContext();
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
-	// const { dispatch: resultDispatch } = useResultsContext();
+	const { dispatch: resultDispatch } = useResultsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
 	const { setDataLoaded } = useStateContext();
 
@@ -181,31 +181,42 @@ const Loader = () => {
 		}
 	}, [levelDispatch, currentUser]);
 
-	// useEffect(() => {
-	// 	const fetchResults = async () => {
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/results`,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${user.token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const json = await response.json();
-	// 		log(json, 'results json');
-	// 		// json.reverse();
-	// 		if (response.ok) {
-	// 			resultDispatch({
-	// 				type: 'SET_RESULTS',
-	// 				payload: json,
-	// 			});
-	// 		}
-	// 	};
-	// 	// if we have a value for the user then fetch the workouts
-	// 	if (user) {
-	// 		fetchResults();
-	// 	}
-	// }, [resultDispatch, user]);
+	useEffect(() => {
+		const fetchResults = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/results`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'results json');
+
+			// log(currentUser && currentUser, 'current user in results');
+
+			// log(currentUser && currentUser._id, 'user id');
+			// const userResult = json.find(
+			// 	(obj) => obj.user_id === currentUser && currentUser._id
+			// );
+			// log(userResult && userResult, 'userResult');
+			// log(user._id, 'user id')
+			// const userResult = json.find((obj) => obj.user_id === user._id);
+			// log(userResult, 'userResult');
+			// json.reverse();
+			if (response.ok) {
+				resultDispatch({
+					type: 'SET_RESULTS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchResults();
+		}
+	}, [resultDispatch, user]);
 	// useEffect(() => {
 	// 	const fetchFavourites = async () => {
 	// 		const response = await fetch(

@@ -31,10 +31,11 @@ export const resultsReducer = (state, action) => {
 			};
 		case 'UPDATE_RESULT':
 			log(action.payload, 'result context');
+			log(state.result, 'result state in update result');
 			log(state, 'state, update result');
 			return {
 				// results: [...state]
-				// ...state,
+				...state,
 				// results: action.payload,
 			};
 		// return {

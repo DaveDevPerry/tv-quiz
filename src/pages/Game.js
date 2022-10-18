@@ -48,9 +48,21 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 	const [showQuestions, setShowQuestions] = useState(false);
 
 	const { setGameScore } = useStateContext();
-	const { setGameResults, gameResults } = useStateContext();
+	const {
+		setGameResults,
+		gameResults,
+		songCount,
+		setSongCount,
+		playedCount,
+		setPlayedCount,
+		correctSongsArray,
+		setCorrectSongsArray,
+	} = useStateContext();
 
 	const { dataLoaded } = useStateContext();
+
+	// const [songCount, setSongCount] = useState(0);
+	// const [playedCount, setPlayedCount] = useState(0);
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -143,6 +155,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 	// 	setSearch('');
 	// };
 	const handleAnswerOptionClick = async (title, songID) => {
+		log(songCount, 'songCount');
+		log(playedCount, 'playedCount');
 		let correctSongTitle = music[currentQuestion].title;
 		let guessedSongTitle = title;
 		log(correctSongTitle, 'correctSongTitle');
@@ -157,6 +171,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				title: correctSongTitle,
 				isCorrect: true,
 			};
+			setCorrectSongsArray([...correctSongsArray, musicID]);
 			setScoreBoard([...scoreBoard, questionResult]);
 			// log(songID, 'songID');
 			const correctSongID = await songID;
@@ -180,7 +195,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 		// }
 		log(title, 'title from user');
 		setGameScore(scoreBoard);
-
+		setSongCount(songCount + 1);
 		const nextQuestion = currentQuestion + 1;
 		log(nextQuestion, music.length, 'before condition');
 		if (nextQuestion < music.length) {
@@ -201,6 +216,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				log(scoreBoard, 'score board');
 				setGameScore(scoreBoard);
 				setGameResults(scoreBoard);
+				setPlayedCount(playedCount + 1);
 				log('game over');
 				setTitle('');
 				setSongID('');
