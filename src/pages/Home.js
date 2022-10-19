@@ -110,7 +110,8 @@ const StyledHome = styled(motion.div)`
 	transition: all 200ms linear;
 	margin: 0 auto;
 	flex: 1;
-	overflow: hidden;
+	overflow: auto;
+	/* overflow: hidden; */
 	.card-wrapper {
 		display: flex;
 		flex-direction: row;

@@ -12,9 +12,10 @@ const LeaderboardUserStats = ({ userStats, users }) => {
 					<tr>
 						<th>pos</th>
 						<th className='full'>username</th>
-						<th>singles</th>
-						<th>album</th>
-						<th>b-sides</th>
+						<th className='wrap'>games played</th>
+						<th className='wrap'>songs played</th>
+						<th className='wrap'>songs correct</th>
+						<th className='wrap'>overall success</th>
 						<th>
 							<FaStar className='star-on' />
 						</th>
@@ -29,9 +30,17 @@ const LeaderboardUserStats = ({ userStats, users }) => {
 								}) + 1}
 							</td>
 							<td className='full'>{userStats.username}</td>
-							<td>-</td>
-							<td>-</td>
-							<td>-</td>
+							<td>{userStats.results.playedCount}</td>
+							<td>{userStats.results.songCount}</td>
+							<td>{userStats.results.correctSongCount}</td>
+							<td>
+								{(
+									(userStats.results.correctSongCount /
+										userStats.results.songCount) *
+									100
+								).toFixed(2)}{' '}
+								%
+							</td>
 							<td>{userStats.correctSongIDs.length}</td>
 						</tr>
 					)}
@@ -72,6 +81,7 @@ const StyledLeaderboardUserStats = styled.div`
 					border-bottom: 1px solid #bdbdbd;
 					/* padding: 1rem 0.5rem; */
 					padding: 1rem;
+					font-size: 1.4rem;
 					.star-on {
 						color: ${({ theme }) => theme.txtGrey};
 					}
@@ -101,6 +111,9 @@ const StyledLeaderboardUserStats = styled.div`
 						align-items: center; */
 						/* height: 100%; */
 						/* vertical-align: center; */
+					}
+					&.wrap {
+						word-wrap: wrap;
 					}
 				}
 			}

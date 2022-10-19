@@ -11,6 +11,41 @@ const LeaderboardTable = ({ users }) => {
 					<tr>
 						<th>pos</th>
 						<th className='full'>username</th>
+						<th className='wrap'>games played</th>
+						<th className='wrap'>songs played</th>
+						<th className='wrap'>songs correct</th>
+						<th className='wrap'>overall success</th>
+						<th>
+							<FaStar className='star-on' />
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{users &&
+						users.map((user, index) => (
+							<tr key={index}>
+								<td>{index + 1}</td>
+								<td className='full'>{user.username}</td>
+								<td>{user.results.playedCount}</td>
+								<td>{user.results.songCount}</td>
+								<td>{user.results.correctSongCount}</td>
+								<td>
+									{(
+										(user.results.correctSongCount / user.results.songCount) *
+										100
+									).toFixed(2)}{' '}
+									%
+								</td>
+								<td>{user.correctSongIDs.length}</td>
+							</tr>
+						))}
+				</tbody>
+			</table>
+			{/* <table>
+				<thead>
+					<tr>
+						<th>pos</th>
+						<th className='full'>username</th>
 						<th>singles</th>
 						<th>album</th>
 						<th>b-sides</th>
@@ -24,7 +59,6 @@ const LeaderboardTable = ({ users }) => {
 						users.map((user, index) => (
 							<tr key={index}>
 								<td>{index + 1}</td>
-								{/* <td>{index + 1 < 10 ? `0${index + 1}` : index + 1}</td> */}
 								<td className='full'>{user.username}</td>
 								<td>-</td>
 								<td>-</td>
@@ -33,7 +67,7 @@ const LeaderboardTable = ({ users }) => {
 							</tr>
 						))}
 				</tbody>
-			</table>
+			</table> */}
 		</StyledLeaderboardTable>
 	);
 };
@@ -58,6 +92,7 @@ const StyledLeaderboardTable = styled.div`
 					border-bottom: 1px solid #bdbdbd;
 					/* padding: 1rem 0.5rem; */
 					padding: 1rem;
+					font-size: 1.4rem;
 					.star-on {
 						color: ${({ theme }) => theme.txtGrey};
 					}
@@ -87,6 +122,9 @@ const StyledLeaderboardTable = styled.div`
 						align-items: center; */
 						/* height: 100%; */
 						/* vertical-align: center; */
+					}
+					&.wrap {
+						word-wrap: wrap;
 					}
 				}
 			}
