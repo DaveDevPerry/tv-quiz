@@ -46,9 +46,8 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 		log(results, 'results - animated');
 		log(currentUser, 'current user - animated');
 
-		const findUserResult = results.find(
-			(obj) => obj.user_id === currentUser._id
-		);
+		const findUserResult =
+			results && results.find((obj) => obj.user_id === currentUser._id);
 		log(findUserResult, 'findUserResult animated');
 
 		dispatch({
@@ -73,7 +72,7 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 			<h3>Welcome, {currentUser && currentUser.username}</h3>
 
 			<div className='test-wrapper'>
-				<ResultWidget result={result} />
+				<ResultWidget result={result && result} />
 			</div>
 			{/* {result && result} */}
 
