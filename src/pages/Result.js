@@ -14,7 +14,16 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 const Result = ({ setScoreBoard }) => {
 	// const navigate = useNavigate();
-	const { gameScore } = useStateContext();
+	const {
+		gameScore,
+		setSongCount,
+		// playedCount,
+		setPlayedCount,
+		// correctSongsArray,
+		setCorrectSongsArray,
+		// correctSongCount,
+		setCorrectSongCount,
+	} = useStateContext();
 	// const { dispatch } = useGamesContext();
 	// const { gameScore, setTempCorrectIDs, tempCorrectIDs } = useStateContext();
 	const { user } = useAuthContext();
@@ -101,6 +110,10 @@ const Result = ({ setScoreBoard }) => {
 			// 	payload: json,
 			// });
 		}
+		setSongCount(0);
+		setPlayedCount(0);
+		setCorrectSongCount(0);
+		setCorrectSongsArray([]);
 		navigate('/');
 	};
 
