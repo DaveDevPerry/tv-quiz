@@ -30,7 +30,7 @@ const StyledToggle = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	p {
 		/* color: ${({ theme }) => theme.secondaryColor}; */
-		font-size: 1.4rem;
+		font-size: 1.6rem;
 		font-weight: bold;
 		width: 11rem;
 		text-align: right;
@@ -39,6 +39,7 @@ const StyledToggle = styled.div`
 		color: ${({ theme }) => theme.secondaryColor};
 		font-size: 1.4rem;
 		font-weight: lighter;
+		font-style: italic;
 	}
 	.mode-toggle-icons {
 		cursor: pointer;

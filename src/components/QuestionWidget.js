@@ -60,7 +60,7 @@ const StyledQuestionWidget = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	flex: 1;
+	/* flex: 1; */
 	padding: 1rem;
 	h3 {
 		color: ${({ theme }) => theme.txtGrey};

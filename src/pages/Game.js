@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
+import ResultsModal from '../components/ResultsModal';
 // import { useResultsContext } from '../hooks/useResultsContext';
 // import { FaRegCircle } from 'react-icons/fa';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
@@ -61,7 +62,10 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 		setCorrectSongCount,
 	} = useStateContext();
 
-	const { dataLoaded } = useStateContext();
+	const { dataLoaded, displayResultsModal, setDisplayResultsModal } =
+		useStateContext();
+	// const { dataLoaded, displayResultsModal, setDisplayResultsModal } =
+	// 	useStateContext();
 
 	// const [songCount, setSongCount] = useState(0);
 	// const [playedCount, setPlayedCount] = useState(0);
@@ -227,7 +231,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				setTimeout(() => {
 					// setGameResults(gameScore);
 					log(scoreBoard, 'scoreboard');
-					navigate('/game/result');
+					// navigate('/game/result');
+					setDisplayResultsModal(true);
 				}, 1000);
 				// navigate('/game/result');
 				return;
@@ -392,7 +397,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				</>
 			) : (
 				<>
-					<h2>{level && level.category}</h2>
+					{/* <h2>{level && level.category}</h2> */}
 					<div className='scoreBoard-container br'>
 						<div className='scoreboard-wrapper'>
 							{music &&
@@ -489,6 +494,22 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 						<LevelSelectButton key={level._id} level={level} />
 					))}
 			</div> */}
+			{displayResultsModal === true && (
+				<ResultsModal setScoreBoard={setScoreBoard} />
+			)}
+			{/* {displayResultsModal === true && (
+				<dialog open>
+					<div className='results-box br'>results</div>
+				</dialog>
+			)} */}
+
+			{/* {displayResultsModal === true ? (
+				<dialog>
+
+				</dialog>
+			):(
+				<p>no dialog</p>
+			)} */}
 		</StyledGame>
 	);
 };
@@ -599,6 +620,26 @@ const StyledGame = styled(motion.div)`
 					font-size: 3.8rem;
 				}
 			}
+		}
+	} */
+	/* dialog {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100000;
+		height: 100vh;
+		width: 100vw;
+		display: grid;
+		place-content: center;
+		background-color: rgba(0, 0, 0, 0.5);
+		border: 1px solid green;
+		::backdrop {
+		}
+		.results-box {
+			background-color: lightblue;
+			padding: 2rem;
+			height: 300px;
+			width: calc(100vw - 2rem);
 		}
 	} */
 `;

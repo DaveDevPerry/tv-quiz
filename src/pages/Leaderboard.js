@@ -97,7 +97,8 @@ const StyledLeaderboard = styled(motion.div)`
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
-	overflow-y: hidden;
+	overflow-y: auto;
+	/* overflow-y: hidden; */
 	/* overflow-y: scroll; */
 	/* overflow: hidden; */
 	z-index: 1;

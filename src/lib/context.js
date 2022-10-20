@@ -160,6 +160,7 @@ export const StateContext = ({ children }) => {
 		}
 	}
 
+	const [displayResultsModal, setDisplayResultsModal] = useState(false);
 	return (
 		<AppContext.Provider
 			value={{
@@ -213,6 +214,8 @@ export const StateContext = ({ children }) => {
 				setCorrectSongsArray,
 				correctSongCount,
 				setCorrectSongCount,
+				displayResultsModal,
+				setDisplayResultsModal,
 			}}
 		>
 			{children}

@@ -46,7 +46,12 @@ const Settings = ({ themeToggler, theme }) => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='wrapper br'>
-				<h3>Settings</h3>
+				<div className='settings-header'>
+					<h2>Settings</h2>
+					<div className='logout-btn-container'>
+						<button onClick={handleClick}>Log out</button>
+					</div>
+				</div>
 
 				<div className='account-details'>
 					<h5 className='sub-heading'>account</h5>
@@ -81,9 +86,9 @@ const Settings = ({ themeToggler, theme }) => {
 				{/* {!targets && <TargetForm />} */}
 				{/* {!user.first_name && <UserForm />} */}
 
-				<div className='btn-container'>
+				{/* <div className='btn-container'>
 					<button onClick={handleClick}>Log out</button>
-				</div>
+				</div> */}
 			</div>
 		</StyledSettings>
 	);
@@ -108,6 +113,36 @@ const StyledSettings = styled(motion.div)`
 		background: ${({ theme }) => theme.white};
 		flex: 1;
 		transition: all 200ms linear;
+		.settings-header {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			h2 {
+				flex: 1;
+			}
+			.logout-btn-container {
+				/* border-top: 1px solid ${({ theme }) => theme.secondaryColor}; */
+				/* margin-top: 1rem; */
+				/* width: 100%; */
+				/* padding: 1rem 0rem; */
+				/* text-align: right; */
+				button {
+					align-self: flex-end;
+					background: ${({ theme }) => theme.white};
+					color: ${({ theme }) => theme.secondaryColor};
+					/* border: 2px solid ${({ theme }) => theme.secondaryColor}; */
+					border: none;
+					outline: none;
+					/* padding: 0.3rem 0.6rem; */
+					/* border-radius: 0.4rem; */
+					font-family: 'Signika', sans-serif;
+					cursor: pointer;
+					font-size: 1.6rem;
+					text-decoration: underline;
+				}
+			}
+		}
 		.account-details {
 			display: flex;
 			flex-direction: column;
@@ -119,16 +154,17 @@ const StyledSettings = styled(motion.div)`
 				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 				margin-bottom: 1rem;
 				width: 100%;
+				font-size: 1.6rem;
 			}
 			.user-details-list {
 				list-style: none;
-				font-size: 1.4rem;
+				font-size: 1.6rem;
 				li {
 					display: flex;
 					align-items: center;
 					column-gap: 1rem;
 					p {
-						width: 6rem;
+						width: 8rem;
 						text-align: right;
 						font-weight: bold;
 					}
@@ -159,9 +195,10 @@ const StyledSettings = styled(motion.div)`
 				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 				margin-bottom: 1rem;
 				width: 100%;
+				font-size: 1.6rem;
 			}
 		}
-		.btn-container {
+		/* .btn-container {
 			border-top: 1px solid ${({ theme }) => theme.secondaryColor};
 			margin-top: 1rem;
 			width: 100%;
@@ -178,7 +215,7 @@ const StyledSettings = styled(motion.div)`
 				cursor: pointer;
 				font-size: 1em;
 			}
-		}
+		} */
 	}
 	h3 {
 		text-align: center;

@@ -51,6 +51,7 @@ const StyledTVAppLinks = styled.div`
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		margin-bottom: 1rem;
 		width: 100%;
+		font-size: 1.6rem;
 	}
 	.tv-app-links-container {
 		display: flex;

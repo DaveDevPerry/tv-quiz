@@ -5,7 +5,7 @@ const VolumeTest = () => {
 	return (
 		<StyledVolumeTest className='br'>
 			<div className='sound-test-container'>
-				<h4>Volume Test</h4>
+				<h4>Sound check</h4>
 				<div className='audio-wrapper'>
 					<audio
 						type='audio/mpeg'
