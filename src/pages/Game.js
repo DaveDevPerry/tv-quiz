@@ -70,6 +70,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 	// const [songCount, setSongCount] = useState(0);
 	// const [playedCount, setPlayedCount] = useState(0);
 
+	// const resultsModal = useRef();
+
 	let navigate = useNavigate();
 	useEffect(() => {
 		if (dataLoaded === false) {
@@ -233,6 +235,7 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 					log(scoreBoard, 'scoreboard');
 					// navigate('/game/result');
 					setDisplayResultsModal(true);
+					// resultsModal.showModal();
 				}, 1000);
 				// navigate('/game/result');
 				return;
@@ -494,21 +497,16 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 						<LevelSelectButton key={level._id} level={level} />
 					))}
 			</div> */}
+			{/* {displayResultsModal === true ? (
+				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
+			) : (
+				<p>nothing</p>
+			)} */}
 			{displayResultsModal === true && (
-				<ResultsModal setScoreBoard={setScoreBoard} />
+				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
 			)}
 			{/* {displayResultsModal === true && (
-				<dialog open>
-					<div className='results-box br'>results</div>
-				</dialog>
-			)} */}
-
-			{/* {displayResultsModal === true ? (
-				<dialog>
-
-				</dialog>
-			):(
-				<p>no dialog</p>
+				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
 			)} */}
 		</StyledGame>
 	);

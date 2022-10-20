@@ -158,16 +158,15 @@ const CategoryButton = ({ level }) => {
 	);
 };
 const StyledCategoryButton = styled.div`
-	/* border: 1px solid red; */
-	/* padding: 1rem; */
 	padding: 1rem 2rem;
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
 	flex-direction: column;
-	/* row-gap: 0.5rem; */
 	row-gap: 1rem;
-	/* background-color: ${({ theme }) => theme.bgGrey}; */
+	/* transform: skew(10deg) rotate(-2deg);
+	-webkit-transform: skew(10deg) rotate(-2deg);
+	-moz-transform: skew(10deg) rotate(-2deg);
+	padding: 3% 2%; */
 	.category-header {
 		display: flex;
 		justify-content: space-between;

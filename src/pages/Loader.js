@@ -29,7 +29,7 @@ const Loader = () => {
 	// const { albums, dispatch: albumDispatch } = useAlbumsContext();
 	const { dispatch: resultDispatch } = useResultsContext();
 	// const { dispatch: favouritesDispatch } = useFavouritesContext();
-	const { setDataLoaded } = useStateContext();
+	const { setDataLoaded, setDisplayResultsModal } = useStateContext();
 
 	const navigate = useNavigate();
 	// useEffect(() => {
@@ -217,6 +217,10 @@ const Loader = () => {
 			fetchResults();
 		}
 	}, [resultDispatch, user]);
+
+	useEffect(() => {
+		setDisplayResultsModal(false);
+	}, []);
 	// useEffect(() => {
 	// 	const fetchFavourites = async () => {
 	// 		const response = await fetch(

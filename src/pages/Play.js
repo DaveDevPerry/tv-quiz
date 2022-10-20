@@ -37,13 +37,19 @@ const Play = () => {
 				{songs && songs.map((song) => <li key={song._id}>{song.title}</li>)}
 			</ul> */}
 
+			{/* <div className='level-select-container'>
+				{levels &&
+					levels.map((level) => (
+						<div className='funky-container' key={level._id}>
+							<CategoryButton level={level} />
+						</div>
+					))}
+			</div> */}
 			<div className='level-select-container'>
-				{/* <div className='level-select-container br'> */}
 				{levels &&
 					levels.map((level) => (
 						<CategoryButton key={level._id} level={level} />
 					))}
-				{/* <LevelSelectButton key={level._id} level={level} /> */}
 			</div>
 		</StyledPlay>
 	);
@@ -76,15 +82,18 @@ const StyledPlay = styled(motion.div)`
 	.level-select-container {
 		padding: 0.5rem 1rem;
 		flex: 1;
-		/* border: 1px solid black; */
 		display: flex;
 		flex-direction: column;
-		/* align-items: stretch; */
 		justify-content: flex-start;
 		justify-content: flex-start;
 		row-gap: 1rem;
-		/* width: 100%; */
 		overflow-y: auto;
+		/* .funky-container {
+			background: rgb(122, 206, 122);
+			transform: skew(-10deg) rotate(2deg);
+			-webkit-transform: skew(-10deg) rotate(2deg);
+			-moz-transform: skew(-10deg) rotate(2deg);
+		} */
 	}
 `;
 
