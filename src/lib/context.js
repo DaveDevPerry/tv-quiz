@@ -161,6 +161,8 @@ export const StateContext = ({ children }) => {
 	}
 
 	const [displayResultsModal, setDisplayResultsModal] = useState(false);
+
+	const [rankSuffix, setRankSuffix] = useState('');
 	return (
 		<AppContext.Provider
 			value={{
@@ -216,6 +218,8 @@ export const StateContext = ({ children }) => {
 				setCorrectSongCount,
 				displayResultsModal,
 				setDisplayResultsModal,
+				rankSuffix,
+				setRankSuffix,
 			}}
 		>
 			{children}

@@ -264,7 +264,11 @@ const Loader = () => {
 		>
 			<div className='tv-wrapper'>
 				<h1>
-					Terror<span>quiz</span>ion
+					TERROR
+					<span>
+						<strong>QUIZ</strong>
+					</span>
+					ION
 				</h1>
 			</div>
 			<AuthVerify />
@@ -291,8 +295,11 @@ const StyledLoader = styled(motion.section)`
 			color: ${({ theme }) => theme.secondaryColor};
 			font-size: 4rem;
 			font-family: 'Signika', sans-serif;
+			font-weight: lighter;
 			span {
 				color: ${({ theme }) => theme.green};
+				font-weight: bolder;
+				font-size: 4.4rem;
 			}
 		}
 	}

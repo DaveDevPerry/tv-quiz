@@ -16,8 +16,15 @@ const Header = () => {
 			<div className='container'>
 				<Link to='/'>
 					<h1>
-						Terror<span>quiz</span>ion
+						TERROR
+						<span>
+							<strong>QUIZ</strong>
+						</span>
+						ION
 					</h1>
+					{/* <h1>
+						Terror<span>quiz</span>ion
+					</h1> */}
 				</Link>
 				{width < breakpoint ? (
 					<nav className='top-nav'>
@@ -94,8 +101,11 @@ const StyledHeader = styled.header`
 			font-size: 2.2rem;
 			color: ${({ theme }) => theme.secondaryColor};
 			font-family: 'Signika', sans-serif;
+			font-weight: lighter;
 			span {
 				color: ${({ theme }) => theme.green};
+				font-weight: bolder;
+				font-size: 2.4rem;
 			}
 		}
 		a {

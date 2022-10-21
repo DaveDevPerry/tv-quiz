@@ -25,7 +25,10 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 	// const { currentUser, userCount, users } = useAuthContext();
 	// const { levels } = useLevelsContext();
 
-	const { dataLoaded } = useStateContext();
+	const { dataLoaded, rankSuffix, setRankSuffix } = useStateContext();
+
+	const { currentUser, users } = useAuthContext();
+	// const { currentUser, userCount, users } = useAuthContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -39,7 +42,7 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 		// }
 	}, [navigate, dataLoaded]);
 
-	const { currentUser } = useAuthContext();
+	// const { currentUser } = useAuthContext();
 	const { results, result, dispatch } = useResultsContext();
 
 	useEffect(() => {
@@ -56,6 +59,61 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 		});
 	}, []);
 
+	useEffect(() => {
+		const rankNumber =
+			users &&
+			users.findIndex((object) => {
+				return object._id === currentUser._id;
+			}) + 1;
+
+		getRankSuffix(rankNumber);
+	}, [users, currentUser]);
+
+	const getRankSuffix = async (num) => {
+		log(num, 'num in get rank suffix');
+		const lastDigit2Str = String(num).slice(-1);
+		const lastDigit2Num = Number(lastDigit2Str);
+		log(lastDigit2Num, 'last digit');
+		let suffix;
+		switch (lastDigit2Num) {
+			case 1:
+				suffix = 'st';
+				break;
+			case 2:
+				suffix = 'nd';
+				break;
+			case 3:
+				suffix = 'rd';
+				break;
+			case 4:
+				suffix = 'th';
+				break;
+			case 5:
+				suffix = 'th';
+				break;
+			case 6:
+				suffix = 'th';
+				break;
+			case 7:
+				suffix = 'th';
+				break;
+			case 8:
+				suffix = 'th';
+				break;
+			case 9:
+				suffix = 'th';
+				break;
+			case 0:
+				suffix = 'th';
+				break;
+			default:
+				suffix = 'error';
+				break;
+		}
+		setRankSuffix(suffix);
+		return suffix;
+	};
+
 	// const [showDialog, setShowDialog] = useState(false);
 
 	// const handleClick = (e) => {
@@ -69,7 +127,33 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h3>Welcome, {currentUser && currentUser.username}</h3>
+			<div className='home-header'>
+				<h3>Welcome, {currentUser && currentUser.username}</h3>
+				<p className='home-rank'>
+					current rank:
+					<span>
+						{' '}
+						{users &&
+							users.findIndex((object) => {
+								return object._id === currentUser._id;
+							}) + 1}
+						<sup>{rankSuffix && rankSuffix}</sup>
+					</span>
+				</p>
+			</div>
+			{/* <div className='home-header'>
+				<h3>Welcome, {currentUser && currentUser.username}</h3>
+				<p className='home-rank'>
+					current rank:
+					<span>
+						{users &&
+							users.findIndex((object) => {
+								return object._id === currentUser._id;
+							}) + 1}{' '}
+						<sup>st</sup>
+					</span>
+				</p>
+			</div> */}
 
 			<div className='test-wrapper'>
 				<ResultWidget result={result && result} />
@@ -112,6 +196,28 @@ const StyledHome = styled(motion.div)`
 	flex: 1;
 	overflow: auto;
 	/* overflow: hidden; */
+	.home-header {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: space-between;
+		padding: 0 0.5rem;
+		h3 {
+			font-size: 1.8rem;
+			flex: 1;
+		}
+		.home-rank {
+			font-size: 1.8rem;
+			span {
+				color: ${({ theme }) => theme.green};
+				font-weight: bolder;
+				font-size: 2.4rem;
+				sup {
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
 	.card-wrapper {
 		display: flex;
 		flex-direction: row;
@@ -119,6 +225,7 @@ const StyledHome = styled(motion.div)`
 		justify-content: flex-start;
 		flex-wrap: wrap;
 		gap: 1rem;
+		display: none;
 	}
 	.song-total-widget {
 		padding: 1rem;

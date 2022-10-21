@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ChartWidget from '../components/ChartWidget';
+// import ChartWidget from '../components/ChartWidget';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 // import LevelSelectButton from '../components/LevelSelectButton';
@@ -83,7 +83,7 @@ const Leaderboard = () => {
 				<LeaderboardTable users={users} />
 			)}
 
-			<ChartWidget users={users} />
+			{/* <ChartWidget users={users} /> */}
 		</StyledLeaderboard>
 	);
 };

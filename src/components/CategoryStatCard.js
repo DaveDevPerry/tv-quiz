@@ -28,16 +28,19 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 				handleClick(levelIndex, level);
 			}}
 		>
-			<h2>{level && level.category}</h2>
-			<div className='stat-card-ratio'>
-				{songsInLevels && songsInLevels[levelIndex].length < 10
-					? `0${songsInLevels[levelIndex].length}`
-					: songsInLevels[levelIndex].length}
-				/
-				{level && level.songs.length < 10
-					? `0${level.songs.length}`
-					: level.songs.length}
+			<div className='stat-card-header'>
+				<h2>{level && level.category}</h2>
+				<div className='stat-card-ratio'>
+					{songsInLevels && songsInLevels[levelIndex].length < 10
+						? `0${songsInLevels[levelIndex].length}`
+						: songsInLevels[levelIndex].length}
+					/
+					{level && level.songs.length < 10
+						? `0${level.songs.length}`
+						: level.songs.length}
+				</div>
 			</div>
+
 			{/* <div className='stat-card-ratio'>
 				05/
 				{level && level.songs.length < 10
@@ -57,32 +60,46 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 };
 const StyledCategoryStatCard = styled.div`
 	/* padding: 2em; */
-	padding: 2rem;
+	padding: 1rem;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: flex-start;
-	/* row-gap: 0.5rem; */
-	flex: 1 1 46%;
+	row-gap: 0.5rem;
+	flex: 1 1 49%;
 	cursor: pointer;
-	.stat-card-bar {
-		/* border: 1px solid green; */
-		/* padding: 0 1rem 0.5rem; */
+	.stat-card-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
 		width: 100%;
-		/* margin-top: 2rem; */
+		h2 {
+			text-align: left;
+			text-transform: capitalize;
+			flex: 1;
+			font-size: 2rem;
+		}
+		.stat-card-ratio {
+			text-align: center;
+			font-size: 2.2rem;
+			/* font-weight: bolder; */
+			color: ${({ theme }) => theme.green};
+		}
 	}
-	.stat-card-ratio {
-		/* border: 1px solid blue; */
+	.stat-card-bar {
+		width: 100%;
+	}
+	/* .stat-card-ratio {
 		text-align: center;
 		font-size: 2.5rem;
 		font-weight: bolder;
 		color: ${({ theme }) => theme.gold};
 	}
 	h2 {
-		/* border: 1px solid red; */
 		text-align: center;
 		text-transform: capitalize;
-	}
+	} */
 `;
 
 export default CategoryStatCard;

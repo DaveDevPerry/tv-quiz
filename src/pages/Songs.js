@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
-import CorrectSongCard from '../components/CorrectSongCard';
+// import CorrectSongCard from '../components/CorrectSongCard';
 import SongsTable from '../components/SongsTable';
 import SongsTableMobile from '../components/SongsTableMobile';
 import { useViewport } from '../hooks/useViewport';
@@ -44,7 +44,7 @@ const Songs = () => {
 		>
 			{/* <h2>songs page</h2> */}
 
-			<CorrectSongCard />
+			{/* <CorrectSongCard /> */}
 
 			{/* <div className='song-total-widget br'>
 				<h6>Songs Correct</h6>

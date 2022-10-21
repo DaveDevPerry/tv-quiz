@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import LevelSelectButton from '../components/LevelSelectButton';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
 // import { useSongsContext } from '../hooks/useSongsContext';
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
 // import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -11,7 +11,7 @@ import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 // import { useSongsContext } from '../hooks/useSongsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
-import { useLevelsContext } from '../hooks/useLevelsContext';
+// import { useLevelsContext } from '../hooks/useLevelsContext';
 import CategorySongsTableMobile from '../components/mobile/CategorySongsTableMobile';
 import CategorySongsTable from '../components/CategorySongsTable';
 import { useViewport } from '../hooks/useViewport';
@@ -19,7 +19,7 @@ import { useViewport } from '../hooks/useViewport';
 const Category = () => {
 	// const { categorySongs } = useSongsContext();
 	// const { currentUser } = useAuthContext();
-	const { level, songsInLevel } = useLevelsContext();
+	// const { level, songsInLevel } = useLevelsContext();
 	const { dataLoaded } = useStateContext();
 
 	const { width } = useViewport();
@@ -44,9 +44,9 @@ const Category = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>{level && level.category}</h2>
+			{/* <h2>{level && level.category}</h2> */}
 
-			<div className='song-total-widget br'>
+			{/* <div className='song-total-widget br'>
 				<h6>Songs Correct</h6>
 				<FaStar className='star-on' />
 				<h5>
@@ -58,7 +58,7 @@ const Category = () => {
 						? `0${level.songs.length}`
 						: level.songs.length}
 				</h5>
-			</div>
+			</div> */}
 
 			{width < breakpoint ? (
 				<CategorySongsTableMobile />
