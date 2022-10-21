@@ -212,7 +212,7 @@ const StyledResultsModal = styled.dialog`
 	display: grid;
 	place-content: center;
 	background-color: rgba(0, 0, 0, 0.5);
-	border: 1px solid green;
+	/* border: 1px solid green; */
 	::backdrop {
 	}
 	.results-box {

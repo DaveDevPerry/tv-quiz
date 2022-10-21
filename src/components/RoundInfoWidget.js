@@ -132,10 +132,10 @@ const StyledRoundInfoWidget = styled(motion.div)`
 		}
 	}
 	.start-game-btn {
-		background-color: ${({ theme }) => theme.primaryColor};
+		background-color: ${({ theme }) => theme.green};
 		padding: 1rem 2rem;
 		text-transform: uppercase;
-		color: ${({ theme }) => theme.secondaryColor};
+		color: ${({ theme }) => theme.white};
 		font-weight: bold;
 		text-align: center;
 		/* align-self: flex-end; */

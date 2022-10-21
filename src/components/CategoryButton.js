@@ -9,9 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { MdOutlineQueueMusic } from 'react-icons/md';
 import { IoPlay } from 'react-icons/io5';
 
-const CategoryButton = ({ level }) => {
+const CategoryButton = ({ level, levelIndex }) => {
 	const navigate = useNavigate();
-	const { levels } = useLevelsContext();
+	const { levels, songsInLevels } = useLevelsContext();
+	// const { levels } = useLevelsContext();
 	const { dispatch } = useGamesContext();
 
 	const compileLevelData = async (levelID, levelTime, levelDifficulty) => {
@@ -70,22 +71,25 @@ const CategoryButton = ({ level }) => {
 		>
 			<div className='category-header'>
 				<h3>{level && level.category}</h3>
-				<span>
-					<MdOutlineQueueMusic className='song-icon' />
-				</span>
-				<h4>{level && level.questionCount}</h4>
-				{/* <h4>
+				<div className='song-count-wrapper'>
 					<span>
 						<MdOutlineQueueMusic className='song-icon' />
 					</span>
-					{level && level.questionCount}
-				</h4> */}
-				{/* <h4>
-					{level && level.questionCount}
-					{' songs'}
-				</h4> */}
-				{/* <h4>{level && level.difficulty}</h4> */}
-				{/* <span>45%</span> */}
+					<h4>{level && level.questionCount}</h4>
+				</div>
+				<div className='stat-card-ratio'>
+					{songsInLevels && songsInLevels[levelIndex].length < 10
+						? `0${songsInLevels[levelIndex].length}`
+						: songsInLevels[levelIndex].length}
+					/
+					{level && level.songs.length < 10
+						? `0${level.songs.length}`
+						: level.songs.length}
+				</div>
+				{/* <span>
+					<MdOutlineQueueMusic className='song-icon' />
+				</span>
+				<h4>{level && level.questionCount}</h4> */}
 			</div>
 
 			<div className='time-container'>
@@ -171,30 +175,42 @@ const StyledCategoryButton = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		column-gap: 2rem;
 		pointer-events: none;
 		border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
 		h3 {
 			/* color: ${({ theme }) => theme.primaryColor}; */
 			text-transform: capitalize;
 			/* font-weight: bold; */
+			/* flex: 1; */
+		}
+		h4 {
+			font-style: italic;
+		}
+		.song-count-wrapper {
 			flex: 1;
-		}
-		h4 {
-			font-style: italic;
-		}
-		h4 {
-			font-style: italic;
-			/* span {
-				.song-icon {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+
+			h4 {
+				font-style: italic;
+				/* span {
+					.song-icon {
 					font-size: 2rem;
 				}
 			} */
-		}
-		span {
-			.song-icon {
-				font-size: 2rem;
-				/* color: ${({ theme }) => theme.primaryColor}; */
 			}
+			span {
+				.song-icon {
+					font-size: 2rem;
+					/* color: ${({ theme }) => theme.primaryColor}; */
+				}
+			}
+		}
+		.stat-card-ratio {
+			color: ${({ theme }) => theme.green};
+			font-weight: bolder;
 		}
 		p {
 			text-transform: capitalize;

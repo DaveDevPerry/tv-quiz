@@ -411,7 +411,8 @@ const StyledForm = styled.form`
 		flex: 1;
 		justify-content: flex-end;
 		.add-btn {
-			color: ${({ theme }) => theme.secondaryColor};
+			background-color: ${({ theme }) => theme.green};
+			color: ${({ theme }) => theme.white};
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;

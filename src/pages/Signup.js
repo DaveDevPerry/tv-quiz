@@ -99,7 +99,7 @@ const StyledSignup = styled(motion.div)`
 		padding: 2rem;
 		background-color: ${({ theme }) => theme.white};
 		z-index: 601;
-		margin: 0 1rem;
+		/* margin: 0 1rem; */
 		h3 {
 			text-align: center;
 			margin: 0;
@@ -120,7 +120,9 @@ const StyledSignup = styled(motion.div)`
 			}
 		}
 		.action-btn {
-			color: ${({ theme }) => theme.secondaryColor};
+			color: ${({ theme }) => theme.white};
+			background-color: ${({ theme }) => theme.green};
+
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;

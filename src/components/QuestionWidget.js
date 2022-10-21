@@ -32,7 +32,10 @@ const QuestionWidget = ({
 			className='br'
 		>
 			<h3>
-				{level && level.category} - {number}/{questionCount}
+				{level && level.category} -{' '}
+				<span>
+					{number}/{questionCount}
+				</span>
 			</h3>
 			{/* <h3>
 				Song {number} / {questionCount}
@@ -70,6 +73,9 @@ const StyledQuestionWidget = styled(motion.div)`
 		padding: 1rem;
 		text-transform: capitalize;
 		/* text-align: center; */
+		span {
+			color: ${({ theme }) => theme.green};
+		}
 	}
 `;
 

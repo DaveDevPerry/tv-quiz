@@ -30,7 +30,7 @@ const Play = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h2>level select</h2>
+			{/* <h2>level select</h2> */}
 
 			{/* <ul>
 				<li>SONGS</li>
@@ -47,8 +47,8 @@ const Play = () => {
 			</div> */}
 			<div className='level-select-container'>
 				{levels &&
-					levels.map((level) => (
-						<CategoryButton key={level._id} level={level} />
+					levels.map((level, index) => (
+						<CategoryButton key={level._id} level={level} levelIndex={index} />
 					))}
 			</div>
 		</StyledPlay>

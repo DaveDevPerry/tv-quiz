@@ -104,7 +104,7 @@ const StyledLogin = styled(motion.div)`
 		/* border-radius: 1rem; */
 		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		z-index: 601;
-		margin: 0 1rem;
+		/* margin: 0 1rem; */
 		h3 {
 			text-align: center;
 			margin: 0;
@@ -126,6 +126,7 @@ const StyledLogin = styled(motion.div)`
 		}
 		.action-btn {
 			color: ${({ theme }) => theme.white};
+			background-color: ${({ theme }) => theme.green};
 			font-weight: bolder;
 			text-transform: uppercase;
 			font-size: 1.6rem;
