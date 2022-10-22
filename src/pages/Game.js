@@ -17,9 +17,9 @@ import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
 import ResultsModal from '../components/ResultsModal';
-import ScoreBoard from '../components/ScoreBoard';
-import ScoreBoardMobile from '../components/ScoreBoardMobile';
-import { useViewport } from '../hooks/useViewport';
+// import ScoreBoard from '../components/ScoreBoard';
+// import ScoreBoardMobile from '../components/ScoreBoardMobile';
+// import { useViewport } from '../hooks/useViewport';
 // import { useResultsContext } from '../hooks/useResultsContext';
 // import { FaRegCircle } from 'react-icons/fa';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
@@ -75,8 +75,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 
 	// const resultsModal = useRef();
 
-	const { width } = useViewport();
-	const breakpoint = 620;
+	// const { width } = useViewport();
+	// const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -406,11 +406,11 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				</>
 			) : (
 				<>
-					{width < breakpoint ? (
+					{/* {width < breakpoint ? (
 						<ScoreBoardMobile music={music} scoreBoard={scoreBoard} />
 					) : (
 						<ScoreBoard music={music} scoreBoard={scoreBoard} />
-					)}
+					)} */}
 
 					{/* <div className='scoreBoard-container br'>
 						<div className='scoreboard-wrapper'>
@@ -448,6 +448,8 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 						search={search}
 						setSearch={setSearch}
 						level={level}
+						music={music}
+						scoreBoard={scoreBoard}
 					/>
 				</>
 			)}

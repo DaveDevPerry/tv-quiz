@@ -6,7 +6,8 @@ import styled from 'styled-components';
 
 const ScoreBoardMobile = ({ scoreBoard, music }) => {
 	return (
-		<StyledScoreBoardMobile className='br'>
+		<StyledScoreBoardMobile>
+			{/* <StyledScoreBoardMobile className='br'> */}
 			<div className='scoreboard-wrapper'>
 				{music &&
 					music.length >= 0 &&
@@ -35,6 +36,37 @@ const StyledScoreBoardMobile = styled.div`
 	justify-content: center;
 	align-items: center;
 	column-gap: 2rem;
+	/* padding: 1rem; */
+	flex: 1;
+	.scoreboard-wrapper {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		flex: 1;
+		.icon-wrapper {
+			z-index: 5;
+			flex: 1 1 17%;
+			.result-icon {
+				background-color: ${({ theme }) => theme.bgLightGrey};
+				height: 0.5rem;
+				width: 100%;
+			}
+			.wrong-icon {
+				background-color: ${({ theme }) => theme.red};
+			}
+			.correct-icon {
+				background-color: ${({ theme }) => theme.green};
+			}
+		}
+	}
+	/* display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	column-gap: 2rem;
 	padding: 1rem;
 	.scoreboard-wrapper {
 		display: flex;
@@ -44,45 +76,22 @@ const StyledScoreBoardMobile = styled.div`
 		gap: 1rem;
 		flex-wrap: wrap;
 		flex: 1;
-		/* padding: 1rem; */
-		/* position: relative; */
-		/* height: 5rem; */
 		.icon-wrapper {
-			/* display: grid;
-			place-content: center; */
-			/* background-color: ${({ theme }) => theme.white}; */
 			z-index: 5;
-			/* width: 4rem; */
 			flex: 1 1 17%;
 			.result-icon {
-				/* font-size: 3rem; */
 				background-color: ${({ theme }) => theme.bgLightGrey};
-				/* width: 3rem; */
 				height: 1rem;
 				width: 100%;
 			}
 			.wrong-icon {
-				/* border: 1px solid ${({ theme }) => theme.txtGrey}; */
 				background-color: ${({ theme }) => theme.red};
-				/* font-size: 3.8rem; */
 			}
 			.correct-icon {
-				/* border: 1px solid ${({ theme }) => theme.txtGrey}; */
 				background-color: ${({ theme }) => theme.green};
-				/* font-size: 3.8rem; */
 			}
 		}
-		/* &::before {
-			content: '';
-			background-color: ${({ theme }) => theme.txtGrey};
-			top: 50%;
-			left: 50%;
-			height: 0.7rem;
-			width: 90%;
-			transform: translate(-50%, -50%);
-			position: absolute;
-		} */
-	}
+	} */
 `;
 
 export default ScoreBoardMobile;

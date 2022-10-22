@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { log } from '../utils/helper';
 import AudioPlayer from './AudioPlayer';
 import GameForm from './GameForm';
+import ScoreBoardMobile from './ScoreBoardMobile';
 
 const QuestionWidget = ({
 	question,
@@ -19,6 +20,8 @@ const QuestionWidget = ({
 	songID,
 	questionCount,
 	level,
+	music,
+	scoreBoard,
 }) => {
 	// const { music } = useGamesContext();
 
@@ -31,12 +34,16 @@ const QuestionWidget = ({
 			exit={{ x: window.innerWidth }}
 			className='br'
 		>
-			<h3>
-				{level && level.category} -{' '}
-				<span>
-					{number}/{questionCount}
-				</span>
-			</h3>
+			<div className='question-header'>
+				<h3>
+					{level && level.category}
+					{'   '}
+					<span>
+						{number}-{questionCount}
+					</span>
+				</h3>
+				<ScoreBoardMobile music={music} scoreBoard={scoreBoard} />
+			</div>
 			{/* <h3>
 				Song {number} / {questionCount}
 			</h3> */}
@@ -62,19 +69,26 @@ const StyledQuestionWidget = styled(motion.div)`
 	/* border: 2px solid green; */
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
-	/* flex: 1; */
+	row-gap: 0.5rem;
+	flex: 1;
 	padding: 1rem;
-	h3 {
-		color: ${({ theme }) => theme.txtGrey};
-		/* color: ${({ theme }) => theme.primaryColor}; */
-		text-align: left;
-		/* padding-left: 1rem; */
-		padding: 1rem;
-		text-transform: capitalize;
-		/* text-align: center; */
-		span {
-			color: ${({ theme }) => theme.green};
+	.question-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 2rem;
+		h3 {
+			color: ${({ theme }) => theme.txtGrey};
+			/* color: ${({ theme }) => theme.primaryColor}; */
+			text-align: left;
+			/* padding-left: 1rem; */
+			/* padding: 1rem; */
+			text-transform: capitalize;
+			/* text-align: center; */
+			span {
+				color: ${({ theme }) => theme.green};
+			}
 		}
 	}
 `;

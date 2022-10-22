@@ -66,6 +66,7 @@ const AudioPlayer = ({ music, disableControls, setDisableControls }) => {
 				preload='true'
 				src={`./music/${music}`}
 				controls
+				hidden
 				// muted
 				// loop
 				autoPlay

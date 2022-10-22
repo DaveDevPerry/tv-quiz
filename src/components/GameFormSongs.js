@@ -81,7 +81,7 @@ const GameFormSongs = ({
 				id='auto'
 				onClick={() => setDisplay(!display)}
 				className={emptyFields.includes('title') ? 'error' : ''}
-				autoFocus
+				// autoFocus
 				value={search}
 				onChange={(event) => {
 					setSearch(event.target.value);
