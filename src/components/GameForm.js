@@ -221,7 +221,7 @@ const GameForm = ({
 			{/* <StyledForm className='create' onSubmit={handleAnswerOptionClick}> */}
 			<div className='input-wrapper-band'>
 				<label>
-					answer:
+					song title:
 					{/* <span className='field-required'>*</span> */}
 				</label>
 				<GameFormSongs
@@ -239,7 +239,7 @@ const GameForm = ({
 
 			<div className='btn-container'>
 				{error && <div className='error'>{error}</div>}
-				<button className='add-btn'>SUBMIT</button>
+				<button className='add-btn'>SUBMIT ANSWER</button>
 			</div>
 		</StyledForm>
 	);

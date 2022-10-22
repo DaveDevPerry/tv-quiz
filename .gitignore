@@ -34,6 +34,7 @@ yarn-error.log*
 /src/components/QuestionWidget copy.js
 /src/components/CategoryStatWidget copy.js
 /src/components/CategoryStatCard copy.js
+/src/components/GameFormSongs copy.js
 # /src/components/Footer.js
 
 

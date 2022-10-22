@@ -81,7 +81,6 @@ const GameFormSongs = ({
 				id='auto'
 				onClick={() => setDisplay(!display)}
 				className={emptyFields.includes('title') ? 'error' : ''}
-				// autoFocus
 				value={search}
 				onChange={(event) => {
 					setSearch(event.target.value);
@@ -90,7 +89,7 @@ const GameFormSongs = ({
 				autoComplete='off'
 				required
 			/>
-			{/* {display && search && ( */}
+			{/* <div className='scroll-container'> */}
 			{display && (
 				<div className='autoContainer'>
 					{options
@@ -108,6 +107,24 @@ const GameFormSongs = ({
 						})}
 				</div>
 			)}
+			{/* </div> */}
+			{/* {display && (
+				<div className='autoContainer'>
+					{options
+						.filter(({ title }) => title.indexOf(search.toLowerCase()) > -1)
+						.map((v, i) => {
+							return (
+								<div
+									key={i}
+									className='option'
+									onClick={() => setSongDex(v.title, v._id)}
+								>
+									<span>{v.title}</span>
+								</div>
+							);
+						})}
+				</div>
+			)} */}
 		</StyledGameFormSongs>
 	);
 };
@@ -118,7 +135,31 @@ const StyledGameFormSongs = styled.div`
 			border: 1px solid ${({ theme }) => theme.primaryColor};
 		}
 	}
+	/* .scroll-container {
+		overflow-y: hidden;
+		border: 1px solid black; */
+
 	.autoContainer {
+		position: absolute;
+		background-color: ${({ theme }) => theme.white};
+		z-index: 500;
+		width: 100%;
+		padding: 0 1rem;
+		left: 0;
+		border: 1px solid ${({ theme }) => theme.primaryColor};
+		/* overflow-y: hidden; */
+		.option {
+			padding: 0.3rem 0;
+		}
+		/* .scroll-container {
+			overflow-y: scroll;
+			.option {
+				padding: 0.3rem 0;
+			}
+		} */
+	}
+	/* } */
+	/* .autoContainer {
 		position: absolute;
 		background-color: ${({ theme }) => theme.white};
 		z-index: 500;
@@ -129,7 +170,7 @@ const StyledGameFormSongs = styled.div`
 		.option {
 			padding: 0.3rem 0;
 		}
-	}
+	} */
 `;
 
 export default GameFormSongs;
