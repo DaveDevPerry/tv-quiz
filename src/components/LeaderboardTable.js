@@ -30,11 +30,19 @@ const LeaderboardTable = ({ users }) => {
 								<td>{user.results.songCount}</td>
 								<td>{user.results.correctSongCount}</td>
 								<td>
-									{(
-										(user.results.correctSongCount / user.results.songCount) *
-										100
-									).toFixed(2)}{' '}
-									%
+									{user.results.correctSongCount === 0 &&
+									user.results.songCount === 0 ? (
+										'-'
+									) : (
+										<>
+											{(
+												(user.results.correctSongCount /
+													user.results.songCount) *
+												100
+											).toFixed(2)}{' '}
+											%
+										</>
+									)}
 								</td>
 								<td>{user.correctSongIDs.length}</td>
 							</tr>

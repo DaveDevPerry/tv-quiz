@@ -34,13 +34,28 @@ const LeaderboardUserStats = ({ userStats, users }) => {
 							<td>{userStats.results.songCount}</td>
 							<td>{userStats.results.correctSongCount}</td>
 							<td>
+								{userStats.results.correctSongCount === 0 &&
+								userStats.results.songCount === 0 ? (
+									'-'
+								) : (
+									<>
+										{(
+											(userStats.results.correctSongCount /
+												userStats.results.songCount) *
+											100
+										).toFixed(2)}{' '}
+										%
+									</>
+								)}
+							</td>
+							{/* <td>
 								{(
 									(userStats.results.correctSongCount /
 										userStats.results.songCount) *
 									100
 								).toFixed(2)}{' '}
 								%
-							</td>
+							</td> */}
 							<td>{userStats.correctSongIDs.length}</td>
 						</tr>
 					)}
