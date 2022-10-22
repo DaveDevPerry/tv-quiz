@@ -160,7 +160,7 @@ const StyledHeader = styled.header`
 
 			a.active {
 				p {
-					color: ${({ theme }) => theme.secondaryColor};
+					color: ${({ theme }) => theme.green};
 					font-weight: bolder;
 				}
 			}

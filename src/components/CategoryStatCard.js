@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLevelsContext } from '../hooks/useLevelsContext';
 import ProgressBarWidget from './ProgressBarWidget';
+import { FaStar } from 'react-icons/fa';
+
 // import { log } from '../utils/helper';
 
 const CategoryStatCard = ({ level, levelIndex }) => {
@@ -29,15 +31,31 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 			}}
 		>
 			<div className='stat-card-header'>
+				<div className='star-wrapper'>
+					{(songsInLevels && songsInLevels[levelIndex].length) <
+					(level && level.songs.length) ? (
+						<FaStar className='star-off' />
+					) : (
+						<FaStar className='star-on' />
+					)}
+				</div>
+				{/* <div className='star-wrapper'>
+					{songsInLevels && songsInLevels[levelIndex].length}
+				</div>
+				<div className='star-wrapper'>{level && level.songs.length}</div> */}
 				<h2>{level && level.category}</h2>
 				<div className='stat-card-ratio'>
-					{songsInLevels && songsInLevels[levelIndex].length < 10
-						? `0${songsInLevels[levelIndex].length}`
-						: songsInLevels[levelIndex].length}
-					/
-					{level && level.songs.length < 10
-						? `0${level.songs.length}`
-						: level.songs.length}
+					<p className='songs-correct'>
+						{songsInLevels && songsInLevels[levelIndex].length < 10
+							? `0${songsInLevels[levelIndex].length}`
+							: songsInLevels[levelIndex].length}
+						<span>
+							-
+							{level && level.songs.length < 10
+								? `0${level.songs.length}`
+								: level.songs.length}
+						</span>
+					</p>
 				</div>
 			</div>
 
@@ -73,7 +91,19 @@ const StyledCategoryStatCard = styled.div`
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+		column-gap: 0.5rem;
 		width: 100%;
+		.star-wrapper {
+			.star-off {
+				color: ${({ theme }) => theme.white};
+				/* color: ${({ theme }) => theme.bgLightGrey}; */
+				font-size: 2rem;
+			}
+			.star-on {
+				color: ${({ theme }) => theme.gold};
+				font-size: 2rem;
+			}
+		}
 		h2 {
 			text-align: left;
 			text-transform: capitalize;
@@ -82,9 +112,14 @@ const StyledCategoryStatCard = styled.div`
 		}
 		.stat-card-ratio {
 			text-align: center;
-			font-size: 2.2rem;
-			/* font-weight: bolder; */
-			color: ${({ theme }) => theme.green};
+			font-size: 2rem;
+			font-weight: bolder;
+			.songs-correct {
+				color: ${({ theme }) => theme.green};
+				span {
+					color: ${({ theme }) => theme.txtGrey};
+				}
+			}
 		}
 	}
 	.stat-card-bar {

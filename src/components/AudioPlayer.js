@@ -66,6 +66,9 @@ const AudioPlayer = ({ music, disableControls, setDisableControls }) => {
 				preload='true'
 				src={`./music/${music}`}
 				controls
+				// muted
+				// loop
+				autoPlay
 				// onLoad={playSnippet()}
 				// onLoad={startSong()}
 				// onLoad={() => startSong()}

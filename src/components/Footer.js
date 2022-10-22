@@ -121,13 +121,18 @@ const StyledFooter = styled.footer`
 					}
 				}
 				&.active {
-					color: ${({ theme }) => theme.secondaryColor};
+					color: ${({ theme }) => theme.green};
 					-webkit-transition: all 0.5s ease;
 					transition: all 0.5s ease;
 					.nav-icon {
-						color: ${({ theme }) => theme.secondaryColor};
+						color: ${({ theme }) => theme.green};
 						-webkit-transition: all 0.5s ease;
 						transition: all 0.5s ease;
+					}
+					p {
+						text-transform: uppercase;
+						font-size: 1.2rem;
+						font-weight: bolder;
 					}
 				}
 
@@ -152,7 +157,7 @@ const StyledFooter = styled.footer`
 				height: 3px;
 				width: 0%;
 				content: '';
-				background-color: ${({ theme }) => theme.secondaryColor};
+				background-color: ${({ theme }) => theme.green};
 				/* background-color: #c0392b; */
 			}
 			a:after {

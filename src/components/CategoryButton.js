@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 // import { FaStar } from 'react-icons/fa';
 import { MdOutlineQueueMusic } from 'react-icons/md';
-import { IoPlay } from 'react-icons/io5';
+// import { IoPlay } from 'react-icons/io5';
+// import { CgSandClock } from 'react-icons/cg';
+import CategoryDifficultyWidget from './CategoryDifficultyWidget';
 
 const CategoryButton = ({ level, levelIndex }) => {
 	const navigate = useNavigate();
@@ -78,13 +80,17 @@ const CategoryButton = ({ level, levelIndex }) => {
 					<h4>{level && level.questionCount}</h4>
 				</div>
 				<div className='stat-card-ratio'>
-					{songsInLevels && songsInLevels[levelIndex].length < 10
-						? `0${songsInLevels[levelIndex].length}`
-						: songsInLevels[levelIndex].length}
-					/
-					{level && level.songs.length < 10
-						? `0${level.songs.length}`
-						: level.songs.length}
+					<p className='songs-correct'>
+						{songsInLevels && songsInLevels[levelIndex].length < 10
+							? `0${songsInLevels[levelIndex].length}`
+							: songsInLevels[levelIndex].length}
+						<span>
+							-
+							{level && level.songs.length < 10
+								? `0${level.songs.length}`
+								: level.songs.length}
+						</span>
+					</p>
 				</div>
 				{/* <span>
 					<MdOutlineQueueMusic className='song-icon' />
@@ -95,15 +101,29 @@ const CategoryButton = ({ level, levelIndex }) => {
 			<div className='time-container'>
 				{level &&
 					level.difficultyTypes.map((type) => (
+						<CategoryDifficultyWidget
+							className='time-wrapper'
+							key={type._id}
+							handleClick={handleClick}
+							level={level}
+							compileLevelData={compileLevelData}
+							type={type}
+						/>
+					))}
+			</div>
+			{/* <div className='time-container'>
+				{level &&
+					level.difficultyTypes.map((type) => (
 						<div className='time-wrapper' key={type._id}>
 							<p className='difficulty-type'>{type.name}</p>
-							{/* <div className='result-wrapper'>3 / 5</div> */}
 							<p className='time-allotted'>
+								<span>
+									<CgSandClock className='timer-icon' />
+								</span>
 								{type.timeInMS / 1000}
 								<span>
 									{type.timeInMS / 1000 === 1 ? ' second' : ' seconds'}
 								</span>
-								{/* <span> seconds</span> */}
 							</p>
 							<div
 								className='time-play-btn'
@@ -112,57 +132,18 @@ const CategoryButton = ({ level, levelIndex }) => {
 									compileLevelData(level._id, type.timeInMS, type.name);
 								}}
 							>
-								{/* <div className='time-play-btn' onClick={handleClick}> */}
 								<p>play</p>
 								<IoPlay className='level-play-icon' />
 							</div>
 						</div>
 					))}
-			</div>
-			{/* <div className='time-container'>
-				{level &&
-					level.difficultyTypes.map((type) => (
-						<div className='time-wrapper' key={type._id}>
-							<p className='difficulty-type'>{type.name}</p>
-							<div className='result-wrapper'>3 / 5</div>
-							<p className='time-allotted'>
-								{type.timeInMS / 1000}
-								<span>
-									{type.timeInMS / 1000 === 1 ? ' second' : ' seconds'}
-								</span>
-							</p>
-							<div className='time-play-btn' onClick={handleClick}>
-								play
-							</div>
-						</div>
-					))}
-			</div> */}
-
-			{/* <div className='stars-container'>
-				<div className='wrapper'>
-					<FaStar className='star-on' />
-				</div>
-				<div className='wrapper'>
-					<FaStar className='star-off' />
-				</div>
-				<div className='wrapper'>
-					<FaStar className='star-off' />
-				</div>
-				<div className='wrapper'>
-					<FaStar className='star-off' />
-				</div>
-				<div className='wrapper'>
-					<FaStar className='star-off' />
-				</div>
-				<div className='wrapper'>
-					<p className='cat-percentage'>45%</p>
-				</div>
 			</div> */}
 		</StyledCategoryButton>
 	);
 };
 const StyledCategoryButton = styled.div`
-	padding: 1rem 2rem;
+	padding: 1rem;
+	/* padding: 1rem 2rem; */
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -209,8 +190,14 @@ const StyledCategoryButton = styled.div`
 			}
 		}
 		.stat-card-ratio {
-			color: ${({ theme }) => theme.green};
+			/* color: ${({ theme }) => theme.green}; */
 			font-weight: bolder;
+			.songs-correct {
+				color: ${({ theme }) => theme.green};
+				span {
+					color: ${({ theme }) => theme.txtGrey};
+				}
+			}
 		}
 		p {
 			text-transform: capitalize;
@@ -228,15 +215,13 @@ const StyledCategoryButton = styled.div`
 		align-items: center;
 		/* font-size: 2.5rem; */
 		/* pointer-events: none; */
-		column-gap: 2rem;
-		.time-wrapper {
+		column-gap: 1rem;
+		/* .time-wrapper {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			row-gap: 0.3rem;
-			/* font-size: 2.5rem; */
-			/* pointer-events: none; */
 			flex: 1;
 			.difficulty-type {
 				font-weight: bold;
@@ -256,9 +241,7 @@ const StyledCategoryButton = styled.div`
 				background-color: ${({ theme }) => theme.primaryColor};
 				text-transform: uppercase;
 				padding: 0.3rem 0.5rem;
-				/* padding: 0.3rem 1rem; */
 				border-radius: 4px;
-				/* pointer-events: unset; */
 				cursor: pointer;
 				display: flex;
 				align-items: center;
@@ -270,28 +253,7 @@ const StyledCategoryButton = styled.div`
 					font-size: 1.6rem;
 				}
 			}
-		}
-	}
-	.stars-container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 2.5rem;
-		pointer-events: none;
-		.wrapper {
-			.star-on {
-				color: ${({ theme }) => theme.gold};
-			}
-			.star-off {
-				/* color: ${({ theme }) => theme.bgGrey}; */
-				/* color: ${({ theme }) => theme.borderLine}; */
-				color: ${({ theme }) => theme.bgLightGrey};
-			}
-			.cat-percentage {
-				font-size: 2.2rem;
-				font-weight: bold;
-			}
-		}
+		} */
 	}
 `;
 

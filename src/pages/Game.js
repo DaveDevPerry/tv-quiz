@@ -10,13 +10,16 @@ import RoundInfoWidget from '../components/RoundInfoWidget';
 import { useGamesContext } from '../hooks/useGamesContext';
 import { log } from '../utils/helper';
 
-import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
-import { BsCircle } from 'react-icons/bs';
+// import { IoMdCloseCircle, IoMdCheckmarkCircle } from 'react-icons/io';
+// import { BsCircle } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
 import ResultsModal from '../components/ResultsModal';
+import ScoreBoard from '../components/ScoreBoard';
+import ScoreBoardMobile from '../components/ScoreBoardMobile';
+import { useViewport } from '../hooks/useViewport';
 // import { useResultsContext } from '../hooks/useResultsContext';
 // import { FaRegCircle } from 'react-icons/fa';
 // import { useLevelsContext } from '../hooks/useLevelsContext';
@@ -71,6 +74,9 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 	// const [playedCount, setPlayedCount] = useState(0);
 
 	// const resultsModal = useRef();
+
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -400,14 +406,18 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 				</>
 			) : (
 				<>
-					{/* <h2>{level && level.category}</h2> */}
-					<div className='scoreBoard-container br'>
+					{width < breakpoint ? (
+						<ScoreBoardMobile music={music} scoreBoard={scoreBoard} />
+					) : (
+						<ScoreBoard music={music} scoreBoard={scoreBoard} />
+					)}
+
+					{/* <div className='scoreBoard-container br'>
 						<div className='scoreboard-wrapper'>
 							{music &&
 								music.length >= 0 &&
 								music.map((song, index) => (
 									<div className='icon-wrapper' key={index}>
-										{/* <span> */}
 										{scoreBoard && !scoreBoard[index] ? (
 											<BsCircle className='result-icon blank-icon' />
 										) : (
@@ -419,38 +429,15 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 												)}
 											</>
 										)}
-										{/* </span> */}
 									</div>
 								))}
 						</div>
-					</div>
-					{/* <div className='scoreBoard-container br'>
-						{music &&
-							music.length >= 0 &&
-							music.map((song, index) => (
-								<p key={index}>
-									<span>
-										{scoreBoard && !scoreBoard[index] ? (
-											<BsCircle className='result-icon blank-icon' />
-										) : (
-											<>
-												{scoreBoard && scoreBoard[index].isCorrect === true ? (
-													<IoMdCheckmarkCircle className='result-icon correct-icon' />
-												) : (
-													<IoMdCloseCircle className='result-icon wrong-icon' />
-												)}
-											</>
-										)}
-									</span>
-								</p>
-							))}
 					</div> */}
 
 					<QuestionWidget
 						question={music[currentQuestion]}
 						number={currentQuestion + 1}
 						questionCount={music.length}
-						// number={questionNumber}
 						handleAnswerOptionClick={handleAnswerOptionClick}
 						disableControls={disableControls}
 						setDisableControls={setDisableControls}
@@ -464,50 +451,10 @@ const Game = ({ scoreBoard, setScoreBoard }) => {
 					/>
 				</>
 			)}
-			{/* <div>
-				<h2>Category: {level.category}</h2>
-				<h3>Difficulty: {level.difficulty}</h3>
-				<p>8 seconds to guess the song</p>
-			</div>
 
-			<div className='start-game-btn' onClick>
-				start game
-			</div> */}
-			{/* <ul>
-				<li>music</li>
-				<li>{music && music.title}</li>
-			</ul> */}
-
-			{/* <AudioPlayer music={music[currentQuestion]} /> */}
-
-			{/* <GameForm /> */}
-			{/* {question && questionNumber >= 0 && ( */}
-			{/* )} */}
-			{/* {question && questionNumber >= 0 && (
-				<QuestionWidget
-					question={question}
-					number={questionNumber}
-					handleAnswerOptionClick={handleAnswerOptionClick}
-				/>
-			)} */}
-
-			{/* <div className='level-select-container'>
-				{levels &&
-					levels.map((level) => (
-						<LevelSelectButton key={level._id} level={level} />
-					))}
-			</div> */}
-			{/* {displayResultsModal === true ? (
-				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
-			) : (
-				<p>nothing</p>
-			)} */}
 			{displayResultsModal === true && (
 				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
 			)}
-			{/* {displayResultsModal === true && (
-				<ResultsModal setScoreBoard={setScoreBoard} level={level} />
-			)} */}
 		</StyledGame>
 	);
 };
@@ -530,7 +477,7 @@ const StyledGame = styled(motion.div)`
 		text-transform: capitalize;
 		text-align: center;
 	}
-	.scoreBoard-container {
+	/* .scoreBoard-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -575,70 +522,7 @@ const StyledGame = styled(motion.div)`
 				position: absolute;
 			}
 		}
-		/* p {
-			text-align: center;
-			span {
-				display: grid;
-				place-content: center;
-				.result-icon {
-					font-size: 3rem;
-				}
-				.wrong-icon {
-					color: ${({ theme }) => theme.red};
-					font-size: 4rem;
-				}
-				.correct-icon {
-					color: ${({ theme }) => theme.green};
-					font-size: 3.8rem;
-				}
-			}
-		} */
-	}
-	/* .scoreBoard-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		column-gap: 2rem;
-		padding: 1rem;
-		p {
-			text-align: center;
-			span {
-				display: grid;
-				place-content: center;
-				.result-icon {
-					font-size: 3rem;
-				}
-				.wrong-icon {
-					color: ${({ theme }) => theme.red};
-					font-size: 4rem;
-				}
-				.correct-icon {
-					color: ${({ theme }) => theme.green};
-					font-size: 3.8rem;
-				}
-			}
-		}
-	} */
-	/* dialog {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 100000;
-		height: 100vh;
-		width: 100vw;
-		display: grid;
-		place-content: center;
-		background-color: rgba(0, 0, 0, 0.5);
-		border: 1px solid green;
-		::backdrop {
-		}
-		.results-box {
-			background-color: lightblue;
-			padding: 2rem;
-			height: 300px;
-			width: calc(100vw - 2rem);
-		}
+	
 	} */
 `;
 
