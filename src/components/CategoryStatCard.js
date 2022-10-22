@@ -32,11 +32,17 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 		>
 			<div className='stat-card-header'>
 				<div className='star-wrapper'>
-					{(songsInLevels && songsInLevels[levelIndex].length) <
-					(level && level.songs.length) ? (
+					{songsInLevels && songsInLevels[levelIndex].length === 0 ? (
 						<FaStar className='star-off' />
 					) : (
-						<FaStar className='star-on' />
+						<>
+							{(songsInLevels && songsInLevels[levelIndex].length) <
+							(level && level.songs.length) ? (
+								<FaStar className='star-off' />
+							) : (
+								<FaStar className='star-on' />
+							)}
+						</>
 					)}
 				</div>
 				{/* <div className='star-wrapper'>

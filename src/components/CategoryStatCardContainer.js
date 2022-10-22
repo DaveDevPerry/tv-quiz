@@ -5,12 +5,45 @@ import CategoryStatCard from './CategoryStatCard';
 import { FaStar } from 'react-icons/fa';
 
 const CategoryStatCardContainer = () => {
-	const { levels } = useLevelsContext();
+	const { levels, songsInLevels } = useLevelsContext();
 	return (
 		<StyledCategoryStatCardContainer className='br'>
 			<div className='cat-stat-header'>
 				<h2>categories</h2>
 				<div className='star-container'>
+					{levels &&
+						levels.map((level, index) => (
+							<div key={level._id} level={level} className='star-wrapper'>
+								{songsInLevels && songsInLevels[index].length === 0 ? (
+									<FaStar className='star-off' />
+								) : (
+									<>
+										{(songsInLevels && songsInLevels[index].length) <
+										(level && level.songs.length) ? (
+											<FaStar className='star-off' />
+										) : (
+											<FaStar className='star-on' />
+										)}
+									</>
+								)}
+							</div>
+						))}
+				</div>
+				{/* <div className='star-container'>
+					{levels &&
+						levels.map((level, index) => (
+							<div key={level._id} level={level} className='star-wrapper'>
+								{(songsInLevels && songsInLevels[index].length) <
+								(level && level.songs.length) ? (
+									<FaStar className='star-off' />
+								) : (
+									<FaStar className='star-on' />
+								)}
+							</div>
+						))}
+				</div> */}
+			</div>
+			{/* <div className='star-container'>
 					<div className='star-wrapper'>
 						<FaStar className='star-on' />
 					</div>
@@ -24,7 +57,7 @@ const CategoryStatCardContainer = () => {
 						<FaStar className='star-off' />
 					</div>
 				</div>
-			</div>
+			</div> */}
 			<div className='category-card-container'>
 				{levels &&
 					levels.map((level, index) => (
