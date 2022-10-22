@@ -163,6 +163,7 @@ export const StateContext = ({ children }) => {
 	const [displayResultsModal, setDisplayResultsModal] = useState(false);
 
 	const [rankSuffix, setRankSuffix] = useState('');
+	const [playing, setPlaying] = useState(false);
 	return (
 		<AppContext.Provider
 			value={{
@@ -220,6 +221,8 @@ export const StateContext = ({ children }) => {
 				setDisplayResultsModal,
 				rankSuffix,
 				setRankSuffix,
+				playing,
+				setPlaying,
 			}}
 		>
 			{children}

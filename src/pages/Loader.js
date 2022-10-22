@@ -300,6 +300,7 @@ const StyledLoader = styled(motion.section)`
 				color: ${({ theme }) => theme.green};
 				font-weight: bolder;
 				font-size: 4.4rem;
+				/* font-style: italic; */
 			}
 		}
 	}

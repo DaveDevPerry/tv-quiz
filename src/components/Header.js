@@ -89,7 +89,7 @@ const StyledHeader = styled.header`
 	background: ${({ theme }) => theme.primaryColor};
 	transition: all 200ms linear;
 	.container {
-		max-width: 1400px;
+		max-width: 100rem;
 		margin: 0 auto;
 		padding: 1rem;
 		display: flex;

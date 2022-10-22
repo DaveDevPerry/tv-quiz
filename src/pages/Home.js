@@ -17,6 +17,7 @@ import CategoryStatCardContainer from '../components/CategoryStatCardContainer';
 import { useResultsContext } from '../hooks/useResultsContext';
 import { log } from '../utils/helper';
 import ResultWidget from '../components/ResultWidget';
+import { RiUser3Fill } from 'react-icons/ri';
 // import ResultsModal from '../components/ResultsModal';
 
 const Home = ({ handleClick, setShowDialog, showDialog }) => {
@@ -128,7 +129,11 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 			exit={{ x: window.innerWidth }}
 		>
 			<div className='home-header'>
-				<h3>Welcome, {currentUser && currentUser.username}</h3>
+				<div className='icon-wrapper'>
+					<RiUser3Fill className='user-icon' />
+					<p className='username'>{currentUser && currentUser.username}</p>
+				</div>
+				{/* <p className='username'>{currentUser && currentUser.username}</p> */}
 				<p className='home-rank'>
 					current rank:
 					<span>
@@ -186,8 +191,8 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
-	max-width: 100rem;
+	row-gap: 2rem;
+	max-width: 80rem;
 	padding: 0.5rem 1rem;
 	overflow-y: auto;
 	z-index: 1;
@@ -202,10 +207,24 @@ const StyledHome = styled(motion.div)`
 		align-items: flex-end;
 		justify-content: space-between;
 		padding: 0 0.5rem;
-		h3 {
+		.icon-wrapper {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-end;
+			justify-content: center;
+			.user-icon {
+				font-size: 2.2rem;
+				color: ${({ theme }) => theme.green};
+			}
+			.username {
+				font-size: 1.8rem;
+				flex: 1;
+			}
+		}
+		/* .username {
 			font-size: 1.8rem;
 			flex: 1;
-		}
+		} */
 		.home-rank {
 			font-size: 1.8rem;
 			span {

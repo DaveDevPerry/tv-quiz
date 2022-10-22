@@ -87,7 +87,7 @@ const StyledFooter = styled.footer`
 		max-width: 60rem;
 		margin: 0 auto;
 		div {
-			max-width: 1400px;
+			max-width: 100rem;
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;

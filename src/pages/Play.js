@@ -60,9 +60,9 @@ const StyledPlay = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	row-gap: 2rem;
 	/* padding: 0.5rem 0; */
-	max-width: 100rem;
+	max-width: 80rem;
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	/* padding: 0.5rem 1rem; */
@@ -86,7 +86,7 @@ const StyledPlay = styled(motion.div)`
 		flex-direction: column;
 		justify-content: flex-start;
 		justify-content: flex-start;
-		row-gap: 1rem;
+		row-gap: 2rem;
 		overflow-y: auto;
 		.temp-disable {
 			&:nth-child(2) {

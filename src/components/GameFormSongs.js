@@ -150,6 +150,10 @@ const StyledGameFormSongs = styled.div`
 		/* overflow-y: hidden; */
 		.option {
 			padding: 0.3rem 0;
+			span {
+				font-size: 2rem;
+				text-transform: capitalize;
+			}
 		}
 		/* .scroll-container {
 			overflow-y: scroll;

@@ -73,7 +73,7 @@ const StyledCategoryDifficultyWidget = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	/* align-items: center; */
-	/* row-gap: 0.3rem; */
+	row-gap: 0.5rem;
 	/* font-size: 2.5rem; */
 	/* pointer-events: none; */
 	flex: 1;
@@ -134,7 +134,9 @@ const StyledCategoryDifficultyWidget = styled.div`
 		column-gap: 0.3rem;
 		justify-content: center;
 		p {
-			font-size: 1.4rem;
+			/* font-size: 1.4rem; */
+			font-weight: bold;
+			text-transform: uppercase;
 		}
 		/* .level-play-icon {
 			font-size: 1.6rem;
