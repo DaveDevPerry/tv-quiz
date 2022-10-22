@@ -56,7 +56,9 @@ const Login = ({ theme }) => {
 				<p>
 					Need an account? Sign up<NavLink to='/signup'> here</NavLink>
 				</p>
-				<AppDetails theme={theme} />
+				<div className='app-details-container'>
+					<AppDetails theme={theme} />
+				</div>
 			</div>
 
 			{/* <div className='launch-wrapper'>
@@ -136,9 +138,15 @@ const StyledLogin = styled(motion.div)`
 		text-align: center;
 		color: ${({ theme }) => theme.txtGrey};
 		a {
-			color: ${({ theme }) => theme.secondaryColor};
+			color: ${({ theme }) => theme.green};
 			text-decoration: none;
 		}
+	}
+	.app-details-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		flex: 1;
 	}
 `;
 

@@ -50,7 +50,7 @@ const StyledAppDetails = styled.div`
 	/* border-radius: 1rem; border-radius: 4px; */
 	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	transition: all 200ms linear;
-	margin: 0 1rem;
+	/* margin: 0 1rem; */
 	.dev-link-container {
 		display: flex;
 		flex-direction: column;

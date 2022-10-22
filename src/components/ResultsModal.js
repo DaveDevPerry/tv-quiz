@@ -162,11 +162,12 @@ const ResultsModal = ({ setScoreBoard, level }) => {
 						gameScore.length) *
 						100 ===
 					100 ? (
-						<p className='result-msg'>Shit 'ot</p>
+						<p className='result-msg'>PERFECT</p>
 					) : (
 						<p className='result-msg bad'>Not so hot</p>
 					)}
 				</div>
+				{/* <p className='result-msg'>Shit 'ot</p> */}
 
 				<div className='results-wrapper br-inset'>
 					<p className='result-percentage'>
@@ -196,7 +197,7 @@ const ResultsModal = ({ setScoreBoard, level }) => {
 						handleClose();
 					}}
 				>
-					<p>SAVE PROGRESS</p>
+					<p>CONTINUE</p>
 				</div>
 			</div>
 		</StyledResultsModal>

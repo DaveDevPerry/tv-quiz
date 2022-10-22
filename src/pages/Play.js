@@ -88,6 +88,18 @@ const StyledPlay = styled(motion.div)`
 		justify-content: flex-start;
 		row-gap: 1rem;
 		overflow-y: auto;
+		.temp-disable {
+			&:nth-child(2) {
+				display: none !important;
+				pointer-events: none;
+				cursor: unset;
+			}
+			&:nth-child(3) {
+				display: none !important;
+				pointer-events: none;
+				cursor: unset;
+			}
+		}
 		/* .funky-container {
 			background: rgb(122, 206, 122);
 			transform: skew(-10deg) rotate(2deg);

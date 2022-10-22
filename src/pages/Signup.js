@@ -60,7 +60,9 @@ const Signup = ({ theme }) => {
 				<p>
 					Got an account? Log in<NavLink to='/login'> here</NavLink>
 				</p>
-				<AppDetails theme={theme} />
+				<div className='app-details-container'>
+					<AppDetails theme={theme} />
+				</div>
 			</div>
 		</StyledSignup>
 	);
@@ -97,7 +99,7 @@ const StyledSignup = styled(motion.div)`
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
-		background-color: ${({ theme }) => theme.white};
+		/* background-color: ${({ theme }) => theme.white}; */
 		z-index: 601;
 		/* margin: 0 1rem; */
 		h3 {
@@ -132,11 +134,18 @@ const StyledSignup = styled(motion.div)`
 		text-align: center;
 		color: ${({ theme }) => theme.txtGrey};
 		a {
-			color: ${({ theme }) => theme.secondaryColor};
+			color: ${({ theme }) => theme.green};
 			text-decoration: none;
 		}
 	}
-	/* label,
+	.app-details-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		flex: 1;
+	}
+`;
+/* label,
 	input {
 		display: block;
 		color: ${({ theme }) => theme.white};
@@ -175,6 +184,5 @@ const StyledSignup = styled(motion.div)`
 	input.error {
 		border: 1px solid ${({ theme }) => theme.error};
 	} */
-`;
 
 export default Signup;

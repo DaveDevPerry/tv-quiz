@@ -65,7 +65,7 @@ const CategoryButton = ({ level, levelIndex }) => {
 	};
 	return (
 		<StyledCategoryButton
-			className='br'
+			className='br temp-disable'
 			// className='br-field'
 			// onClick={() => {
 			// 	compileLevelData(level._id);

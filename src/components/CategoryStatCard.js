@@ -25,7 +25,7 @@ const CategoryStatCard = ({ level, levelIndex }) => {
 	return (
 		<StyledCategoryStatCard
 			// className='br'
-			className='br-inset'
+			className='br-inset temp-disable'
 			onClick={() => {
 				handleClick(levelIndex, level);
 			}}

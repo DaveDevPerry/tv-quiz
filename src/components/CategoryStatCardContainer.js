@@ -107,19 +107,31 @@ const StyledCategoryStatCardContainer = styled.div`
 		}
 	}
 	.category-card-container {
-		/* padding: 0.5rem; */
-		/* flex: 1; */
 		flex-wrap: wrap;
-		/* border: 1px solid black; */
 		display: flex;
 		flex-direction: row;
-		/* align-items: stretch; */
 		justify-content: flex-start;
-		/* justify-content: flex-start; */
 		gap: 1rem;
-		/* width: 100%; */
-		/* overflow-y: scroll; */
+		.temp-disable {
+			&:nth-child(2) {
+				display: none !important;
+				pointer-events: none;
+				cursor: unset;
+			}
+			&:nth-child(3) {
+				display: none !important;
+				pointer-events: none;
+				cursor: unset;
+			}
+		}
 	}
+	/* .category-card-container {
+		flex-wrap: wrap;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: 1rem;
+	} */
 `;
 
 export default CategoryStatCardContainer;
