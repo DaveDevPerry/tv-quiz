@@ -15,7 +15,9 @@ const LeaderboardTableMobile = ({ users }) => {
 						<th>album</th>
 						<th>b-sides</th> */}
 						<th>
-							<FaStar className='star-on' />
+							<div className='td-star-wrapper'>
+								<FaStar className='star-on' />
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -58,10 +60,8 @@ const StyledLeaderboardTableMobile = styled.div`
 				th {
 					border-bottom: 1px solid #bdbdbd;
 					/* padding: 1rem 0.5rem; */
-					padding: 1rem;
-					.star-on {
-						color: ${({ theme }) => theme.txtGrey};
-					}
+					padding: 0.5rem 1rem;
+
 					&.full {
 						flex: 1;
 						text-align: left;
@@ -72,6 +72,13 @@ const StyledLeaderboardTableMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-on {
+								color: ${({ theme }) => theme.green};
+							}
+						}
 					}
 				}
 			}
@@ -83,7 +90,7 @@ const StyledLeaderboardTableMobile = styled.div`
 					background-color: #ededed;
 				}
 				td {
-					padding: 1rem;
+					padding: 0.5rem 1rem;
 					/* padding: 1rem 0.5rem; */
 					text-align: center;
 					&.full {

@@ -16,7 +16,9 @@ const LeaderboardUserStatsMobile = ({ userStats, users }) => {
 						<th>album</th>
 						<th>b-sides</th> */}
 						<th>
-							<FaStar className='star-on' />
+							<div className='td-star-wrapper'>
+								<FaStar className='star-on' />
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -71,10 +73,10 @@ const StyledLeaderboardUserStatsMobile = styled.div`
 				th {
 					border-bottom: 1px solid #bdbdbd;
 					/* padding: 1rem 0.5rem; */
-					padding: 1rem;
-					.star-on {
+					padding: 0.5rem 1rem;
+					/* .star-on {
 						color: ${({ theme }) => theme.txtGrey};
-					}
+					} */
 					&.full {
 						flex: 1;
 						text-align: left;
@@ -85,6 +87,13 @@ const StyledLeaderboardUserStatsMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-on {
+								color: ${({ theme }) => theme.green};
+							}
+						}
 					}
 					/* &:nth-of-type(4) {
 						background-color: rgba(0, 0, 0, 0.07);
@@ -105,7 +114,7 @@ const StyledLeaderboardUserStatsMobile = styled.div`
 					background-color: #ededed;
 				}
 				td {
-					padding: 1rem;
+					padding: 0.5rem 1rem;
 					/* padding: 1rem 0.5rem; */
 					text-align: center;
 					&.full {
@@ -123,6 +132,7 @@ const StyledLeaderboardUserStatsMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
+						font-weight: bolder;
 					}
 					/* &:nth-of-type(4) {
 						background-color: rgba(0, 0, 0, 0.07);

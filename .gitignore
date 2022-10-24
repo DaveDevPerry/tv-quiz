@@ -29,6 +29,7 @@ yarn-error.log*
 /src/pages/Login copy.js
 /src/pages/Landing.js
 /src/components/ResultsList copy.js
+/src/pages/Loader copy 2.js
 /src/components/ScoreBoardMobile copy.js
 /src/components/CategoryButton copy.js
 /src/components/QuestionWidget copy.js

@@ -255,13 +255,89 @@ const Loader = () => {
 	// 	setViewMode(active_user.defaultView);
 	// }, [user]);
 
+	// const pageRef = useRef();
+
+	// const flipLetter = (i) => {
+	// 	setTimeout(() => {
+	// 		document.querySelector(`[data-order='${i}']`).classList.add('visible');
+	// 	}, 300 * i);
+	// };
+
+	// const jumpLetter = (i) => {
+	// 	setTimeout(() => {
+	// 		document.querySelector(`[data-jump='${i}']`).classList.add('jump');
+	// 	}, 100 * i);
+	// };
+
+	// const rotateContainer = () => {
+	// 	document.querySelector('.load-screen').classList.add('rotate');
+	// };
+
+	// useEffect(() => {
+	// 	for (let i = 1; i <= 9; i++) {
+	// 		flipLetter(i);
+	// 	}
+	// 	setTimeout(() => {
+	// 		document.querySelector('.loader-text').classList.add('display');
+	// 	}, 1000);
+	// 	setTimeout(() => {
+	// 		for (let i = 1; i <= 6; i++) {
+	// 			jumpLetter(i);
+	// 		}
+	// 	}, 3200);
+	// 	setTimeout(() => {
+	// 		rotateContainer();
+	// 	}, 4800);
+	// }, []);
+
 	return (
 		<StyledLoader
+			// ref={pageRef}
 			className='tv-loader'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{/* <div className='tv-wrapper'> */}
+			{/* <div className='loader-grid'>
+				<div className='loader-letters span-two' data-order='9' data-pop>
+					<div className='loader-letter-back loader-letter'>e</div>
+					<div className='loader-letter-front loader-letter'>F</div>
+				</div>
+				<div className='loader-letters span-two' data-order='4' data-pop>
+					<div className='loader-letter-back loader-letter'>e</div>
+					<div className='loader-letter-front loader-letter'>U</div>
+				</div>
+				<div className='loader-letters span-two' data-order='2' data-pop>
+					<div className='loader-letter-back loader-letter'>n</div>
+					<div className='loader-letter-front loader-letter'>n</div>
+				</div>
+				<div className='loader-letters' data-order='8' data-jump='1'>
+					<div className='loader-letter-back loader-letter'>u</div>
+					<div className='loader-letter-front loader-letter'>j</div>
+				</div>
+				<div className='loader-letters' data-order='7' data-jump='2'>
+					<div className='loader-letter-back loader-letter'>b</div>
+					<div className='loader-letter-front loader-letter'>U</div>
+				</div>
+				<div className='loader-letters' data-order='5' data-jump='3'>
+					<div className='loader-letter-back loader-letter'>m</div>
+					<div className='loader-letter-front loader-letter'>m</div>
+				</div>
+				<div className='loader-letters' data-order='6' data-jump='4'>
+					<div className='loader-letter-back loader-letter'>l</div>
+					<div className='loader-letter-front loader-letter'>b</div>
+				</div>
+				<div className='loader-letters' data-order='1' data-jump='5'>
+					<div className='loader-letter-back loader-letter'>u</div>
+					<div className='loader-letter-front loader-letter'>l</div>
+				</div>
+				<div className='loader-letters' data-order='3' data-jump='6'>
+					<div className='loader-letter-back loader-letter'>j</div>
+					<div className='loader-letter-front loader-letter'>e</div>
+				</div>
+			</div> */}
+			{/* </div> */}
 			<div className='tv-wrapper'>
 				<h1>
 					TERROR
@@ -285,9 +361,8 @@ const StyledLoader = styled(motion.section)`
 	height: 100%;
 	background-color: ${({ theme }) => theme.primaryColor};
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	justify-content: center;
 	z-index: 500;
 
 	.tv-wrapper {
@@ -300,7 +375,6 @@ const StyledLoader = styled(motion.section)`
 				color: ${({ theme }) => theme.green};
 				font-weight: bolder;
 				font-size: 4.4rem;
-				/* font-style: italic; */
 			}
 		}
 	}

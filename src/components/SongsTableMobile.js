@@ -20,7 +20,9 @@ const SongsTableMobile = () => {
 						<th>album</th>
 						<th>b-sides</th> */}
 						<th>
-							<FaStar className='star-on' />
+							<div className='td-star-wrapper'>
+								<FaStar className='star-on' />
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -35,9 +37,13 @@ const SongsTableMobile = () => {
 								<td>-</td> */}
 								<td>
 									{currentUser.correctSongIDs.includes(song._id) ? (
-										<FaStar className='star-on' />
+										<div className='td-star-wrapper'>
+											<FaStar className='star-on' />
+										</div>
 									) : (
-										<FaStar className='star-off' />
+										<div className='td-star-wrapper'>
+											<FaStar className='star-off' />
+										</div>
 									)}
 								</td>
 							</tr>
@@ -89,6 +95,16 @@ const StyledSongsTableMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+
+							.star-on {
+								/* color: ${({ theme }) => theme.bgCircle}; */
+								color: ${({ theme }) => theme.white};
+								/* color: ${({ theme }) => theme.bgLightGrey}; */
+							}
+						}
 					}
 				}
 			}
@@ -119,15 +135,19 @@ const StyledSongsTableMobile = styled.div`
 					}
 					&:nth-of-type(3) {
 						background-color: rgba(0, 0, 0, 0.07);
-						.star-off {
-							/* color: ${({ theme }) => theme.bgCircle}; */
-							color: ${({ theme }) => theme.tapeBase};
-							/* color: ${({ theme }) => theme.bgLightGrey}; */
-						}
-						.star-on {
-							/* color: ${({ theme }) => theme.bgCircle}; */
-							color: ${({ theme }) => theme.green};
-							/* color: ${({ theme }) => theme.bgLightGrey}; */
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-off {
+								/* color: ${({ theme }) => theme.bgCircle}; */
+								color: ${({ theme }) => theme.tapeBase};
+								/* color: ${({ theme }) => theme.bgLightGrey}; */
+							}
+							.star-on {
+								/* color: ${({ theme }) => theme.bgCircle}; */
+								color: ${({ theme }) => theme.green};
+								/* color: ${({ theme }) => theme.bgLightGrey}; */
+							}
 						}
 					}
 				}
