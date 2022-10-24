@@ -5,7 +5,12 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useResultsContext } from '../hooks/useResultsContext';
 import { useStateContext } from '../lib/context';
 import { log } from '../utils/helper';
-import { ImCross, ImCheckmark } from 'react-icons/im';
+import { ImArrowRight } from 'react-icons/im';
+import ResultsList from './ResultsList';
+// import ResultsScore from './ResultsScore';
+import ResultsRanking from './ResultsRanking';
+import { motion } from 'framer-motion';
+// import { ImCross, ImCheckmark, ImArrowRight } from 'react-icons/im';
 
 const ResultsModal = ({ setScoreBoard, level }) => {
 	// const { dispatch } = useGamesContext();
@@ -121,6 +126,26 @@ const ResultsModal = ({ setScoreBoard, level }) => {
 		navigate('/');
 	};
 
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			transition: {
+				delayChildren: 1,
+				staggerChildren: songCount + 1,
+			},
+			// transition: {
+			// 	delayChildren: 1,
+			// 	staggerChildren: 1,
+			// },
+		},
+	};
+
+	const item = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+	};
+
 	return (
 		<StyledResultsModal open>
 			{/* <StyledResultsModal open> */}
@@ -129,66 +154,40 @@ const ResultsModal = ({ setScoreBoard, level }) => {
 
 				<div className='level-status-wrapper'>
 					<div className='level-header-wrapper'>
-						<p>category: </p>
-						<span> {level.category}</span>
+						<p>category: </p> <span> {level.category}</span>
 					</div>
 					<div className='level-header-wrapper'>
-						<p>difficulty: </p>
-						<span> {level.difficulty}</span>
+						<p>difficulty: </p> <span> {level.difficulty}</span>
 					</div>
 				</div>
 
-				<ol className='br-inset'>
-					{/* <li>SONGS</li> */}
-					{gameScore &&
-						gameScore.map((song, index) => (
-							<li key={index}>
-								<div className='result-song-row'>
-									<p>{song.title}</p>
-									{song.isCorrect === true ? (
-										<ImCheckmark className='star-on' />
-									) : (
-										<ImCross className='star-off' />
-									)}
-								</div>
-							</li>
-						))}
-				</ol>
-
-				<div className='results-msg-wrapper'>
-					{(gameScore.filter((obj) => {
-						return obj.isCorrect === true;
-					}).length /
-						gameScore.length) *
-						100 ===
-					100 ? (
-						<p className='result-msg'>PERFECT</p>
-					) : (
-						<p className='result-msg bad'>Not so hot</p>
-					)}
-				</div>
-				{/* <p className='result-msg'>Shit 'ot</p> */}
-
-				<div className='results-wrapper br-inset'>
-					<p className='result-percentage'>
-						{(
-							(gameScore.filter((obj) => {
-								return obj.isCorrect === true;
-							}).length /
-								gameScore.length) *
-							100
-						).toFixed()}
-						<span>%</span>
-					</p>
-					<p>
-						{
-							gameScore.filter((obj) => {
-								return obj.isCorrect === true;
-							}).length
-						}{' '}
-						out of {gameScore.length}
-					</p>
-				</div>
+				<motion.div
+					className='staggered-animation-container'
+					variants={container}
+					initial='hidden'
+					animate='show'
+				>
+					<motion.div variants={item} className='staggered-wrapper'>
+						<ResultsList gameScore={gameScore} />
+					</motion.div>
+					{/* <motion.div variants={item} className='staggered-wrapper'>
+						<ResultsScore gameScore={gameScore} />
+					</motion.div> */}
+					<motion.div variants={item} className='staggered-wrapper'>
+						<ResultsRanking gameScore={gameScore} />
+					</motion.div>
+					{/* <motion.div
+						variants={item}
+						className='add-results-to-user-btn'
+						onClick={() => {
+							compileResults();
+							handleClose();
+						}}
+					>
+						<p>CONTINUE</p>
+						<ImArrowRight className='arrow-r-icon' />
+					</motion.div> */}
+				</motion.div>
 
 				<div
 					className='add-results-to-user-btn'
@@ -198,6 +197,7 @@ const ResultsModal = ({ setScoreBoard, level }) => {
 					}}
 				>
 					<p>CONTINUE</p>
+					<ImArrowRight className='arrow-r-icon' />
 				</div>
 			</div>
 		</StyledResultsModal>
@@ -212,7 +212,7 @@ const StyledResultsModal = styled.dialog`
 	width: 100vw;
 	display: grid;
 	place-content: center;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.8);
 	border: none;
 	/* border: 1px solid green; */
 	/* ::backdrop {
@@ -255,20 +255,23 @@ const StyledResultsModal = styled.dialog`
 				justify-content: flex-start;
 				align-items: center;
 				text-transform: capitalize;
+				column-gap: 0.5rem;
 				p {
 					font-weight: bolder;
 				}
 			}
 		}
-		ol {
+		.staggered-animation-container {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			row-gap: 1rem;
+		}
+		/* ol {
 			padding: 2rem;
-			/* width: 100%; */
-			/* flex: 1; */
-			/* list-style:  */
 			padding-left: 4rem;
 			li {
 				display: list-item;
-				/* padding-left: 2rem; */
 				.result-song-row {
 					display: flex;
 					justify-content: space-between;
@@ -277,36 +280,30 @@ const StyledResultsModal = styled.dialog`
 						text-transform: capitalize;
 					}
 					.star-off {
-						/* color: ${({ theme }) => theme.bgCircle}; */
 						color: ${({ theme }) => theme.red};
-						/* color: ${({ theme }) => theme.bgLightGrey}; */
 					}
 					.star-on {
-						/* color: ${({ theme }) => theme.bgCircle}; */
 						color: ${({ theme }) => theme.green};
-						/* color: ${({ theme }) => theme.bgLightGrey}; */
 					}
 				}
 			}
-		}
-		.results-msg-wrapper {
+		} */
+		/* .results-msg-wrapper {
 			text-align: center;
 			.result-msg {
 				color: ${({ theme }) => theme.green};
-				/* text-transform: capitalize; */
 				font-size: 4rem;
 				font-weight: bolder;
 				&.bad {
 					color: ${({ theme }) => theme.red};
 				}
 			}
-		}
-		.results-wrapper {
+		} */
+		/* .results-wrapper {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			padding: 2rem;
-			/* width: 100%; */
 			p {
 				text-align: center;
 				&.result-percentage {
@@ -318,22 +315,33 @@ const StyledResultsModal = styled.dialog`
 					font-size: 2rem;
 				}
 			}
-		}
+		} */
 		.add-results-to-user-btn {
-			background-color: ${({ theme }) => theme.primaryColor};
+			background-color: ${({ theme }) => theme.green};
 			padding: 1rem 2rem;
 
 			/* align-self: flex-end; */
 			cursor: pointer;
 			border-radius: 4px;
 			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-			margin-top: 1rem;
-			align-self: center;
+			/* margin-top: 1rem; */
+			/* align-self: center; */
+			position: relative;
 			p {
 				text-transform: uppercase;
-				color: ${({ theme }) => theme.secondaryColor};
+				color: ${({ theme }) => theme.white};
 				font-weight: bold;
 				text-align: center;
+				pointer-events: none;
+			}
+			.arrow-r-icon {
+				position: absolute;
+				font-size: 2rem;
+				color: ${({ theme }) => theme.white};
+				top: 50%;
+				right: 0;
+				transform: translate(-100%, -50%);
+				pointer-events: none;
 			}
 		}
 	}

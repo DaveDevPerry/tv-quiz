@@ -220,10 +220,9 @@ const GameForm = ({
 			{/* <StyledForm className='create' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}> */}
 			{/* <StyledForm className='create' onSubmit={handleAnswerOptionClick}> */}
 			<div className='input-wrapper-band'>
-				<label>
+				{/* <label>
 					song title:
-					{/* <span className='field-required'>*</span> */}
-				</label>
+				</label> */}
 				<GameFormSongs
 					setDisplay={setDisplay}
 					display={display}
@@ -239,8 +238,12 @@ const GameForm = ({
 
 			<div className='btn-container'>
 				{error && <div className='error'>{error}</div>}
-				<button className='add-btn'>SUBMIT ANSWER</button>
+				<button className='add-btn'>CHECK ANSWER</button>
 			</div>
+			{/* <div className='btn-container'>
+				{error && <div className='error'>{error}</div>}
+				<button className='add-btn'>SUBMIT ANSWER</button>
+			</div> */}
 		</StyledForm>
 	);
 };

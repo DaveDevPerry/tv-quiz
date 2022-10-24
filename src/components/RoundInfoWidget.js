@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import VolumeTest from './VolumeTest';
 import { IoAlertOutline } from 'react-icons/io5';
+import { ImArrowRight } from 'react-icons/im';
 // import AudioPlayer from './AudioPlayer';
 
 const RoundInfoWidget = ({
@@ -117,7 +118,9 @@ const RoundInfoWidget = ({
 				}}
 			>
 				{/* <div className='start-game-btn' onClick={setQuestionNumber(1)}> */}
-				<h2>good to go</h2>
+				<p>good to go</p>
+				{/* <h2>good to go</h2> */}
+				<ImArrowRight className='arrow-r-icon' />
 			</div>
 		</StyledRoundInfoWidget>
 	);
@@ -191,9 +194,30 @@ const StyledRoundInfoWidget = styled(motion.div)`
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 		margin-top: 1rem;
 		/* width: fit-content; */
-		h2 {
+		position: relative;
+		/* display: flex; */
+		/* justify-content: flex-end; */
+
+		/* h2 {
 			text-transform: uppercase;
 			font-weight: lighter;
+			pointer-events: none;
+		} */
+		p {
+			text-transform: uppercase;
+			color: ${({ theme }) => theme.white};
+			font-weight: bold;
+			text-align: center;
+			pointer-events: none;
+		}
+		.arrow-r-icon {
+			position: absolute;
+			font-size: 2rem;
+			color: ${({ theme }) => theme.white};
+			top: 50%;
+			right: 0;
+			transform: translate(-100%, -50%);
+			pointer-events: none;
 		}
 	}
 `;

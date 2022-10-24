@@ -74,10 +74,14 @@ const CategoryButton = ({ level, levelIndex }) => {
 			<div className='category-header'>
 				<h3>{level && level.category}</h3>
 				<div className='song-count-wrapper'>
-					<span>
-						<MdOutlineQueueMusic className='song-icon' />
-					</span>
-					<h4>{level && level.questionCount}</h4>
+					{/* <span> */}
+					<MdOutlineQueueMusic className='song-icon' />
+					{/* </span> */}
+					<h4>
+						{level && level.questionCount < 10
+							? `0${level && level.questionCount}`
+							: level && level.questionCount}
+					</h4>
 				</div>
 				<div className='stat-card-ratio'>
 					<p className='songs-correct'>
@@ -182,12 +186,13 @@ const StyledCategoryButton = styled.div`
 				}
 			} */
 			}
-			span {
-				.song-icon {
-					font-size: 2rem;
-					/* color: ${({ theme }) => theme.primaryColor}; */
-				}
+			/* span { */
+			.song-icon {
+				font-size: 2rem;
+				color: ${({ theme }) => theme.green};
+				/* color: ${({ theme }) => theme.primaryColor}; */
 			}
+			/* } */
 		}
 		.stat-card-ratio {
 			/* color: ${({ theme }) => theme.green}; */
@@ -216,6 +221,7 @@ const StyledCategoryButton = styled.div`
 		/* font-size: 2.5rem; */
 		/* pointer-events: none; */
 		column-gap: 1rem;
+		padding: 1rem 0;
 		/* .time-wrapper {
 			display: flex;
 			flex-direction: column;

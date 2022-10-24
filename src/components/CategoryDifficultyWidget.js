@@ -107,12 +107,15 @@ const StyledCategoryDifficultyWidget = styled.div`
 			flex: 1 1 49%;
 			.timer-icon {
 				font-size: 1.6rem;
+				color: ${({ theme }) => theme.green};
 			}
 			.songs-icon {
 				font-size: 2rem;
+				color: ${({ theme }) => theme.green};
 			}
 			.time-allotted {
 				font-size: 1.6rem;
+				font-weight: bolder;
 				span {
 					text-transform: lowercase;
 					font-style: italic;

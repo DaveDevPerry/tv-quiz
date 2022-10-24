@@ -72,8 +72,8 @@ const StyledSongsTableMobile = styled.div`
 					top: 0; */
 				th {
 					border-bottom: 1px solid #bdbdbd;
-					/* padding: 1rem 0.5rem; */
-					padding: 1rem;
+					padding: 0.5rem 1rem;
+					/* padding: 1rem; */
 					/* position: sticky;
 						top: 0; */
 					.star-on {
@@ -100,12 +100,13 @@ const StyledSongsTableMobile = styled.div`
 					background-color: #ededed;
 				}
 				td {
-					padding: 1rem;
+					padding: 0.5rem;
 					/* padding: 1rem 0.5rem; */
 					text-align: center;
 					&.full {
 						flex: 1;
 						text-align: left;
+						padding: 0.5rem 1rem;
 						/* width: 100%; */
 					}
 					/* display: grid;

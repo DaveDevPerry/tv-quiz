@@ -35,6 +35,9 @@ const QuestionWidget = ({
 			className='br'
 		>
 			<div className='question-header'>
+				<ScoreBoardMobile music={music} scoreBoard={scoreBoard} />
+			</div>
+			{/* <div className='question-header'>
 				<h3>
 					{level && level.category}
 					{'   '}
@@ -43,10 +46,8 @@ const QuestionWidget = ({
 					</span>
 				</h3>
 				<ScoreBoardMobile music={music} scoreBoard={scoreBoard} />
-			</div>
-			{/* <h3>
-				Song {number} / {questionCount}
-			</h3> */}
+			</div> */}
+
 			<AudioPlayer
 				music={question.fileName}
 				disableControls={disableControls}
@@ -69,15 +70,18 @@ const StyledQuestionWidget = styled(motion.div)`
 	/* border: 2px solid green; */
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.5rem;
+	row-gap: 0.75rem;
+	/* row-gap: 0.5rem; */
 	flex: 1;
-	padding: 1rem;
+	padding: 1.5rem 1rem;
+	/* padding: 1rem; */
 	.question-header {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 2rem;
+		padding: 0 0.3rem;
 		h3 {
 			color: ${({ theme }) => theme.txtGrey};
 			/* color: ${({ theme }) => theme.primaryColor}; */

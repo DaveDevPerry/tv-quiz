@@ -35,6 +35,18 @@ ${
 	  user-select: none;
     ${'' /* font-family: 'Roboto', sans-serif; */}
     font-family: 'Signika', sans-serif;
+    /* Width and color values */
+
+
+/* Global values */
+-webkit-text-stroke: inherit;
+-webkit-text-stroke: initial;
+-webkit-text-stroke: unset;
+${
+	'' /* text-stroke: inherit;
+text-stroke: initial;
+text-stroke: unset; */
+}
   }
   body {
     -webkit-font-smoothing: antialiased;
@@ -250,6 +262,14 @@ div.error {
 }
 input.error {
   border: 1px solid ${({ theme }) => theme.error};
+}
+
+
+.stroke{
+  -webkit-text-stroke: 1px ${({ theme }) => theme.secondaryColor};
+${'' /* text-stroke: 4px navy; */}
+font-family: 'Arial';
+${'' /* text-transform: uppercase; */}
 }
 
 

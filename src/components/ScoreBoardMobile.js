@@ -51,7 +51,7 @@ const StyledScoreBoardMobile = styled.div`
 			flex: 1 1 17%;
 			.result-icon {
 				background-color: ${({ theme }) => theme.bgLightGrey};
-				height: 0.5rem;
+				height: 0.7rem;
 				width: 100%;
 			}
 			.wrong-icon {

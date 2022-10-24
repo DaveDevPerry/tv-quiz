@@ -88,6 +88,7 @@ const GameFormSongs = ({
 				}}
 				autoComplete='off'
 				required
+				placeholder='song title here: type to filter'
 			/>
 			{/* <div className='scroll-container'> */}
 			{display && (

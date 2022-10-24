@@ -18,6 +18,7 @@ import { useResultsContext } from '../hooks/useResultsContext';
 import { log } from '../utils/helper';
 import ResultWidget from '../components/ResultWidget';
 import { RiUser3Fill } from 'react-icons/ri';
+// import ResultsList from '../components/ResultsList';
 // import ResultsModal from '../components/ResultsModal';
 
 const Home = ({ handleClick, setShowDialog, showDialog }) => {
@@ -146,6 +147,8 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 					</span>
 				</p>
 			</div>
+
+			{/* <ResultsList /> */}
 			{/* <div className='home-header'>
 				<h3>Welcome, {currentUser && currentUser.username}</h3>
 				<p className='home-rank'>
