@@ -285,7 +285,7 @@ label .field-required{
 .br{
   border-radius: 4px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-   background-color: ${({ theme }) => theme.black};
+   background-color: ${({ theme }) => theme.white};
 	${'' /* box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5); */}
 }
 .br-inset{

@@ -1,9 +1,8 @@
-import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 import styled from 'styled-components';
-// import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -15,13 +14,11 @@ const Settings = ({ themeToggler, theme }) => {
 	const { logout } = useLogout();
 	const { user } = useAuthContext();
 	const { dataLoaded } = useStateContext();
-	// const { isFormActive, setIsFormActive } = useStateContext();
 
 	const handleClick = () => {
 		logout();
 		notify();
 	};
-
 	// create a toast
 	const notify = () => {
 		toast.success(`you are now logged out.`, {
@@ -52,7 +49,6 @@ const Settings = ({ themeToggler, theme }) => {
 						<button onClick={handleClick}>Log out</button>
 					</div>
 				</div>
-
 				<div className='account-details'>
 					<h5 className='sub-heading'>account</h5>
 					<ul className='user-details-list'>
@@ -62,33 +58,17 @@ const Settings = ({ themeToggler, theme }) => {
 								<span id='full-name'>{user.username}</span>
 							</li>
 						)}
-
 						<li>
 							<p>email:</p>
 							<span>{user.email}</span>
 						</li>
 					</ul>
 				</div>
-
 				<div className='preferences'>
 					<h5 className='sub-heading'>preferences</h5>
-
 					<Toggle toggleTheme={themeToggler} theme={theme} />
 				</div>
-
 				<TVAppLinks />
-
-				{/* <Navbar targets={targets} /> */}
-
-				{/* {targets && targets.length === 1 && <TargetWidget targets={targets} />} */}
-				{/* <UserPreferences toggleTheme={themeToggler} theme={theme} /> */}
-
-				{/* {!targets && <TargetForm />} */}
-				{/* {!user.first_name && <UserForm />} */}
-
-				{/* <div className='btn-container'>
-					<button onClick={handleClick}>Log out</button>
-				</div> */}
 			</div>
 		</StyledSettings>
 	);
@@ -122,20 +102,12 @@ const StyledSettings = styled(motion.div)`
 				flex: 1;
 			}
 			.logout-btn-container {
-				/* border-top: 1px solid ${({ theme }) => theme.secondaryColor}; */
-				/* margin-top: 1rem; */
-				/* width: 100%; */
-				/* padding: 1rem 0rem; */
-				/* text-align: right; */
 				button {
 					align-self: flex-end;
 					background: ${({ theme }) => theme.white};
 					color: ${({ theme }) => theme.secondaryColor};
-					/* border: 2px solid ${({ theme }) => theme.secondaryColor}; */
 					border: none;
 					outline: none;
-					/* padding: 0.3rem 0.6rem; */
-					/* border-radius: 0.4rem; */
 					font-family: 'Signika', sans-serif;
 					cursor: pointer;
 					font-size: 1.6rem;
@@ -148,7 +120,6 @@ const StyledSettings = styled(motion.div)`
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: flex-start;
-			/* row-gap: 0.5rem; */
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
 				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
@@ -173,7 +144,6 @@ const StyledSettings = styled(motion.div)`
 					}
 				}
 			}
-
 			p {
 				span {
 					font-weight: bold;
@@ -189,7 +159,7 @@ const StyledSettings = styled(motion.div)`
 			flex-direction: column;
 			align-items: flex-start;
 			justify-content: flex-start;
-			/* flex: 1; */
+			display: none;
 			.sub-heading {
 				color: ${({ theme }) => theme.secondaryColor};
 				border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
@@ -198,37 +168,10 @@ const StyledSettings = styled(motion.div)`
 				font-size: 1.6rem;
 			}
 		}
-		/* .btn-container {
-			border-top: 1px solid ${({ theme }) => theme.secondaryColor};
-			margin-top: 1rem;
-			width: 100%;
-			padding: 1rem 0rem;
-			text-align: right;
-			button {
-				align-self: flex-end;
-				background: ${({ theme }) => theme.white};
-				color: ${({ theme }) => theme.secondaryColor};
-				border: 2px solid ${({ theme }) => theme.secondaryColor};
-				padding: 0.3rem 0.6rem;
-				border-radius: 0.4rem;
-				font-family: 'Signika', sans-serif;
-				cursor: pointer;
-				font-size: 1em;
-			}
-		} */
 	}
 	h3 {
 		text-align: center;
-		/* position: relative; */
 		color: ${({ theme }) => theme.secondaryColor};
-		/* .close-icon {
-			position: absolute;
-			right: 0;
-			top: 50%;
-			transform: translateY(-50%);
-			font-size: 2rem;
-			color: ${({ theme }) => theme.txtDarkGrey};
-		} */
 	}
 `;
 

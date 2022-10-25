@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-// import CategoryStatCard from '../components/CategoryStatCard';
-// import CategoryStatWidget from '../components/CategoryStatWidget';
-// import ProgressBarWidget from '../components/ProgressBarWidget';
 import { useAuthContext } from '../hooks/useAuthContext';
-// import LevelSelectButton from '../components/LevelSelectButton';
-// import { useLevelsContext } from '../hooks/useLevelsContext';
-// import { useSongsContext } from '../hooks/useSongsContext';
-// import { FaStar } from 'react-icons/fa';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import CorrectSongCard from '../components/CorrectSongCard';
@@ -18,43 +11,25 @@ import { useResultsContext } from '../hooks/useResultsContext';
 import { log } from '../utils/helper';
 import ResultWidget from '../components/ResultWidget';
 import { RiUser3Fill } from 'react-icons/ri';
-// import ResultsList from '../components/ResultsList';
-// import ResultsModal from '../components/ResultsModal';
 
-const Home = ({ handleClick, setShowDialog, showDialog }) => {
-	// const { songs } = useSongsContext();
-	// const { currentUser } = useAuthContext();
-	// const { currentUser, userCount, users } = useAuthContext();
-	// const { levels } = useLevelsContext();
-
+const Home = () => {
 	const { dataLoaded, rankSuffix, setRankSuffix } = useStateContext();
-
 	const { currentUser, users } = useAuthContext();
-	// const { currentUser, userCount, users } = useAuthContext();
+	const { results, result, dispatch } = useResultsContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
 		if (dataLoaded === false) {
 			navigate('/');
 		}
-		// if (isMobile) {
-		// 	log('is mobile');
-		// } else {
-		// 	log('is not mobile');
-		// }
 	}, [navigate, dataLoaded]);
-
-	// const { currentUser } = useAuthContext();
-	const { results, result, dispatch } = useResultsContext();
 
 	useEffect(() => {
 		log(results, 'results - animated');
 		log(currentUser, 'current user - animated');
-
 		const findUserResult =
 			results && results.find((obj) => obj.user_id === currentUser._id);
 		log(findUserResult, 'findUserResult animated');
-
 		dispatch({
 			type: 'SET_RESULT',
 			payload: findUserResult,
@@ -67,7 +42,6 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 			users.findIndex((object) => {
 				return object._id === currentUser._id;
 			}) + 1;
-
 		getRankSuffix(rankNumber);
 	}, [users, currentUser]);
 
@@ -116,13 +90,6 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 		return suffix;
 	};
 
-	// const [showDialog, setShowDialog] = useState(false);
-
-	// const handleClick = (e) => {
-	// 	e.preventDefault();
-	// 	setShowDialog(true);
-	// };
-
 	return (
 		<StyledHome
 			initial={{ width: 0 }}
@@ -134,7 +101,6 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 					<RiUser3Fill className='user-icon' />
 					<p className='username'>{currentUser && currentUser.username}</p>
 				</div>
-				{/* <p className='username'>{currentUser && currentUser.username}</p> */}
 				<p className='home-rank'>
 					current rank:
 					<span>
@@ -148,45 +114,15 @@ const Home = ({ handleClick, setShowDialog, showDialog }) => {
 				</p>
 			</div>
 
-			{/* <ResultsList /> */}
-			{/* <div className='home-header'>
-				<h3>Welcome, {currentUser && currentUser.username}</h3>
-				<p className='home-rank'>
-					current rank:
-					<span>
-						{users &&
-							users.findIndex((object) => {
-								return object._id === currentUser._id;
-							}) + 1}{' '}
-						<sup>st</sup>
-					</span>
-				</p>
-			</div> */}
-
 			<div className='test-wrapper'>
 				<ResultWidget result={result && result} />
 			</div>
-			{/* {result && result} */}
-
 			<div className='card-wrapper'>
 				<PlayerRankCard />
 				<CorrectSongCard />
 			</div>
-			{/* <PlayerRankCard />
-			<CorrectSongCard /> */}
 
 			<CategoryStatCardContainer />
-
-			{/* <div className='category-card-container'>
-				{levels &&
-					levels.map((level, index) => (
-						<CategoryStatCard
-							key={level._id}
-							level={level}
-							levelIndex={index}
-						/>
-					))}
-			</div> */}
 		</StyledHome>
 	);
 };
@@ -203,7 +139,6 @@ const StyledHome = styled(motion.div)`
 	margin: 0 auto;
 	flex: 1;
 	overflow: auto;
-	/* overflow: hidden; */
 	.home-header {
 		display: flex;
 		flex-direction: row;
@@ -224,10 +159,6 @@ const StyledHome = styled(motion.div)`
 				flex: 1;
 			}
 		}
-		/* .username {
-			font-size: 1.8rem;
-			flex: 1;
-		} */
 		.home-rank {
 			font-size: 1.8rem;
 			span {
@@ -243,7 +174,6 @@ const StyledHome = styled(motion.div)`
 	.card-wrapper {
 		display: flex;
 		flex-direction: row;
-		/* align-items: flex-start; */
 		justify-content: flex-start;
 		flex-wrap: wrap;
 		gap: 1rem;
@@ -269,13 +199,6 @@ const StyledHome = styled(motion.div)`
 		row-gap: 1rem;
 		overflow-y: scroll;
 	}
-	/* .category-card-container {
-		flex-wrap: wrap;
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		gap: 1rem;
-	} */
 `;
 
 export default Home;

@@ -75,11 +75,11 @@ const StyledSongsTableMobile = styled.div`
 		thead {
 			display: block;
 			tr {
-				background-color: #dddddd;
+				background-color: ${({ theme }) => theme.theadTr};
 				text-transform: uppercase;
 				width: 100%;
 				th {
-					border-bottom: 1px solid #bdbdbd;
+					border-bottom: 1px solid ${({ theme }) => theme.theadTh};
 					padding: 0.5rem;
 					min-width: 30px;
 					&.full {
@@ -110,8 +110,12 @@ const StyledSongsTableMobile = styled.div`
 			overflow-y: auto;
 			tr {
 				display: block;
+				background-color: ${({ theme }) => theme.trOdd};
+				/* &:nth-of-type(odd) {
+					background-color: ${({ theme }) => theme.trOdd};
+				} */
 				&:nth-of-type(even) {
-					background-color: #ededed;
+					background-color: ${({ theme }) => theme.trEven};
 				}
 				td {
 					padding: 0.5rem;
@@ -159,11 +163,11 @@ const StyledSongsTableMobile = styled.div`
 			grid-area: head-fixed;
 			width: 100%;
 			tr {
-				background-color: #dddddd;
+				background-color: ${({ theme }) => theme.theadTr};
 				text-transform: uppercase;
 				width: 100%;
 				th {
-					border-bottom: 1px solid #bdbdbd;
+					border-bottom: 1px solid ${({ theme }) => theme.theadTh};
 					padding: 0.5rem 1rem;
 					&.full {
 						flex: 1;
@@ -192,7 +196,7 @@ const StyledSongsTableMobile = styled.div`
 			height: calc(60vh - 55px);
 			tr {
 				&:nth-of-type(even) {
-					background-color: #ededed;
+					background-color: ${({ theme }) => theme.trEven};
 				}
 				td {
 					padding: 0.5rem;
@@ -231,10 +235,10 @@ const StyledSongsTableMobile = styled.div`
 		border-collapse: collapse;
 		thead {
 			tr {
-				background-color: #dddddd;
+				background-color: ${({ theme }) => theme.theadTr};
 				text-transform: uppercase;
 				th {
-					border-bottom: 1px solid #bdbdbd;
+					border-bottom: 1px solid ${({ theme }) => theme.theadTh};
 					padding: 0.5rem 1rem;
 					&.full {
 						flex: 1;
@@ -259,7 +263,7 @@ const StyledSongsTableMobile = styled.div`
 		tbody {
 			tr {
 				&:nth-of-type(even) {
-					background-color: #ededed;
+					background-color: ${({ theme }) => theme.trEven};
 				}
 				td {
 					padding: 0.5rem;

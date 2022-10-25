@@ -90,10 +90,10 @@ const StyledLeaderboardUserStats = styled.div`
 		border-collapse: collapse;
 		thead {
 			tr {
-				background-color: #dddddd;
+				background-color: ${({ theme }) => theme.theadTr};
 				text-transform: uppercase;
 				th {
-					border-bottom: 1px solid #bdbdbd;
+					border-bottom: 1px solid ${({ theme }) => theme.theadTh};
 					/* padding: 1rem 0.5rem; */
 					padding: 1rem;
 					font-size: 1.4rem;
@@ -137,7 +137,7 @@ const StyledLeaderboardUserStats = styled.div`
 			/* border-bottom: 1px solid; */
 			tr {
 				&:nth-of-type(even) {
-					background-color: #ededed;
+					background-color: ${({ theme }) => theme.trEven};
 				}
 				td {
 					padding: 1rem;

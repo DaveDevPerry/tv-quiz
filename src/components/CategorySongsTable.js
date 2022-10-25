@@ -69,12 +69,12 @@ const StyledCategorySongsTableMobile = styled.div`
 			/* position: sticky;
 				top: 0; */
 			tr {
-				background-color: #dddddd;
+				background-color: ${({ theme }) => theme.theadTr};
 				text-transform: uppercase;
 				/* position: sticky;
 					top: 0; */
 				th {
-					border-bottom: 1px solid #bdbdbd;
+					border-bottom: 1px solid ${({ theme }) => theme.theadTh};
 					/* padding: 1rem 0.5rem; */
 					padding: 1rem;
 					/* position: sticky;
@@ -100,7 +100,7 @@ const StyledCategorySongsTableMobile = styled.div`
 			/* border-bottom: 1px solid; */
 			tr {
 				&:nth-of-type(even) {
-					background-color: #ededed;
+					background-color: ${({ theme }) => theme.trEven};
 				}
 				td {
 					padding: 1rem;
