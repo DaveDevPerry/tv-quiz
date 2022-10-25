@@ -3,22 +3,28 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 import { useSongsContext } from '../hooks/useSongsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useViewport } from '../hooks/useViewport';
 
 const SongsTableMobile = () => {
 	const { songs } = useSongsContext();
 	const { currentUser } = useAuthContext();
+
+	const { height } = useViewport();
+	// const breakpoint = 620;
+
+	const tHeight = `${height}px`;
+
+	// const bodyStyle = {
+	// 	height: '100px',
+	// };
 	return (
 		<StyledSongsTableMobile className='br'>
-			{/* <div className='table-container'> */}
 			<h2>all songs</h2>
-			<table>
+			<table id='all-songs-table'>
 				<thead>
 					<tr>
 						<th></th>
 						<th className='full'>title</th>
-						{/* <th>singles</th>
-						<th>album</th>
-						<th>b-sides</th> */}
 						<th>
 							<div className='td-star-wrapper'>
 								<FaStar className='star-on' />
@@ -26,15 +32,13 @@ const SongsTableMobile = () => {
 						</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style={{ height: `calc(${tHeight} - 234.5px)` }}>
+					{/* <tbody style={bodyStyle}> */}
 					{songs &&
 						songs.map((song, index) => (
 							<tr key={index}>
 								<td>{index + 1}</td>
 								<td className='full'>{song.title}</td>
-								{/* <td>-</td>
-								<td>-</td>
-								<td>-</td> */}
 								<td>
 									{currentUser.correctSongIDs.includes(song._id) ? (
 										<div className='td-star-wrapper'>
@@ -50,45 +54,121 @@ const SongsTableMobile = () => {
 						))}
 				</tbody>
 			</table>
-			{/* </div> */}
 		</StyledSongsTableMobile>
 	);
 };
 const StyledSongsTableMobile = styled.div`
 	padding: 1rem;
-	/* overflow-y: auto; */
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 1rem;
+	overflow-y: hidden;
+	flex: 1;
 	h2 {
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 	}
-	table {
+	#all-songs-table {
 		width: 100%;
 		border-collapse: collapse;
 		thead {
-			/* position: sticky;
-				top: 0; */
+			display: block;
 			tr {
 				background-color: #dddddd;
 				text-transform: uppercase;
-				/* position: sticky;
-					top: 0; */
+				width: 100%;
 				th {
 					border-bottom: 1px solid #bdbdbd;
-					padding: 0.5rem 1rem;
-					/* padding: 1rem; */
-					/* position: sticky;
-						top: 0; */
-					.star-on {
-						color: ${({ theme }) => theme.txtGrey};
-					}
+					padding: 0.5rem;
+					min-width: 30px;
 					&.full {
 						flex: 1;
 						text-align: left;
-						/* width: 100%; */
+						width: 100%;
+						padding: 0.5rem 1rem;
+					}
+					&:nth-of-type(2) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(3) {
+						background-color: rgba(0, 0, 0, 0.07);
+						min-width: 30px;
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-on {
+								color: ${({ theme }) => theme.white};
+							}
+						}
+					}
+				}
+			}
+		}
+		tbody {
+			display: block;
+			overflow-y: auto;
+			tr {
+				display: block;
+				&:nth-of-type(even) {
+					background-color: #ededed;
+				}
+				td {
+					padding: 0.5rem;
+					text-align: center;
+					&.full {
+						flex: 1;
+						text-align: left;
+						padding: 0.5rem 1rem;
+						width: 100%;
+					}
+					&:nth-of-type(1) {
+						font-weight: bolder;
+						min-width: 30px;
+					}
+					&:nth-of-type(2) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(3) {
+						background-color: rgba(0, 0, 0, 0.07);
+						min-width: 30px;
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-off {
+								color: ${({ theme }) => theme.tapeBase};
+							}
+							.star-on {
+								color: ${({ theme }) => theme.green};
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	/* #all-songs-table {
+		display: inline-grid;
+		grid-template-areas:
+			'head-fixed'
+			'body-scrollable';
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid;
+		thead {
+			grid-area: head-fixed;
+			width: 100%;
+			tr {
+				background-color: #dddddd;
+				text-transform: uppercase;
+				width: 100%;
+				th {
+					border-bottom: 1px solid #bdbdbd;
+					padding: 0.5rem 1rem;
+					&.full {
+						flex: 1;
+						text-align: left;
+						width: 100%;
 					}
 					&:nth-of-type(2) {
 						background-color: rgba(0, 0, 0, 0.07);
@@ -98,11 +178,8 @@ const StyledSongsTableMobile = styled.div`
 						.td-star-wrapper {
 							display: grid;
 							place-content: center;
-
 							.star-on {
-								/* color: ${({ theme }) => theme.bgCircle}; */
 								color: ${({ theme }) => theme.white};
-								/* color: ${({ theme }) => theme.bgLightGrey}; */
 							}
 						}
 					}
@@ -110,23 +187,22 @@ const StyledSongsTableMobile = styled.div`
 			}
 		}
 		tbody {
-			/* border-bottom: 1px solid; */
+			grid-area: body-scrollable;
+			overflow: auto;
+			height: calc(60vh - 55px);
 			tr {
 				&:nth-of-type(even) {
 					background-color: #ededed;
 				}
 				td {
 					padding: 0.5rem;
-					/* padding: 1rem 0.5rem; */
 					text-align: center;
 					&.full {
 						flex: 1;
 						text-align: left;
 						padding: 0.5rem 1rem;
-						/* width: 100%; */
+						width: 100%;
 					}
-					/* display: grid;
-					place-content: center; */
 					&:nth-of-type(1) {
 						font-weight: bolder;
 					}
@@ -139,30 +215,83 @@ const StyledSongsTableMobile = styled.div`
 							display: grid;
 							place-content: center;
 							.star-off {
-								/* color: ${({ theme }) => theme.bgCircle}; */
 								color: ${({ theme }) => theme.tapeBase};
-								/* color: ${({ theme }) => theme.bgLightGrey}; */
 							}
 							.star-on {
-								/* color: ${({ theme }) => theme.bgCircle}; */
 								color: ${({ theme }) => theme.green};
-								/* color: ${({ theme }) => theme.bgLightGrey}; */
 							}
 						}
 					}
 				}
 			}
 		}
-		/* .full {
-			flex: 1;
-			text-align: left;
-		} */
-	}
-	/* thead th {
-			position: sticky;
-			top: 0;
-		} */
-	/* } */
+	} */
+	/* table {
+		width: 100%;
+		border-collapse: collapse;
+		thead {
+			tr {
+				background-color: #dddddd;
+				text-transform: uppercase;
+				th {
+					border-bottom: 1px solid #bdbdbd;
+					padding: 0.5rem 1rem;
+					&.full {
+						flex: 1;
+						text-align: left;
+					}
+					&:nth-of-type(2) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(3) {
+						background-color: rgba(0, 0, 0, 0.07);
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-on {
+								color: ${({ theme }) => theme.white};
+							}
+						}
+					}
+				}
+			}
+		}
+		tbody {
+			tr {
+				&:nth-of-type(even) {
+					background-color: #ededed;
+				}
+				td {
+					padding: 0.5rem;
+					text-align: center;
+					&.full {
+						flex: 1;
+						text-align: left;
+						padding: 0.5rem 1rem;
+					}
+					&:nth-of-type(1) {
+						font-weight: bolder;
+					}
+					&:nth-of-type(2) {
+						background-color: rgba(0, 0, 0, 0.07);
+					}
+					&:nth-of-type(3) {
+						background-color: rgba(0, 0, 0, 0.07);
+						.td-star-wrapper {
+							display: grid;
+							place-content: center;
+							.star-off {
+								color: ${({ theme }) => theme.tapeBase};
+							}
+							.star-on {
+								color: ${({ theme }) => theme.green};
+							}
+						}
+					}
+				}
+			}
+		}
+	} */
 `;
 
 export default SongsTableMobile;
