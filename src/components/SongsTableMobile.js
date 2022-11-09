@@ -113,6 +113,7 @@ const StyledSongsTableMobile = styled.div`
 				background-color: ${({ theme }) => theme.trOdd};
 				/* &:nth-of-type(odd) {
 					background-color: ${({ theme }) => theme.trOdd};
+					background-color: ${({ theme }) => theme.trOdd};
 				} */
 				&:nth-of-type(even) {
 					background-color: ${({ theme }) => theme.trEven};
